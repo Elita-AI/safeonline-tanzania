@@ -100,7 +100,7 @@ export const categories: Category[] = [
     steps: [
       { en: "You have the right to say no and stop replying. Block and report the sender.", sw: "Una haki ya kukataa na kuacha kujibu. Mzuie na umripoti mtumaji." },
       { en: "If you are under 18, please tell a trusted adult — this is never your fault.", sw: "Kama una umri chini ya miaka 18, tafadhali mweleze mtu mzima unayemwamini — hili si kosa lako kamwe." },
-      { en: "Child protection services can help children and young people confidentially.", sw: "Huduma za ulinzi wa watoto zinaweza kusaidia watoto na vijana kwa usiri." },
+      { en: "Ask a child-protection worker what support is available and what information they may need to share. Confidentiality cannot be guaranteed.", sw: "Muulize mhudumu wa ulinzi wa mtoto kuhusu msaada uliopo na taarifa anazoweza kuhitaji kushiriki. Usiri hauwezi kuhakikishwa." },
     ],
     evidence: [{ en: "Screenshot the sender's profile and messages, but do not save or forward sexual images.", sw: "Piga picha ya skrini ya wasifu na jumbe za mtumaji, lakini usihifadhi wala kusambaza picha za ngono." }],
     platform: [{ en: "Report the account for sexual harassment or child safety.", sw: "Ripoti akaunti kwa unyanyasaji wa kingono au usalama wa mtoto." }],
@@ -197,17 +197,45 @@ export const services: Service[] = [
 ];
 
 export function detectCategory(text: string): CategoryId | null {
-  const s = text.toLowerCase();
-  let best: CategoryId | null = null;
-  let score = 0;
-  for (const c of categories) {
-    const n = c.keywords.filter((k) => s.includes(k)).length;
-    if (n > score) { score = n; best = c.id; }
-  }
-  return best;
+  return safetySignals.find((signal) => signal.pattern.test(text))?.category ?? null;
 }
 
 export function detectDanger(text: string) {
-  const s = text.toLowerCase();
-  return dangerWords.some((w) => s.includes(w));
+  return /\b(outside (my|your) (house|door)|kill (me|you)|hurt (me|you)|attacking me|immediate danger|suicid\w*|nje ya nyumba|kuniua|nitakuua|kujiua|ananipiga|nitakupiga|hatari sasa)\b/i.test(text);
+}
+
+/** Conservative bilingual demonstration signals; never a safety determination. */
+export const safetySignals: { category: CategoryId; label: T; pattern: RegExp }[] = [
+  { category: "blackmail", label: { en: "Demand or threat to expose private material", sw: "Dai au tishio la kufichua picha au taarifa za faragha" }, pattern: /\b(blackmail|sextortion|extort\w*|leak\w*|expose\w*|post my photos|share your nudes|nisipomtumia|usipolipa|nitavujisha|nitapost|atasambaza|nitasambaza|kusambaza)\b/i },
+  { category: "threats", label: { en: "Threat of harm or stalking", sw: "Tishio la kudhuru au kufuatiliwa" }, pattern: /\b(threat\w*|stalk\w*|kill (me|you)|hurt (me|you)|outside (my|your) (house|door)|vitisho|ananitishia|nitakuua|kuniua|nitakupiga|ananifuatilia)\b/i },
+  { category: "impersonation", label: { en: "Possible fake profile or identity misuse", sw: "Huenda ni akaunti bandia au matumizi mabaya ya utambulisho" }, pattern: /\b(fake account|fake profile|impersonat\w*|pretend\w* to be me|using my name|akaunti (bandia|feki)|anajifanya kuwa mimi|jina langu)\b/i },
+  { category: "sexual", label: { en: "Sexual content or pressure for intimate material", sw: "Maudhui ya ngono au shinikizo la picha za faragha" }, pattern: /\b(sexual|sext\w*|nudes?|naked|groom\w*|ngono|uchi|ananiomba picha)\b/i },
+  { category: "hacking", label: { en: "Possible scam, credential request or account compromise", sw: "Huenda ni utapeli, ombi la taarifa za kuingia au akaunti kudukuliwa" }, pattern: /\b(scam\w*|phish\w*|hack\w*|password|otp|verification code|can't log in|can’t log in|can't log into|nenosiri|siwezi kuingia|imedukuliwa|utapeli|tapeli|tuma code|won a prize|shinda zawadi)\b/i },
+  { category: "bullying", label: { en: "Abusive messages or harassment", sw: "Jumbe za matusi au unyanyasaji" }, pattern: /\b(bully\w*|insult\w*|harass\w*|mock\w*|hate you|matusi|kunitukana|dhihaka|uonevu|kejeli|wananitukana|ananitukana)\b/i },
+];
+
+export const assessmentLabels: Record<CategoryId, T> = {
+  bullying: { en: "Harassment", sw: "Unyanyasaji" },
+  threats: { en: "Threat", sw: "Tishio" },
+  blackmail: { en: "Blackmail or sextortion", sw: "Vitisho vya kushinikiza malipo au ngono" },
+  impersonation: { en: "Impersonation", sw: "Kuigwa" },
+  sexual: { en: "Unwanted sexual content", sw: "Maudhui ya ngono yasiyotakiwa" },
+  hacking: { en: "Scam or hacking", sw: "Utapeli au udukuzi" },
+};
+
+export function assessText(text: string) {
+  const matched = safetySignals.filter((signal) => signal.pattern.test(text));
+  const immediateDanger = detectDanger(text);
+  const category = immediateDanger ? "threats" : matched[0]?.category ?? null;
+  const risk: "Lower" | "Medium" | "High" = immediateDanger || category === "blackmail" || category === "threats" ? "High" : matched.length ? "Medium" : "Lower";
+  const reason: T = risk === "High"
+    ? { en: "Threats or coercion can escalate. Prioritise your safety and human support.", sw: "Vitisho au shinikizo vinaweza kuongezeka. Tanguliza usalama wako na msaada wa mtu." }
+    : risk === "Medium"
+      ? { en: "Possible abuse or account-security warning signs were matched. Context matters.", sw: "Dalili za unyanyasaji au tatizo la usalama wa akaunti zimetambuliwa. Muktadha ni muhimu." }
+      : { en: "No recognised warning signs were matched. Lower does not mean safe; links and identities are not verified.", sw: "Hakuna dalili zinazojulikana zilizotambuliwa. Kiwango cha chini hakimaanishi salama; viungo na utambulisho havijathibitishwa." };
+  return { category, risk, reason, warnings: matched.map((signal) => signal.label), immediateDanger };
+}
+
+export function verifiedEmergencyServices(records: Service[] = services): Service[] {
+  return records.filter((service) => service.category === "emergency" && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phone || service.link));
 }

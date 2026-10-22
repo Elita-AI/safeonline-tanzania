@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CheckRouteImport } from './routes/check'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as GuideRouteImport } from './routes/guide'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -36,6 +37,11 @@ const AssistantRoute = AssistantRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckRoute = CheckRouteImport.update({
+  id: '/check',
+  path: '/check',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DirectoryRoute = DirectoryRouteImport.update({
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
   '/privacy': typeof PrivacyRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
   '/privacy': typeof PrivacyRoute
@@ -90,6 +98,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
   '/privacy': typeof PrivacyRoute
@@ -102,6 +111,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/auth'
+    | '/check'
     | '/directory'
     | '/guide'
     | '/privacy'
@@ -112,6 +122,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/auth'
+    | '/check'
     | '/directory'
     | '/guide'
     | '/privacy'
@@ -123,6 +134,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/assistant'
     | '/auth'
+    | '/check'
     | '/directory'
     | '/guide'
     | '/privacy'
@@ -135,6 +147,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AssistantRoute: typeof AssistantRoute
   AuthRoute: typeof AuthRoute
+  CheckRoute: typeof CheckRoute
   DirectoryRoute: typeof DirectoryRoute
   GuideRoute: typeof GuideRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -169,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check': {
+      id: '/check'
+      path: '/check'
+      fullPath: '/check'
+      preLoaderRoute: typeof CheckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/directory': {
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AssistantRoute: AssistantRoute,
   AuthRoute: AuthRoute,
+  CheckRoute: CheckRoute,
   DirectoryRoute: DirectoryRoute,
   GuideRoute: GuideRoute,
   PrivacyRoute: PrivacyRoute,

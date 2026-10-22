@@ -98,7 +98,7 @@ function ReportPage() {
       </p>
       <p className="text-sm mt-3 flex items-start gap-2 rounded-2xl border bg-card p-4">
         <AlertTriangle className="size-4 text-accent shrink-0 mt-0.5" />
-        <span>{t({ en: "This is not an emergency service. If you are in immediate danger, move to a safe place and call 112.", sw: "Hii si huduma ya dharura. Uko hatarini sasa hivi? Nenda mahali salama na piga 112." })}</span>
+        <span>{t(ui.emergency)}</span>
       </p>
 
       <form onSubmit={submit} className="mt-6 space-y-5 rounded-2xl border bg-card p-5">
