@@ -10,10 +10,10 @@ import { AlertTriangle, CheckCircle2, Lock } from "lucide-react";
 export const Route = createFileRoute("/report")({
   head: () => ({
     meta: [
-      { title: "Report a Problem — SafeHer Tanzania" },
-      { name: "description", content: "Report online abuse or harassment privately to the SafeHer Tanzania team. Bilingual form, optional contact details." },
-      { property: "og:title", content: "Report a Problem — SafeHer Tanzania" },
-      { property: "og:description", content: "Report online abuse privately. Optional contact details, seen only by the SafeHer team." },
+      { title: "Report a Problem — SafeOnlineTanzania" },
+      { name: "description", content: "Report online abuse or harassment privately to the SafeOnlineTanzania team. Bilingual form, optional contact details." },
+      { property: "og:title", content: "Report a Problem — SafeOnlineTanzania" },
+      { property: "og:description", content: "Report online abuse privately. Optional contact details, seen only by the SafeOnlineTanzania team." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -70,8 +70,8 @@ function ReportPage() {
           <h1 className="font-display text-2xl text-primary mt-3">{t({ en: "Thank you for reporting", sw: "Asante kwa kuripoti" })}</h1>
           <p className="text-muted-foreground mt-3 text-sm">
             {anonymous
-              ? t({ en: "Your anonymous report has been saved without contact or region details. Only the SafeHer team can see it, and it counts toward our report totals. We cannot contact you about this report.", sw: "Ripoti yako isiyo na utambulisho imehifadhiwa bila maelezo ya mawasiliano au mkoa. Timu ya SafeHer pekee inaweza kuiona, na inahesabiwa katika jumla ya ripoti. Hatuwezi kuwasiliana nawe kuhusu ripoti hii." })
-              : t({ en: "Your report has been saved and is visible only to the SafeHer team. We review reports to improve guidance and support. We may contact you using the details you gave, if any.", sw: "Ripoti yako imehifadhiwa na inaonekana na timu ya SafeHer pekee. Tunakagua ripoti kuboresha mwongozo na msaada. Tunaweza kuwasiliana nawe kwa maelezo uliyotoa, ikiwa yapo." })}
+              ? t({ en: "Your anonymous report has been saved without contact or region details. Only the SafeOnlineTanzania team can see it, and it counts toward our report totals. We cannot contact you about this report.", sw: "Ripoti yako isiyo na utambulisho imehifadhiwa bila maelezo ya mawasiliano au mkoa. Timu ya SafeOnlineTanzania pekee inaweza kuiona, na inahesabiwa katika jumla ya ripoti. Hatuwezi kuwasiliana nawe kuhusu ripoti hii." })
+              : t({ en: "Your report has been saved and is visible only to the SafeOnlineTanzania team. We review reports to improve guidance and support. We may contact you using the details you gave, if any.", sw: "Ripoti yako imehifadhiwa na inaonekana na timu ya SafeOnlineTanzania pekee. Tunakagua ripoti kuboresha mwongozo na msaada. Tunaweza kuwasiliana nawe kwa maelezo uliyotoa, ikiwa yapo." })}
           </p>
           <p className="text-sm mt-4 flex items-center justify-center gap-2">
             <AlertTriangle className="size-4 text-accent shrink-0" />
@@ -94,7 +94,7 @@ function ReportPage() {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <h1 className="font-display text-4xl text-primary">{t({ en: "Report a Problem", sw: "Ripoti Tatizo" })}</h1>
       <p className="text-muted-foreground mt-3">
-        {t({ en: "Tell us what happened. The report goes privately to the SafeHer team and helps us improve guidance and referrals.", sw: "Tuambie kilichotokea. Ripoti inapelekwa kwa siri kwa timu ya SafeHer na husaidia kuboresha mwongozo na rufaa." })}
+        {t({ en: "Tell us what happened. The report goes privately to the SafeOnlineTanzania team and helps us improve guidance and referrals.", sw: "Tuambie kilichotokea. Ripoti inapelekwa kwa siri kwa timu ya SafeOnlineTanzania na husaidia kuboresha mwongozo na rufaa." })}
       </p>
       <p className="text-sm mt-3 flex items-start gap-2 rounded-2xl border bg-card p-4">
         <AlertTriangle className="size-4 text-accent shrink-0 mt-0.5" />
@@ -184,7 +184,7 @@ function ReportPage() {
             className="mt-1 size-4"
           />
           <span>
-            {t({ en: "I agree that SafeHer may store this report so the team can review and follow up. Reports are visible only to the SafeHer team.", sw: "Ninakubali SafeHer ihifadhi ripoti hii ili timu iikague na iwasiliane nawe. Ripoti zinaonekana na timu ya SafeHer pekee." })}
+            {t({ en: "I agree that SafeOnlineTanzania may store this report so the team can review and follow up. Reports are visible only to the SafeOnlineTanzania team.", sw: "Ninakubali SafeOnlineTanzania ihifadhi ripoti hii ili timu iikague na iwasiliane nawe. Ripoti zinaonekana na timu ya SafeOnlineTanzania pekee." })}
           </span>
         </label>
 

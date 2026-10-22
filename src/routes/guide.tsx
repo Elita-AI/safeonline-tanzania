@@ -9,9 +9,9 @@ export const Route = createFileRoute("/guide")({
     categories.some((c) => c.id === s["c"]) ? { c: s["c"] as CategoryId } : {},
   head: () => ({
     meta: [
-      { title: "Personal Safety Guide — SafeHer Tanzania" },
+      { title: "Personal Safety Guide — SafeOnlineTanzania" },
       { name: "description", content: "Tailored checklists for blackmail, cyberbullying, hacking, impersonation and more." },
-      { property: "og:title", content: "Personal Safety Guide — SafeHer Tanzania" },
+      { property: "og:title", content: "Personal Safety Guide — SafeOnlineTanzania" },
       { property: "og:description", content: "Choose your situation and get a practical safety checklist." },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary" },

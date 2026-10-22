@@ -12,12 +12,12 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
   useEffect(() => {
     // Only the language preference is stored — never any conversation data.
-    const saved = window.localStorage.getItem("safeher-lang");
+    const saved = window.localStorage.getItem("safeonline-lang");
     if (saved === "sw" || saved === "en") setLangState(saved);
   }, []);
   const setLang = (l: Lang) => {
     setLangState(l);
-    window.localStorage.setItem("safeher-lang", l);
+    window.localStorage.setItem("safeonline-lang", l);
     document.documentElement.lang = l;
   };
   return <Ctx.Provider value={{ lang, setLang }}>{children}</Ctx.Provider>;
@@ -31,7 +31,7 @@ export function useLang() {
 
 export const ui = {
   navHome: { en: "Home", sw: "Mwanzo" },
-  navChat: { en: "Talk to SafeHer", sw: "Ongea na SafeHer" },
+  navChat: { en: "Talk to SafeOnlineTanzania", sw: "Ongea na SafeOnlineTanzania" },
   navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
   navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },
