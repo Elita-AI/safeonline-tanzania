@@ -126,6 +126,19 @@ export const categories: Category[] = [
 
 export const dangerWords = ["danger", "outside my house", "kill me", "hurt me", "suicide", "attack", "hatari", "kuniua", "nje ya nyumba", "kujiua", "ananipiga"];
 
+/**
+ * General safety guidance used when a message does not match a specific
+ * category. The assistant answers from this instead of asking the user
+ * to clarify. General guidance only — not a safety determination.
+ */
+export const generalGuidance: T[] = [
+  { en: "You do not have to reply to messages that upset or pressure you. It is okay to step away.", sw: "Hulazimiki kujibu jumbe zinazokusumbua au kukushinikiza. Ni sawa kujitoa kidogo." },
+  { en: "Block or mute the account, and report it to the platform if it broke the rules.", sw: "Zuia (block) au nyamazisha akaunti hiyo, na iripoti kwa jukwaa ikiwa imevunja sheria." },
+  { en: "Strengthen your privacy settings — limit who can see your posts, photos and who can message you.", sw: "Imarisha mipangilio ya faragha — punguza wanaoweza kuona machapisho na picha zako na wanaoweza kukutumia ujumbe." },
+  { en: "If it is safe, keep a record of what happened (screenshots with dates and usernames) in case you need it later.", sw: "Ikiwa ni salama, hifadhi kumbukumbu ya kilichotokea (picha za skrini zenye tarehe na majina ya watumiaji) kwa mahitaji ya baadaye." },
+  { en: "Talk to someone you trust. If this involves threats, private images or someone who knows where you are, reach out to a support service.", sw: "Zungumza na mtu unayemwamini. Ikiwa kunahusu vitisho, picha za faragha au mtu anayejua ulipo, wasiliana na huduma ya msaada." },
+];
+
 export type ServiceCategory = "gbv" | "counselling" | "legal" | "child" | "digital" | "emergency";
 
 export const serviceCategories: Record<ServiceCategory, T> = {

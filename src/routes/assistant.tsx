@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Send, ShieldCheck, Info, Home, RotateCcw } from "lucide-react";
-import { categories, detectCategory, detectDanger, serviceCategories, type Category } from "@/lib/content";
+import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
