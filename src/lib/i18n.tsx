@@ -31,7 +31,7 @@ export function useLang() {
 
 export const ui = {
   navHome: { en: "Home", sw: "Mwanzo" },
-  navChat: { en: "Talk to SafeOnlineTanzania", sw: "Ongea na SafeOnlineTanzania" },
+  navChat: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" },
   navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
   navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },

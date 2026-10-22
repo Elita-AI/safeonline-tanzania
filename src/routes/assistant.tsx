@@ -10,9 +10,9 @@ import { Feedback } from "@/components/SiteLayout";
 export const Route = createFileRoute("/assistant")({
   head: () => ({
     meta: [
-      { title: "Talk to SafeOnlineTanzania — Safety Assistant" },
+      { title: "Talk to SafeOnline — Safety Assistant" },
       { name: "description", content: "A bilingual, private safety assistant for online harassment and abuse (demonstration mode)." },
-      { property: "og:title", content: "Talk to SafeOnlineTanzania" },
+      { property: "og:title", content: "Talk to SafeOnline" },
       { property: "og:description", content: "Describe what is happening in Kiswahili or English and get practical safety steps." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -65,7 +65,7 @@ function Assistant() {
       <div className="flex items-center gap-3">
         <div className="size-11 rounded-2xl bg-primary text-primary-foreground grid place-items-center"><ShieldCheck /></div>
         <div className="mr-auto">
-          <h1 className="font-display text-2xl text-primary leading-none">SafeOnlineTanzania</h1>
+          <h1 className="font-display text-2xl text-primary leading-none">SafeOnline</h1>
           <p className="text-xs text-muted-foreground mt-1">{t({ en: "Safety assistant", sw: "Msaidizi wa usalama" })}</p>
         </div>
         <Button asChild variant="outline" size="sm" className="rounded-full"><Link to="/"><Home className="size-4" /> {t({ en: "Main menu", sw: "Menyu kuu" })}</Link></Button>
@@ -109,7 +109,7 @@ function Assistant() {
 
 function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
-  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, I'm SafeOnlineTanzania. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, mimi ni SafeOnlineTanzania. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
+  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, I'm SafeOnline. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, mimi ni SafeOnline. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
   if (m.kind === "danger") return (
     <div className="rounded-2xl border-2 border-destructive bg-card p-4">
       <p className="font-semibold flex gap-2 items-center text-destructive"><Siren className="size-5" /> {t({ en: "Your safety comes first", sw: "Usalama wako ni wa kwanza" })}</p>
