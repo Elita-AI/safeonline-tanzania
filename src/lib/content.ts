@@ -124,7 +124,7 @@ export const categories: Category[] = [
   },
 ];
 
-export const dangerWords = ["danger", "outside my house", "kill me", "hurt me", "now", "suicide", "attack", "hatari", "kuniua", "nje ya nyumba", "sasa hivi", "kujiua", "ananipiga"];
+export const dangerWords = ["danger", "outside my house", "kill me", "hurt me", "suicide", "attack", "hatari", "kuniua", "nje ya nyumba", "kujiua", "ananipiga"];
 
 export type ServiceCategory = "gbv" | "counselling" | "legal" | "child" | "digital" | "emergency";
 
