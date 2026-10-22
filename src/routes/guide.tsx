@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { categories, type CategoryId } from "@/lib/content";
+import { categories, lawInfo, type CategoryId } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { GuidePanel } from "@/components/GuidePanel";
 import { Feedback } from "@/components/SiteLayout";
