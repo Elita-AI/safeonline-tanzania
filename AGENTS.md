@@ -11,3 +11,4 @@
 
 - SafeHer content (safety categories, checklists, directory records) lives in src/lib/content.ts as bilingual `{en, sw}` objects — single place for reviewers/admins to edit and verify.
 - The assistant runs in on-device demonstration mode (keyword matching to reviewed scenarios); no chat data leaves the browser or is stored — any future live AI must be server-side and disclosed before chatting.
+- Problem reports persist in the `public.reports` table (anon INSERT requires `consent_given = true`; reads/updates admin-only via `has_role`). Admin dashboard lives at /_authenticated/admin and every server function re-verifies the admin role — route guards alone never protect the RPC.

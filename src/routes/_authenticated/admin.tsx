@@ -146,7 +146,7 @@ function ReportCard({
   onSave: (status: string, notes: string | null) => void;
   saving: boolean;
 }) {
-  const [status, setStatus] = useState(isReportStatus(report.status) ? report.status : "new");
+  const [status, setStatus] = useState<string>(isReportStatus(report.status) ? report.status : "new");
   const [notes, setNotes] = useState(report.admin_notes ?? "");
   const created = new Date(report.created_at).toLocaleString(lang === "sw" ? "sw-KE" : "en-GB", {
     dateStyle: "medium",
