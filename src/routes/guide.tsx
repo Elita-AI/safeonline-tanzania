@@ -6,7 +6,7 @@ import { Feedback } from "@/components/SiteLayout";
 
 export const Route = createFileRoute("/guide")({
   validateSearch: (s: Record<string, unknown>): { c?: CategoryId } =>
-    categories.some((c) => c.id === s.c) ? { c: s.c as CategoryId } : {},
+    categories.some((c) => c.id === s["c"]) ? { c: s["c"] as CategoryId } : {},
   head: () => ({
     meta: [
       { title: "Personal Safety Guide — SafeHer Tanzania" },
