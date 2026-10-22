@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Send, ShieldCheck, Info, Home, Siren } from "lucide-react";
+import { Send, ShieldCheck, Info, Home, RotateCcw } from "lucide-react";
 import { categories, detectCategory, detectDanger, serviceCategories, type Category } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Feedback } from "@/components/SiteLayout";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
+import { EmergencyNotice } from "@/components/EmergencyNotice";
 
 export const Route = createFileRoute("/assistant")({
   head: () => ({
@@ -37,9 +39,11 @@ function Assistant() {
   const [typing, setTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }); }, [msgs, typing]);
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "end" }); }, [msgs, typing]);
 
   const send = (value: string) => {
     const v = value.trim();
@@ -47,12 +51,12 @@ function Assistant() {
     setMsgs((m) => [...m, { role: "user", text: v }]);
     setText("");
     setTyping(true);
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       const reply: Msg[] = [];
       if (detectDanger(v)) reply.push({ role: "bot", kind: "danger" });
       const id = detectCategory(v);
       const cat = categories.find((c) => c.id === id);
-      if (cat) reply.push({ role: "bot", kind: "guide", cat });
+      if (cat && !reply.length) reply.push({ role: "bot", kind: "guide", cat });
       else if (!reply.length) reply.push({ role: "bot", kind: "unclear" });
       setMsgs((m) => [...m, ...reply]);
       setTyping(false);
@@ -71,6 +75,7 @@ function Assistant() {
         <Button asChild variant="outline" size="sm" className="rounded-full"><Link to="/"><Home className="size-4" /> {t({ en: "Main menu", sw: "Menyu kuu" })}</Link></Button>
       </div>
 
+      <div className="mt-4"><PrivacyNotice /></div>
       <div className="mt-4 rounded-xl bg-coral-soft p-3 text-xs flex gap-2">
         <Info className="size-4 text-accent shrink-0 mt-0.5" />
         <span><b>{t({ en: "Demonstration mode", sw: "Hali ya majaribio" })}:</b> {t({ en: "No live AI is connected. Replies come from pre-written safety scenarios and your messages stay on this device. Nothing is saved.", sw: "Hakuna AI halisi iliyounganishwa. Majibu yanatoka kwenye hali za usalama zilizoandaliwa, na jumbe zako zinabaki kwenye kifaa hiki. Hakuna kinachohifadhiwa." })}</span>
@@ -88,9 +93,9 @@ function Assistant() {
         {msgs.length === 1 && (
           <div className="grid sm:grid-cols-2 gap-2">
             {scenarios.map((s) => (
-              <button key={s.en} onClick={() => send(s[lang])} className="text-left text-sm rounded-xl border bg-card p-3 hover:border-primary">
+                <Button key={s.en} variant="outline" onClick={() => send(s[lang])} className="h-auto whitespace-normal text-left text-sm rounded-lg p-3 block">
                 <span className="text-[10px] font-bold uppercase text-accent block">{t({ en: "Sample scenario", sw: "Mfano wa hali" })}</span>{s[lang]}
-              </button>
+              </Button>
             ))}
           </div>
         )}
@@ -99,9 +104,10 @@ function Assistant() {
 
       <form onSubmit={(e) => { e.preventDefault(); send(text); }} className="sticky bottom-0 mt-4 bg-background pt-2 pb-3">
         <div className="flex gap-2 items-end rounded-2xl border bg-card p-2 shadow-soft">
-          <Textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(text); } }} rows={1} placeholder={t({ en: "Describe what's happening — no names or images needed…", sw: "Eleza kinachoendelea — huhitaji majina wala picha…" })} className="border-0 shadow-none resize-none focus-visible:ring-0 min-h-11" aria-label="Message" />
-          <Button type="submit" size="icon" className="rounded-xl shrink-0" disabled={!text.trim() || typing} aria-label="Send"><Send className="size-4" /></Button>
+          <Textarea ref={inputRef} value={text} maxLength={4000} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(text); } }} rows={1} placeholder={t({ en: "Describe what's happening — no names or images needed…", sw: "Eleza kinachoendelea — huhitaji majina wala picha…" })} className="border-0 shadow-none resize-none focus-visible:ring-0 min-h-11" aria-label={t({ en: "Message", sw: "Ujumbe" })} />
+          <Button type="submit" size="icon" className="rounded-xl shrink-0" disabled={!text.trim() || typing} aria-label={t({ en: "Send", sw: "Tuma" })}><Send className="size-4" /></Button>
         </div>
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); setMsgs([{ role: "bot", kind: "intro" }]); setText(""); setTyping(false); }}><RotateCcw className="size-4" />{t({ en: "Clear conversation", sw: "Futa mazungumzo" })}</Button>
       </form>
     </div>
   );
@@ -110,14 +116,7 @@ function Assistant() {
 function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
   if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, I'm SafeOnline. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, mimi ni SafeOnline. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
-  if (m.kind === "danger") return (
-    <div className="rounded-2xl border-2 border-destructive bg-card p-4">
-      <p className="font-semibold flex gap-2 items-center text-destructive"><Siren className="size-5" /> {t({ en: "Your safety comes first", sw: "Usalama wako ni wa kwanza" })}</p>
-      <p className="mt-2">{t(ui.emergency)}</p>
-      <a href="tel:112" className="inline-flex mt-3 rounded-full bg-destructive text-destructive-foreground px-4 py-2 font-semibold text-sm">112</a>
-      <p className="text-xs text-muted-foreground mt-2">({t(ui.toVerify)})</p>
-    </div>
-  );
+  if (m.kind === "danger") return <EmergencyNotice />;
   if (m.kind !== "guide") return <p>{t({ en: "Thank you for telling me. I want to make sure I suggest the right steps. Is this mostly about: insults or harassment, threats, someone sharing or threatening to share images, a fake account, unwanted sexual messages, or a hacked account? You can also browse the Safety Guide.", sw: "Asante kwa kunieleza. Nataka kuhakikisha napendekeza hatua sahihi. Je, ni zaidi kuhusu: matusi au unyanyasaji, vitisho, mtu kusambaza au kutishia kusambaza picha, akaunti bandia, jumbe za ngono zisizotakiwa, au akaunti iliyodukuliwa? Unaweza pia kuangalia Mwongozo wa Usalama." })}</p>;
   const c = m.cat;
   return (
@@ -128,10 +127,11 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
       <p className="font-semibold">{t({ en: "Preserving evidence safely", sw: "Kuhifadhi ushahidi kwa usalama" })}</p>
       <ul className="list-disc pl-5 space-y-1">{c.evidence.map((s, i) => <li key={i}>{t(s)}</li>)}{c.platform.map((s, i) => <li key={`p${i}`}>{t(s)}</li>)}</ul>
       <div className="rounded-xl bg-secondary p-3 text-sm">
-        {t({ en: "This is general guidance. A trained person — such as those listed under", sw: "Huu ni mwongozo wa jumla. Mtu aliyefunzwa — kama walioorodheshwa chini ya" })} <b>{c.referTo.map((r) => t(serviceCategories[r])).join(", ")}</b> — {t({ en: "can help with your specific situation.", sw: "anaweza kukusaidia kulingana na hali yako." })}
+        {t({ en: "This is general guidance, not mental-health diagnosis or legal advice. Human help may be needed for threats, coercion or distress. Explore", sw: "Huu ni mwongozo wa jumla, si utambuzi wa afya ya akili wala ushauri wa kisheria. Msaada wa mtu unaweza kuhitajika kwa vitisho, shinikizo au msongo. Angalia" })} <b>{c.referTo.map((r) => t(serviceCategories[r])).join(", ")}</b>. {t({ en: "Directory records are demonstration or unverified entries unless explicitly marked verified; availability and confidentiality are not guaranteed.", sw: "Taarifa za orodha ni za majaribio au hazijathibitishwa isipokuwa zimewekewa alama ya kuthibitishwa; upatikanaji na usiri havijahakikishwa." })}
         <div className="flex flex-wrap gap-2 mt-3">
           <Link to="/directory" search={{ cat: c.referTo[0] }} className="rounded-full bg-primary text-primary-foreground px-4 py-1.5 font-semibold">{t({ en: "Find support", sw: "Tafuta msaada" })}</Link>
           <Link to="/guide" search={{ c: c.id }} className="rounded-full border bg-card px-4 py-1.5">{t({ en: "Open checklist", sw: "Fungua orodha" })}</Link>
+          <Button asChild variant="outline" size="sm"><Link to="/report">{t({ en: "Report this case", sw: "Ripoti tukio hili" })}</Link></Button>
         </div>
       </div>
       <p className="text-sm text-muted-foreground">{t({ en: "Is there anything else happening, such as feeling unsafe where you are? You can tell me in a few words.", sw: "Je, kuna jambo lingine linaloendelea, kama kujisikia si salama ulipo? Unaweza kunieleza kwa maneno machache." })}</p>
