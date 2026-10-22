@@ -128,7 +128,7 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
       <p className="font-semibold">{t({ en: "Preserving evidence safely", sw: "Kuhifadhi ushahidi kwa usalama" })}</p>
       <ul className="list-disc pl-5 space-y-1">{c.evidence.map((s, i) => <li key={i}>{t(s)}</li>)}{c.platform.map((s, i) => <li key={`p${i}`}>{t(s)}</li>)}</ul>
       <div className="rounded-xl bg-secondary p-3 text-sm">
-        {t({ en: "This is general guidance. A trained person — such as those listed under", sw: "Huu ni mwongozo wa jumla. Mtu aliyefunzwa — kama walioorodheshwa chini ya" })} <b>{c.referTo.map((r) => t(serviceCategories[r])).join(", ")}</b> — {t({ en: "can help with your specific situation.", sw: "— anaweza kukusaidia kulingana na hali yako." })}
+        {t({ en: "This is general guidance. A trained person — such as those listed under", sw: "Huu ni mwongozo wa jumla. Mtu aliyefunzwa — kama walioorodheshwa chini ya" })} <b>{c.referTo.map((r) => t(serviceCategories[r])).join(", ")}</b> — {t({ en: "can help with your specific situation.", sw: "anaweza kukusaidia kulingana na hali yako." })}
         <div className="flex flex-wrap gap-2 mt-3">
           <Link to="/directory" search={{ cat: c.referTo[0] }} className="rounded-full bg-primary text-primary-foreground px-4 py-1.5 font-semibold">{t({ en: "Find support", sw: "Tafuta msaada" })}</Link>
           <Link to="/guide" search={{ c: c.id }} className="rounded-full border bg-card px-4 py-1.5">{t({ en: "Open checklist", sw: "Fungua orodha" })}</Link>

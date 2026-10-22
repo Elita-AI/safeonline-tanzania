@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- SafeHer content (safety categories, checklists, directory records) lives in src/lib/content.ts as bilingual `{en, sw}` objects — single place for reviewers/admins to edit and verify.
+- The assistant runs in on-device demonstration mode (keyword matching to reviewed scenarios); no chat data leaves the browser or is stored — any future live AI must be server-side and disclosed before chatting.

@@ -30,7 +30,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-6xl flex items-center gap-3 px-4 h-16">
           <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-primary">
-            <ShieldCheck className="size-6" aria-hidden /> SafeHer <span className="text-accent">TZ</span>
+            <ShieldCheck className="size-6" aria-hidden /> SafeHer <span className="text-accent hidden sm:inline">TZ</span>
           </Link>
           <nav className="hidden lg:flex gap-1 ml-6" aria-label="Main">
             {links.map((l) => (
@@ -39,7 +39,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
             <div role="group" aria-label="Language" className="flex rounded-full border p-0.5 text-xs font-semibold">
               {(["en", "sw"] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} className={`px-2.5 py-1 rounded-full ${lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>
@@ -50,7 +50,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <Button variant="destructive" size="sm" className="rounded-full" onClick={quickExit} title={t(ui.quickExitNote)}>
               <LogOut className="size-4" /> {t(ui.quickExit)}
             </Button>
-            <button className="lg:hidden p-2" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+            <button className="lg:hidden p-1" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
               {open ? <X /> : <Menu />}
             </button>
           </div>
