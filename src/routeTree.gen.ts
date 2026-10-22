@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CheckRouteImport } from './routes/check'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as GuideRouteImport } from './routes/guide'
+import { Route as LawRouteImport } from './routes/law'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
@@ -54,6 +55,11 @@ const GuideRoute = GuideRouteImport.update({
   path: '/guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LawRoute = LawRouteImport.update({
+  id: '/law',
+  path: '/law',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
+  '/law': typeof LawRoute
   '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
+  '/law': typeof LawRoute
   '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/check': typeof CheckRoute
   '/directory': typeof DirectoryRoute
   '/guide': typeof GuideRoute
+  '/law': typeof LawRoute
   '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/check'
     | '/directory'
     | '/guide'
+    | '/law'
     | '/privacy'
     | '/report'
     | '/admin'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/check'
     | '/directory'
     | '/guide'
+    | '/law'
     | '/privacy'
     | '/report'
     | '/admin'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/check'
     | '/directory'
     | '/guide'
+    | '/law'
     | '/privacy'
     | '/report'
     | '/_authenticated/admin'
@@ -150,6 +162,7 @@ export interface RootRouteChildren {
   CheckRoute: typeof CheckRoute
   DirectoryRoute: typeof DirectoryRoute
   GuideRoute: typeof GuideRoute
+  LawRoute: typeof LawRoute
   PrivacyRoute: typeof PrivacyRoute
   ReportRoute: typeof ReportRoute
 }
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/law': {
+      id: '/law'
+      path: '/law'
+      fullPath: '/law'
+      preLoaderRoute: typeof LawRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -248,6 +268,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckRoute: CheckRoute,
   DirectoryRoute: DirectoryRoute,
   GuideRoute: GuideRoute,
+  LawRoute: LawRoute,
   PrivacyRoute: PrivacyRoute,
   ReportRoute: ReportRoute,
 }

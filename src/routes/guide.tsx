@@ -1,4 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { Scale } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { categories, lawInfo, type CategoryId } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { GuidePanel } from "@/components/GuidePanel";
@@ -44,32 +46,16 @@ function Guide() {
           )}
         </div>
       </div>
-      <section aria-labelledby="law-heading" className="mt-10 rounded-2xl border bg-card p-6">
-        <h2 id="law-heading" className="font-display text-2xl text-primary">{t(lawInfo.title)}</h2>
-        <p className="text-muted-foreground mt-3 max-w-3xl">{t(lawInfo.intro)}</p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          {lawInfo.offences.map((o) => (
-            <div key={o.heading.en} className="rounded-xl border border-dashed p-4">
-              <h3 className="font-semibold">{t(o.heading)}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{t(o.body)}</p>
-            </div>
-          ))}
+      <Link to="/law" className="mt-10 flex flex-wrap items-center gap-4 rounded-2xl border border-primary/40 bg-card p-6 hover:border-primary transition">
+        <span className="inline-flex items-center justify-center size-12 rounded-full bg-secondary text-primary shrink-0">
+          <Scale className="size-6" aria-hidden />
+        </span>
+        <div className="flex-1 min-w-[220px]">
+          <h2 className="font-display text-2xl text-primary">{t(lawInfo.title)}</h2>
+          <p className="text-muted-foreground mt-1 text-sm">{t(lawInfo.short)}</p>
         </div>
-        <p className="text-sm text-muted-foreground mt-5 max-w-3xl">{t(lawInfo.note)}</p>
-        <p className="mt-4 font-semibold text-sm">{t(lawInfo.linksLabel)}</p>
-        <ul className="mt-2 space-y-2">
-          {lawInfo.links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80">
-                {t(l.label)} ↗
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p className="text-xs text-muted-foreground mt-4">
-          {t({ en: "SafeOnline links to the official government text only. SafeOnline does not give legal advice.", sw: "SafeOnline inaeleza kwenye matini rasmi ya serikali pekee. SafeOnline haitoi ushauri wa kisheria." })}
-        </p>
-      </section>
+        <Button className="rounded-full shrink-0">{t({ en: "Know the Law", sw: "Fahamu Sheria" })}</Button>
+      </Link>
     </div>
   );
 }

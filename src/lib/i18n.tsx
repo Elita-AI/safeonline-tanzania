@@ -34,6 +34,7 @@ export const ui = {
   navCheck: { en: "Check a Message", sw: "Kagua Ujumbe" },
   navChat: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" },
   navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
+  navLaw: { en: "Know the Law", sw: "Fahamu Sheria" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
   navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },
   navPrivacy: { en: "Privacy", sw: "Faragha" },
