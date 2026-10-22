@@ -31,6 +31,7 @@ export function useLang() {
 
 export const ui = {
   navHome: { en: "Home", sw: "Mwanzo" },
+  navCheck: { en: "Check a Message", sw: "Kagua Ujumbe" },
   navChat: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" },
   navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
@@ -47,8 +48,8 @@ export const ui = {
   },
   tagline: { en: "Safe Online. Supported Offline.", sw: "Salama Mtandaoni. Unasaidiwa Nje ya Mtandao." },
   emergency: {
-    en: "In immediate danger? Move to a safe place and call the Police emergency line 112.",
-    sw: "Uko hatarini sasa hivi? Nenda mahali salama na piga simu ya dharura ya Polisi 112.",
+    en: "In immediate danger? Move somewhere safer if you can and seek help from a trusted person or local emergency service you know. SafeOnline cannot send emergency help.",
+    sw: "Uko hatarini sasa hivi? Nenda mahali salama zaidi ukiweza na tafuta msaada wa mtu unayemwamini au huduma ya dharura unayoijua. SafeOnline haiwezi kutuma msaada wa dharura.",
   },
   toVerify: { en: "to be verified before launch", sw: "inahitaji kuthibitishwa kabla ya kuzinduliwa" },
   demo: { en: "Demo", sw: "Majaribio" },

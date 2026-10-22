@@ -18,6 +18,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   }, []);
   const links = [
     { to: "/", label: ui.navHome },
+    { to: "/check", label: ui.navCheck },
     { to: "/assistant", label: ui.navChat },
     { to: "/guide", label: ui.navGuide },
     { to: "/directory", label: ui.navDirectory },
@@ -33,7 +34,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold text-primary sm:text-xl">
             <ShieldCheck className="size-6" aria-hidden /> SafeOnline
           </Link>
-          <nav className="hidden lg:flex gap-1 ml-6" aria-label="Main">
+          <nav className="hidden xl:flex gap-1 ml-3" aria-label="Main">
             {links.map((l) => (
               <Link key={l.to} to={l.to} className="px-3 py-2 rounded-full text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted" activeProps={{ className: "text-primary bg-secondary" }} activeOptions={{ exact: true }}>
                 {t(l.label)}
@@ -51,13 +52,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <Button variant="destructive" size="sm" className="rounded-full" onClick={quickExit} title={t(ui.quickExitNote)} aria-label={t(ui.quickExit)}>
               <LogOut className="size-4" /> <span className="hidden min-[480px]:inline">{t(ui.quickExit)}</span>
             </Button>
-            <button className="lg:hidden p-1" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+            <Button variant="ghost" size="icon" className="xl:hidden shrink-0" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
               {open ? <X /> : <Menu />}
-            </button>
+            </Button>
           </div>
         </div>
         {open && (
-          <nav className="lg:hidden border-t px-4 py-2 flex flex-col" aria-label="Mobile">
+          <nav className="xl:hidden border-t px-4 py-2 flex flex-col" aria-label="Mobile">
             {links.map((l) => (
               <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="py-3 font-medium border-b last:border-0">{t(l.label)}</Link>
             ))}
@@ -68,7 +69,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="border-t bg-card mt-16">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-muted-foreground space-y-2">
           <p className="font-display text-lg text-primary">SafeOnline — {t(ui.tagline)}</p>
-          <p>{t(ui.emergency)} <span className="italic">({t(ui.toVerify)})</span></p>
+          <p>{t(ui.emergency)}</p>
           <p>{t(ui.quickExitNote)} {lang === "en" ? "Shortcut: Shift + Esc." : "Njia ya mkato: Shift + Esc."}</p>
         </div>
       </footer>

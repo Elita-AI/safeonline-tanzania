@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { LifeBuoy, MessageCircle, MapPin, BookOpen, Lock, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
+import { LifeBuoy, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
 import { useLang } from "@/lib/i18n";
 import { categories } from "@/lib/content";
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { t } = useLang();
   const actions = [
+    { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" } },
     { to: "/guide", icon: LifeBuoy, label: { en: "Get Help Now", sw: "Pata Msaada Sasa" }, primary: true },
     { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
@@ -28,9 +30,10 @@ function Home() {
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
   ] as const;
   const how = [
-    { icon: MessageCircle, title: { en: "Share what's happening", sw: "Eleza kinachoendelea" }, body: { en: "In your own words, in Kiswahili or English. No account needed.", sw: "Kwa maneno yako, kwa Kiswahili au Kiingereza. Huhitaji kujisajili." } },
-    { icon: ListChecks, title: { en: "Get practical steps", sw: "Pata hatua za vitendo" }, body: { en: "Clear checklists for evidence, account security and reporting.", sw: "Orodha rahisi za ushahidi, usalama wa akaunti na kuripoti." } },
-    { icon: HeartHandshake, title: { en: "Connect with people who help", sw: "Ungana na wanaosaidia" }, body: { en: "Find legal, counselling, child-protection and emergency support.", sw: "Pata msaada wa kisheria, ushauri, ulinzi wa watoto na dharura." } },
+    { icon: ScanText, title: { en: "Check", sw: "Kagua" }, body: { en: "Check a message or describe what is happening.", sw: "Kagua ujumbe au eleza kinachoendelea." } },
+    { icon: BookOpen, title: { en: "Understand", sw: "Elewa" }, body: { en: "See possible warning signs and the limits of the assessment.", sw: "Ona dalili zinazowezekana na mipaka ya tathmini." } },
+    { icon: ListChecks, title: { en: "Act", sw: "Chukua hatua" }, body: { en: "Choose practical safety, evidence and account-security steps.", sw: "Chagua hatua za usalama, ushahidi na kulinda akaunti." } },
+    { icon: HeartHandshake, title: { en: "Get Support", sw: "Pata Msaada" }, body: { en: "Explore support options or choose to send a private report.", sw: "Angalia njia za msaada au chagua kutuma ripoti binafsi." } },
   ];
   return (
     <>
@@ -52,19 +55,13 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 -mt-6 relative">
-        <div className="rounded-2xl bg-card shadow-soft border p-5 flex gap-4 items-start">
-          <Lock className="size-6 text-primary shrink-0 mt-0.5" />
-          <div className="text-sm">
-            <p className="font-semibold text-base">{t({ en: "Your privacy comes first", sw: "Faragha yako ni kipaumbele" })}</p>
-            <p className="text-muted-foreground mt-1">{t({ en: "No registration. Chats are not saved. We never ask for your name, location, or images. Only if you choose to send a report is it stored — and only the SafeOnline team can see it. Use Quick Exit at the top at any time.", sw: "Hakuna usajili. Mazungumzo hayahifadhiwi. Hatuombi jina lako, mahali ulipo, wala picha. Ripoti inahifadhiwa tu ukituma wewe mwenyewe — na inaonekana na timu ya SafeOnline pekee. Tumia Ondoka Haraka juu wakati wowote." })} <Link to="/privacy" className="text-primary underline">{t({ en: "Read more", sw: "Soma zaidi" })}</Link></p>
-          </div>
-        </div>
+      <section className="mx-auto max-w-6xl px-4 pt-6">
+        <PrivacyNotice />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16">
         <h2 className="font-display text-3xl text-primary">{t({ en: "How SafeOnline works", sw: "SafeOnline inavyofanya kazi" })}</h2>
-        <div className="grid md:grid-cols-3 gap-4 mt-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
           {how.map((h, i) => (
             <div key={i} className="rounded-2xl bg-card border p-6">
               <div className="size-11 rounded-xl bg-secondary text-primary grid place-items-center"><h.icon className="size-5" /></div>
