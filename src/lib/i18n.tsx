@@ -34,6 +34,7 @@ export const ui = {
   navChat: { en: "Talk to SafeHer", sw: "Ongea na SafeHer" },
   navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
+  navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },
   navPrivacy: { en: "Privacy", sw: "Faragha" },
   quickExit: { en: "Quick Exit", sw: "Ondoka Haraka" },
   quickExitNote: {

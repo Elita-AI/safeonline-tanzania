@@ -21,6 +21,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     { to: "/assistant", label: ui.navChat },
     { to: "/guide", label: ui.navGuide },
     { to: "/directory", label: ui.navDirectory },
+    { to: "/report", label: ui.navReport },
     { to: "/privacy", label: ui.navPrivacy },
   ] as const;
 
