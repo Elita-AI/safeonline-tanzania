@@ -5,7 +5,7 @@ export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy & Safeguarding — SafeHer Tanzania" },
-      { name: "description", content: "How SafeHer Tanzania protects your privacy: no registration, no stored chats, no tracking." },
+      { name: "description", content: "How SafeHer Tanzania protects your privacy: no registration, no stored chats, and reports stored only with your clear consent." },
       { property: "og:title", content: "Privacy & Safeguarding — SafeHer Tanzania" },
       { property: "og:description", content: "No registration, no stored chats, no third-party tracking." },
       { property: "og:type", content: "article" },
@@ -16,7 +16,8 @@ export const Route = createFileRoute("/privacy")({
 });
 
 const sections = [
-  { h: { en: "What we collect", sw: "Tunachokusanya" }, p: { en: "Nothing that identifies you. No registration, names, phone numbers, precise locations or images are requested. Only your language choice is remembered on this device.", sw: "Hakuna kinachokutambulisha. Hatuombi usajili, majina, namba za simu, mahali halisi ulipo wala picha. Lugha uliyochagua tu ndiyo hukumbukwa kwenye kifaa hiki." } },
+  { h: { en: "Reports", sw: "Ripoti" }, p: { en: "If you send a report from the Report a Problem page, we store what you write — the problem type, your description, and the optional region and contact details you choose to give. Reports are visible only to the SafeHer team, are never published, and are kept only so the team can review them and follow up if you asked.", sw: "Ukituma ripoti kutoka ukurasa wa Ripoti Tatizo, tunahifadhi uliyoandika — aina ya tatizo, maelezo yako, na maelezo ya hiari ya mkoa au mawasiliano uliyochagua kutoa. Ripoti zinaonekana na timu ya SafeHer pekee, hazichapishwi kamwe, na zinahifadhiwa ili timu izikague na zifuate nawe ukiomba." } },
+  { h: { en: "What we collect", sw: "Tunachokusanya" }, p: { en: "Nothing that identifies you is required. No registration, no images, and no precise locations are requested. Your language choice is remembered on this device, and reports are stored only if you choose to send one.", sw: "Hakuna kinachokutambulisha kinachohitajika. Hatuombi usajili, picha, wala mahali halisi ulipo. Lugha uliyochagua hukumbukwa kwenye kifaa hiki, na ripoti zinahifadhiwa tu ukituma wewe mwenyewe." } },
   { h: { en: "Chats", sw: "Mazungumzo" }, p: { en: "Chats are not stored. In this demonstration, messages never leave your device — responses come from pre-written, reviewed scenarios. If a live AI service is added later, you will be told clearly before chatting that an AI provider processes your messages.", sw: "Mazungumzo hayahifadhiwi. Katika toleo hili la majaribio, jumbe haziondoki kwenye kifaa chako — majibu yanatoka kwenye hali zilizoandaliwa na kukaguliwa. Huduma ya AI ikiongezwa baadaye, utaambiwa wazi kabla ya kuanza kuwa mtoa huduma wa AI huchakata jumbe zako." } },
   { h: { en: "Tracking & analytics", sw: "Ufuatiliaji na takwimu" }, p: { en: "No third-party tracking or analytics. Future versions may count aggregate, anonymous figures (e.g. number of guides viewed) only with clear consent.", sw: "Hakuna ufuatiliaji wa watu wengine wala takwimu. Matoleo yajayo yanaweza kuhesabu takwimu za jumla bila majina (k.m. idadi ya miongozo iliyosomwa) kwa ridhaa ya wazi tu." } },
   { h: { en: "Quick Exit", sw: "Ondoka Haraka" }, p: ui.quickExitNote },

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { LifeBuoy, MessageCircle, MapPin, BookOpen, Lock, ListChecks, HeartHandshake, ShieldCheck } from "lucide-react";
+import { LifeBuoy, MessageCircle, MapPin, BookOpen, Lock, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { useLang } from "@/lib/i18n";
 import { categories } from "@/lib/content";
@@ -25,6 +25,7 @@ function Home() {
     { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeHer", sw: "Ongea na SafeHer" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
+    { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
   ] as const;
   const how = [
     { icon: MessageCircle, title: { en: "Share what's happening", sw: "Eleza kinachoendelea" }, body: { en: "In your own words, in Kiswahili or English. No account needed.", sw: "Kwa maneno yako, kwa Kiswahili au Kiingereza. Huhitaji kujisajili." } },
@@ -56,7 +57,7 @@ function Home() {
           <Lock className="size-6 text-primary shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-semibold text-base">{t({ en: "Your privacy comes first", sw: "Faragha yako ni kipaumbele" })}</p>
-            <p className="text-muted-foreground mt-1">{t({ en: "No registration. Chats are not saved. We never ask for your name, location, or images. Use Quick Exit at the top at any time.", sw: "Hakuna usajili. Mazungumzo hayahifadhiwi. Hatuombi jina lako, mahali ulipo, wala picha. Tumia Ondoka Haraka juu wakati wowote." })} <Link to="/privacy" className="text-primary underline">{t({ en: "Read more", sw: "Soma zaidi" })}</Link></p>
+            <p className="text-muted-foreground mt-1">{t({ en: "No registration. Chats are not saved. We never ask for your name, location, or images. Only if you choose to send a report is it stored — and only the SafeHer team can see it. Use Quick Exit at the top at any time.", sw: "Hakuna usajili. Mazungumzo hayahifadhiwi. Hatuombi jina lako, mahali ulipo, wala picha. Ripoti inahifadhiwa tu ukituma wewe mwenyewe — na inaonekana na timu ya SafeHer pekee. Tumia Ondoka Haraka juu wakati wowote." })} <Link to="/privacy" className="text-primary underline">{t({ en: "Read more", sw: "Soma zaidi" })}</Link></p>
           </div>
         </div>
       </section>
