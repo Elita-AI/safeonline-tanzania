@@ -1,4 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { Scale } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { categories, lawInfo, type CategoryId } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { GuidePanel } from "@/components/GuidePanel";

@@ -256,6 +256,7 @@ export function verifiedEmergencyServices(records: Service[] = services): Servic
 /** Plain-language information about the Cybercrimes Act, 2015. General information only — never presented as legal advice. Links point to official government sources. */
 export const lawInfo = {
   title: { en: "Know the law: the Cybercrimes Act, 2015", sw: "Fahamu sheria: Sheria ya Makosa ya Mtandao, 2015" },
+  short: { en: "What the Cybercrimes Act, 2015 covers and the penalties it sets — in plain language.", sw: "Sheria ya Makosa ya Mtandao ya 2015 inashughulikia nini, na adhabu zinazowekwa — kwa lugha rahisi." },
   intro: {
     en: "Tanzania's Cybercrimes Act, 2015 (Act No. 14 of 2015) is the main law covering online and computer-related offences. Here is a short, plain-language summary of the parts most relevant to your situation. This is general information, not legal advice — a lawyer or a legal aid service can advise on your specific case.",
     sw: "Sheria ya Makosa ya Mtandao ya Tanzania ya 2015 (Sheria Na. 14 ya 2015) ni sheria kuu inayohusu makosa ya mtandaoni na kompyuta. Hii chini ni muhtasari mfupi kwa lugha rahisi wa sehemu zinazogusa hali kama zako. Huu ni maelezo ya jumla, sio ushauri wa kisheria — wakili au huduma ya msaada wa kisheria ndiyo wanaweza kukushauri kwa kina.",
