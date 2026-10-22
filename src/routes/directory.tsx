@@ -5,7 +5,7 @@ import { useLang, ui } from "@/lib/i18n";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/directory")({
-  validateSearch: (s: Record<string, unknown>): { cat?: ServiceCategory; q?: string } => ({
+  validateSearch: (s: Record<string, unknown>): { cat?: ServiceCategory | undefined; q?: string | undefined } => ({
     cat: s.cat && s.cat in serviceCategories ? (s.cat as ServiceCategory) : undefined,
     q: typeof s.q === "string" ? s.q : undefined,
   }),

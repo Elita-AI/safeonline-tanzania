@@ -118,7 +118,7 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
       <p className="text-xs text-muted-foreground mt-2">({t(ui.toVerify)})</p>
     </div>
   );
-  if (m.kind === "unclear") return <p>{t({ en: "Thank you for telling me. I want to make sure I suggest the right steps. Is this mostly about: insults or harassment, threats, someone sharing or threatening to share images, a fake account, unwanted sexual messages, or a hacked account? You can also browse the Safety Guide.", sw: "Asante kwa kunieleza. Nataka kuhakikisha napendekeza hatua sahihi. Je, ni zaidi kuhusu: matusi au unyanyasaji, vitisho, mtu kusambaza au kutishia kusambaza picha, akaunti bandia, jumbe za ngono zisizotakiwa, au akaunti iliyodukuliwa? Unaweza pia kuangalia Mwongozo wa Usalama." })}</p>;
+  if (m.kind !== "guide") return <p>{t({ en: "Thank you for telling me. I want to make sure I suggest the right steps. Is this mostly about: insults or harassment, threats, someone sharing or threatening to share images, a fake account, unwanted sexual messages, or a hacked account? You can also browse the Safety Guide.", sw: "Asante kwa kunieleza. Nataka kuhakikisha napendekeza hatua sahihi. Je, ni zaidi kuhusu: matusi au unyanyasaji, vitisho, mtu kusambaza au kutishia kusambaza picha, akaunti bandia, jumbe za ngono zisizotakiwa, au akaunti iliyodukuliwa? Unaweza pia kuangalia Mwongozo wa Usalama." })}</p>;
   const c = m.cat;
   return (
     <div className="space-y-3">
