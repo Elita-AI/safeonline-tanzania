@@ -264,31 +264,41 @@ export const lawInfo = {
     {
       heading: { en: "Hacking and entering accounts without permission", sw: "Udukuzi na kuingia kwenye akaunti bila ruhusa" },
       body: { en: "Breaking into someone's computer, phone or account without permission, or intercepting their messages, is a crime. This covers someone who guesses, steals or resets your password to get into your accounts.", sw: "Kuingia kwenye kompyuta, simu au akaunti ya mtu mwingine bila ruhusa, au kusikiliza jumbe zake bila kujulikana, ni kosa la jinai. Hii inahusu mtu anayetabiri, kuiba au kubadilisha nenosiri lako ili kuingia kwenye akaunti zako." },
+      penalty: { en: "Fine of at least TZS 3,000,000 or three times the undue advantage gained (whichever is greater), or imprisonment of at least 1 year, or both — Section 4.", sw: "Faini ya angalau shilingi milioni 3 au mara tatu ya faida waliyoipata (kiwango kikubwa zaidi), au kifungo cha jela cha angalau mwaka 1, au zote mbili — Kifungu cha 4." },
     },
     {
       heading: { en: "Impersonation and identity misuse", sw: "Kuigwa na matumizi mabaya ya utambulisho" },
       body: { en: "Using another person's name, photos or details to create a fake profile or to pretend to be them online is an identity-related crime.", sw: "Kutumia jina, picha au taarifa za mtu mwingine kufungua akaunti bandia au kujifanya kuwa yeye mtandaoni ni kosa linalohusu utambulisho." },
+      penalty: { en: "Fine of at least TZS 5,000,000 or three times the undue advantage gained (whichever is greater), or imprisonment of at least 7 years, or both — Section 15.", sw: "Faini ya angalau shilingi milioni 5 au mara tatu ya faida (kiwango kikubwa zaidi), au kifungo cha jela cha angalau miaka 7, au zote mbili — Kifungu cha 15." },
     },
     {
       heading: { en: "Cyberbullying and insulting messages", sw: "Unyanyasaji mtandaoni na jumbe za matusi" },
       body: { en: "The Act addresses cyberbullying, including messages that humiliate, insult or intimidate a person. These are criminal offences, so the person sending them can face fines or imprisonment.", sw: "Sheria inashughulikia unyanyasaji mtandaoni, pamoja na jumbe zinazokera, kutusi au kutishia mtu. Haya ni makosa ya jinai, hivyo mtu anayeyatuma anaweza kukumbana na faini au kifungo." },
+      penalty: { en: "Fine of at least TZS 5,000,000, or imprisonment of at least 3 years, or both — Section 23.", sw: "Faini ya angalau shilingi milioni 5, au kifungo cha jela cha angalau miaka 3, au zote mbili — Kifungu cha 23." },
     },
     {
       heading: { en: "Private images and sexual content", sw: "Picha za faragha na maudhui ya ngono" },
       body: { en: "The Act criminalises sexual content involving children, and handles obscene material shared online. Sharing someone's private images without their agreement is treated seriously under Tanzanian law.", sw: "Sheria inatisha makosa ya maudhui ya ngono yanayohusisha watoto, na inashughulikia picha za uchi zinazosambazwa mtandaoni. Kutangaza picha za faragha za mtu bila ridhaa yake ni jambo linalopewa uzito mkubwa kisheria." },
+      penalty: { en: "Child pornography: fine of at least TZS 50,000,000 or imprisonment of at least 7 years, or both. Obscene material: fine of at least TZS 30,000,000 or imprisonment of at least 10 years, or both — Sections 13–14.", sw: "Pornografia ya watoto: faini ya angalau shilingi milioni 50 au jela kwa angalau miaka 7, au zote mbili. Maudhui ya uchi yasiyoheshimiwa: faini ya angalau shilingi milioni 30 au jela kwa angalau miaka 10, au zote mbili — Kifungu cha 13–14." },
     },
     {
       heading: { en: "Scams, fraud and forgery", sw: "Utapeli, udanganyifu na ughairi" },
       body: { en: "Computer-related fraud and forgery are crimes — for example fake prize messages, investment scams, or forged documents and identities used online.", sw: "Udanganyifu na ughairi kwa kompyuta ni makosa — kwa mfano jumbe za zawadi bandia, utapeli wa uwekezaji, au hati na utambulisho bandia yanayotumika mtandaoni." },
+      penalty: { en: "Fine of at least TZS 20,000,000 or three times the undue advantage gained (whichever is greater), or imprisonment of at least 7 years, or both — Sections 11–12.", sw: "Faini ya angalau shilingi milioni 20 au mara tatu ya faida (kiwango kikubwa zaidi), au kifungo cha jela cha angalau miaka 7, au zote mbili — Kifungu cha 11–12." },
     },
     {
       heading: { en: "Publishing false information", sw: "Kutangaza taarifa za uongo" },
       body: { en: "The Act also criminalises publishing false information online. If someone spreads lies about you, keep screenshots of what was posted — this record can help when you report it to the platform or the police.", sw: "Sheria pia inatisha kutangaza taarifa za uongo mtandaoni. Kama mtu anasambaza uongo kuhusu wewe, weka picha za skrini za yaliyochapishwa — rekodi hii inaweza kusaidia ukiipostia jukwaa au polisi." },
+      penalty: { en: "Fine of at least TZS 5,000,000, or imprisonment of at least 3 years, or both — Section 16.", sw: "Faini ya angalau shilingi milioni 5, au kifungo cha jela cha angalau miaka 3, au zote mbili — Kifungu cha 16." },
     },
   ],
   note: {
     en: "The Act covers more topics than listed here — for example how electronic evidence is collected and how investigations work — and it has been amended since 2015. Use the official links below to read the full text.",
     sw: "Sheria inashughulikia mada zaidi kuliko zilizoorodheshwa hapa — kwa mfano jinsi ushahidi wa kielektroniki unavyokusanywa na jinsi uchunguzi unavyofanyika — na imebadilishwa tangu 2015. Tumia viungo rasmi hapa chini kusoma matini kamili.",
+  },
+  penaltyNote: {
+    en: "These are the minimum penalties in the official revised edition of the Act (2023). Amounts and terms can be higher, and the Act has been amended since — the official text and a lawyer can give you exact, current figures.",
+    sw: "Hizi ni adhabu ndogo zaidi kwenye toleo rasmi lililorekebishwa la sheria (2023). Viwango vinaweza kuwa vikubwa zaidi, na sheria imebadilishwa tangu wakati huo — matini rasmi na wakili ndiyo wanaweza kukupa takwimu sahihi za sasa.",
   },
   linksLabel: { en: "Read the full Act (official government sources)", sw: "Soma sheria kamili (vyanzo rasmi vya serikali)" },
   links: [
