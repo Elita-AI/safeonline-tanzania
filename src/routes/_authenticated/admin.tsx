@@ -11,10 +11,10 @@ import { LogOut } from "lucide-react";
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "Reports Dashboard — SafeHer Team" },
-      { name: "description", content: "Private reports dashboard for the SafeHer Tanzania team." },
-      { property: "og:title", content: "Reports Dashboard — SafeHer Team" },
-      { property: "og:description", content: "Private reports dashboard for the SafeHer Tanzania team." },
+      { title: "Reports Dashboard — SafeOnlineTanzania Team" },
+      { name: "description", content: "Private reports dashboard for the SafeOnlineTanzania team." },
+      { property: "og:title", content: "Reports Dashboard — SafeOnlineTanzania Team" },
+      { property: "og:description", content: "Private reports dashboard for the SafeOnlineTanzania team." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

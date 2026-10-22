@@ -31,7 +31,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-6xl flex items-center gap-3 px-4 h-16">
           <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-primary">
-            <ShieldCheck className="size-6" aria-hidden /> SafeHer <span className="text-accent hidden sm:inline">TZ</span>
+            <ShieldCheck className="size-6" aria-hidden /> SafeOnlineTanzania <span className="text-accent hidden sm:inline">TZ</span>
           </Link>
           <nav className="hidden lg:flex gap-1 ml-6" aria-label="Main">
             {links.map((l) => (
@@ -67,7 +67,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <footer className="border-t bg-card mt-16">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-muted-foreground space-y-2">
-          <p className="font-display text-lg text-primary">SafeHer Tanzania — {t(ui.tagline)}</p>
+          <p className="font-display text-lg text-primary">SafeOnlineTanzania — {t(ui.tagline)}</p>
           <p>{t(ui.emergency)} <span className="italic">({t(ui.toVerify)})</span></p>
           <p>{t(ui.quickExitNote)} {lang === "en" ? "Shortcut: Shift + Esc." : "Njia ya mkato: Shift + Esc."}</p>
         </div>

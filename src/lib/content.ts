@@ -69,7 +69,7 @@ export const categories: Category[] = [
     ],
     evidence: [
       { en: "Preserve messages, usernames, payment requests and dates — if safe.", sw: "Hifadhi jumbe, majina ya watumiaji, maombi ya malipo na tarehe — ikiwa ni salama." },
-      { en: "Never share intimate images with anyone as “proof”, including with SafeHer.", sw: "Usitume picha za faragha kwa mtu yeyote kama “ushahidi”, hata kwa SafeHer." },
+      { en: "Never share intimate images with anyone as “proof”, including with SafeOnlineTanzania.", sw: "Usitume picha za faragha kwa mtu yeyote kama “ushahidi”, hata kwa SafeOnlineTanzania." },
     ],
     platform: [
       { en: "Report the account and use the platform's non-consensual intimate image reporting form.", sw: "Ripoti akaunti na tumia fomu ya jukwaa ya kuripoti picha za faragha zilizosambazwa bila ridhaa." },

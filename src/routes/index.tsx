@@ -7,9 +7,9 @@ import { categories } from "@/lib/content";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SafeHer Tanzania — Safe Online. Supported Offline." },
+      { title: "SafeOnlineTanzania — Safe Online. Supported Offline." },
       { name: "description", content: "Bilingual digital safety guidance and support referrals for women and girls in Tanzania facing online abuse." },
-      { property: "og:title", content: "SafeHer Tanzania" },
+      { property: "og:title", content: "SafeOnlineTanzania" },
       { property: "og:description", content: "You deserve to feel safe online. Practical guidance and support in Kiswahili and English." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -22,7 +22,7 @@ function Home() {
   const { t } = useLang();
   const actions = [
     { to: "/guide", icon: LifeBuoy, label: { en: "Get Help Now", sw: "Pata Msaada Sasa" }, primary: true },
-    { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeHer", sw: "Ongea na SafeHer" } },
+    { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeOnlineTanzania", sw: "Ongea na SafeOnlineTanzania" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
@@ -37,7 +37,7 @@ function Home() {
       <section className="bg-hero text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-sm font-semibold tracking-wide uppercase text-turquoise">SafeHer Tanzania</p>
+            <p className="text-sm font-semibold tracking-wide uppercase text-turquoise">SafeOnlineTanzania</p>
             <h1 className="font-display text-4xl md:text-6xl leading-tight mt-3">{t({ en: "You Deserve to Feel Safe Online.", sw: "Unastahili Kujisikia Salama Mtandaoni." })}</h1>
             <p className="mt-5 text-lg opacity-90 max-w-lg">{t({ en: "Get practical guidance, understand your options, and find support if you are experiencing online harassment or abuse. You are not alone.", sw: "Pata mwongozo wa vitendo, elewa njia ulizonazo, na upate msaada ikiwa unanyanyaswa mtandaoni. Hauko peke yako." })}</p>
             <div className="mt-8 grid sm:grid-cols-2 gap-3">
@@ -57,13 +57,13 @@ function Home() {
           <Lock className="size-6 text-primary shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-semibold text-base">{t({ en: "Your privacy comes first", sw: "Faragha yako ni kipaumbele" })}</p>
-            <p className="text-muted-foreground mt-1">{t({ en: "No registration. Chats are not saved. We never ask for your name, location, or images. Only if you choose to send a report is it stored — and only the SafeHer team can see it. Use Quick Exit at the top at any time.", sw: "Hakuna usajili. Mazungumzo hayahifadhiwi. Hatuombi jina lako, mahali ulipo, wala picha. Ripoti inahifadhiwa tu ukituma wewe mwenyewe — na inaonekana na timu ya SafeHer pekee. Tumia Ondoka Haraka juu wakati wowote." })} <Link to="/privacy" className="text-primary underline">{t({ en: "Read more", sw: "Soma zaidi" })}</Link></p>
+            <p className="text-muted-foreground mt-1">{t({ en: "No registration. Chats are not saved. We never ask for your name, location, or images. Only if you choose to send a report is it stored — and only the SafeOnlineTanzania team can see it. Use Quick Exit at the top at any time.", sw: "Hakuna usajili. Mazungumzo hayahifadhiwi. Hatuombi jina lako, mahali ulipo, wala picha. Ripoti inahifadhiwa tu ukituma wewe mwenyewe — na inaonekana na timu ya SafeOnlineTanzania pekee. Tumia Ondoka Haraka juu wakati wowote." })} <Link to="/privacy" className="text-primary underline">{t({ en: "Read more", sw: "Soma zaidi" })}</Link></p>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="font-display text-3xl text-primary">{t({ en: "How SafeHer works", sw: "SafeHer inavyofanya kazi" })}</h2>
+        <h2 className="font-display text-3xl text-primary">{t({ en: "How SafeOnlineTanzania works", sw: "SafeOnlineTanzania inavyofanya kazi" })}</h2>
         <div className="grid md:grid-cols-3 gap-4 mt-6">
           {how.map((h, i) => (
             <div key={i} className="rounded-2xl bg-card border p-6">
