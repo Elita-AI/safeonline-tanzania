@@ -23,7 +23,7 @@ export const Route = createFileRoute("/assistant")({
   component: Assistant,
 });
 
-type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "unclear" } | { role: "bot"; kind: "guide"; cat: Category };
+type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "general" } | { role: "bot"; kind: "guide"; cat: Category };
 
 const scenarios = [
   { en: "Someone says they will post my photos unless I send money.", sw: "Mtu anasema atasambaza picha zangu nisipomtumia pesa." },
@@ -57,7 +57,7 @@ function Assistant() {
       const id = detectCategory(v);
       const cat = categories.find((c) => c.id === id);
       if (cat && !reply.length) reply.push({ role: "bot", kind: "guide", cat });
-      else if (!reply.length) reply.push({ role: "bot", kind: "unclear" });
+      else if (!reply.length) reply.push({ role: "bot", kind: "general" });
       setMsgs((m) => [...m, ...reply]);
       setTyping(false);
       inputRef.current?.focus();
