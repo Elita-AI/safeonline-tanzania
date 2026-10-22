@@ -11,9 +11,9 @@ export const Route = createFileRoute("/directory")({
   }),
   head: () => ({
     meta: [
-      { title: "Support Services Directory — SafeOnlineTanzania" },
+      { title: "Support Services Directory — SafeOnline" },
       { name: "description", content: "Search GBV, legal aid, counselling, child protection, digital security and emergency services in Tanzania." },
-      { property: "og:title", content: "Support Services — SafeOnlineTanzania" },
+      { property: "og:title", content: "Support Services — SafeOnline" },
       { property: "og:description", content: "A searchable directory of support services in Tanzania." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

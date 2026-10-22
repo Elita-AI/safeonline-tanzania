@@ -8,10 +8,10 @@ import { ShieldCheck } from "lucide-react";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Team Sign In — SafeOnlineTanzania" },
-      { name: "description", content: "Private sign-in for the SafeOnlineTanzania team." },
-      { property: "og:title", content: "Team Sign In — SafeOnlineTanzania" },
-      { property: "og:description", content: "Private sign-in for the SafeOnlineTanzania team." },
+      { title: "Team Sign In — SafeOnline" },
+      { name: "description", content: "Private sign-in for the SafeOnline team." },
+      { property: "og:title", content: "Team Sign In — SafeOnline" },
+      { property: "og:description", content: "Private sign-in for the SafeOnline team." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -46,7 +46,7 @@ function AuthPage() {
         <ShieldCheck className="size-8 text-primary" aria-hidden />
         <h1 className="font-display text-2xl text-primary mt-3">{t({ en: "Team Sign In", sw: "Kuingia kwa Timu" })}</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          {t({ en: "Private area for the SafeOnlineTanzania team only.", sw: "Eneo la faragha kwa timu ya SafeOnlineTanzania pekee." })}
+          {t({ en: "Private area for the SafeOnline team only.", sw: "Eneo la faragha kwa timu ya SafeOnline pekee." })}
         </p>
         <form onSubmit={submit} className="mt-6 space-y-4">
           <label className="block text-sm font-medium">
