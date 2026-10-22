@@ -65,9 +65,9 @@ function Admin() {
   if (error || !data?.admin) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-14 text-center">
-        <h1 className="font-display text-2xl text-primary">{t({ en: "Admin access only", sw: "Watosha kwa wasimamizi" })}</h1>
+        <h1 className="font-display text-2xl text-primary">{t({ en: "Admin access only", sw: "Kwa wasimamizi pekee" })}</h1>
         <p className="text-muted-foreground mt-2 text-sm">
-          {t({ en: "This account does not have admin access. Ask an existing admin to grant the admin role.", sw: "Akaunti hii haina ruhusa ya msimamizi. Mtu mwenye ruhusa lazima akupe udhibiti." })}
+          {t({ en: "This account does not have admin access. Ask an existing admin to grant the admin role.", sw: "Akaunti hii haina ruhusa ya msimamizi. Msimamizi mwingine lazima akupe ruhusa." })}
         </p>
         <Button variant="outline" className="mt-6 rounded-full" onClick={signOut}>
           <LogOut className="size-4" /> {t({ en: "Sign out", sw: "Toka" })}
