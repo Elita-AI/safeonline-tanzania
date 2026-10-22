@@ -120,7 +120,7 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   if (m.kind !== "guide") return (
     <div className="space-y-3">
       <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "Demo response · general guidance", sw: "Jibu la majaribio · mwongozo wa jumla" })}</span>
-      <p>{t({ en: "Thank you for telling me — whatever is happening, it is not your fault. I could not match this to one specific situation, so here are general steps that help in most online-safety problems:", sw: "Asante kwa kunieleza — chochote kinachotokea, si kosa lako. Sikuweza kuolinganisha hili na hali moja maalum, kwa hiyo hapa kuna hatua za jumla zinazosaidia katika matatizo mengi ya usalama mtandaoni:" })}</p>
+      <p>{t({ en: "Thank you for telling me — whatever is happening, it is not your fault. Here are steps that help with most online-safety problems:", sw: "Asante kwa kunieleza — chochote kinachotokea, si kosa lako. Hapa kuna hatua zinazosaidia katika matatizo mengi ya usalama mtandaoni:" })}</p>
       <ol className="list-decimal pl-5 space-y-1">{generalGuidance.map((s, i) => <li key={i}>{t(s)}</li>)}</ol>
       <div className="rounded-xl bg-secondary p-3 text-sm">
         {t({ en: "This is general guidance, not mental-health diagnosis or legal advice. If there are threats, coercion or distress, human help may be needed.", sw: "Huu ni mwongozo wa jumla, si utambuzi wa afya ya akili wala ushauri wa kisheria. Ikiwa kuna vitisho, shinikizo au msongo, msaada wa mtu unaweza kuhitajika." })}
