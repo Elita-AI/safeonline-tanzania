@@ -252,3 +252,47 @@ export function assessText(text: string) {
 export function verifiedEmergencyServices(records: Service[] = services): Service[] {
   return records.filter((service) => service.category === "emergency" && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phone || service.link));
 }
+
+/** Plain-language information about the Cybercrimes Act, 2015. General information only — never presented as legal advice. Links point to official government sources. */
+export const lawInfo = {
+  title: { en: "Know the law: the Cybercrimes Act, 2015", sw: "Fahamu sheria: Sheria ya Makosa ya Mtandao, 2015" },
+  intro: {
+    en: "Tanzania's Cybercrimes Act, 2015 (Act No. 14 of 2015) is the main law covering online and computer-related offences. Here is a short, plain-language summary of the parts most relevant to your situation. This is general information, not legal advice — a lawyer or a legal aid service can advise on your specific case.",
+    sw: "Sheria ya Makosa ya Mtandao ya Tanzania ya 2015 (Sheria Na. 14 ya 2015) ni sheria kuu inayohusu makosa ya mtandaoni na kompyuta. Hii chini ni muhtasari mfupi kwa lugha rahisi wa sehemu zinazogusa hali kama zako. Huu ni maelezo ya jumla, sio ushauri wa kisheria — wakili au huduma ya msaada wa kisheria ndiyo wanaweza kukushauri kwa kina.",
+  },
+  offences: [
+    {
+      heading: { en: "Hacking and entering accounts without permission", sw: "Udukuzi na kuingia kwenye akaunti bila ruhusa" },
+      body: { en: "Breaking into someone's computer, phone or account without permission, or intercepting their messages, is a crime. This covers someone who guesses, steals or resets your password to get into your accounts.", sw: "Kuingia kwenye kompyuta, simu au akaunti ya mtu mwingine bila ruhusa, au kusikiliza jumbe zake bila kujulikana, ni kosa la jinai. Hii inahusu mtu anayetabiri, kuiba au kubadilisha nenosiri lako ili kuingia kwenye akaunti zako." },
+    },
+    {
+      heading: { en: "Impersonation and identity misuse", sw: "Kuigwa na matumizi mabaya ya utambulisho" },
+      body: { en: "Using another person's name, photos or details to create a fake profile or to pretend to be them online is an identity-related crime.", sw: "Kutumia jina, picha au taarifa za mtu mwingine kufungua akaunti bandia au kujifanya kuwa yeye mtandaoni ni kosa linalohusu utambulisho." },
+    },
+    {
+      heading: { en: "Cyberbullying and insulting messages", sw: "Unyanyasaji mtandaoni na jumbe za matusi" },
+      body: { en: "The Act addresses cyberbullying, including messages that humiliate, insult or intimidate a person. These are criminal offences, so the person sending them can face fines or imprisonment.", sw: "Sheria inashughulikia unyanyasaji mtandaoni, pamoja na jumbe zinazokera, kutusi au kutishia mtu. Haya ni makosa ya jinai, hivyo mtu anayeyatuma anaweza kukumbana na faini au kifungo." },
+    },
+    {
+      heading: { en: "Private images and sexual content", sw: "Picha za faragha na maudhui ya ngono" },
+      body: { en: "The Act criminalises sexual content involving children, and handles obscene material shared online. Sharing someone's private images without their agreement is treated seriously under Tanzanian law.", sw: "Sheria inatisha makosa ya maudhui ya ngono yanayohusisha watoto, na inashughulikia picha za uchi zinazosambazwa mtandaoni. Kutangaza picha za faragha za mtu bila ridhaa yake ni jambo linalopewa uzito mkubwa kisheria." },
+    },
+    {
+      heading: { en: "Scams, fraud and forgery", sw: "Utapeli, udanganyifu na ughairi" },
+      body: { en: "Computer-related fraud and forgery are crimes — for example fake prize messages, investment scams, or forged documents and identities used online.", sw: "Udanganyifu na ughairi kwa kompyuta ni makosa — kwa mfano jumbe za zawadi bandia, utapeli wa uwekezaji, au hati na utambulisho bandia yanayotumika mtandaoni." },
+    },
+    {
+      heading: { en: "Publishing false information", sw: "Kutangaza taarifa za uongo" },
+      body: { en: "The Act also criminalises publishing false information online. If someone spreads lies about you, keep screenshots of what was posted — this record can help when you report it to the platform or the police.", sw: "Sheria pia inatisha kutangaza taarifa za uongo mtandaoni. Kama mtu anasambaza uongo kuhusu wewe, weka picha za skrini za yaliyochapishwa — rekodi hii inaweza kusaidia ukiipostia jukwaa au polisi." },
+    },
+  ],
+  note: {
+    en: "The Act covers more topics than listed here — for example how electronic evidence is collected and how investigations work — and it has been amended since 2015. Use the official links below to read the full text.",
+    sw: "Sheria inashughulikia mada zaidi kuliko zilizoorodheshwa hapa — kwa mfano jinsi ushahidi wa kielektroniki unavyokusanywa na jinsi uchunguzi unavyofanyika — na imebadilishwa tangu 2015. Tumia viungo rasmi hapa chini kusoma matini kamili.",
+  },
+  linksLabel: { en: "Read the full Act (official government sources)", sw: "Soma sheria kamili (vyanzo rasmi vya serikali)" },
+  links: [
+    { label: { en: "The Cybercrimes Act, 2015 — Attorney General's portal", sw: "Sheria ya Makosa ya Mtandao, 2015 — tovuti ya Mwakilishi Mkuu wa Serikali" }, href: "https://oagmis.oag.go.tz/portal/acts/89" },
+    { label: { en: "Download the Act as a PDF (revised edition)", sw: "Pakua sheria kama PDF (toleo lililorekebishwa)" }, href: "https://oagmis.oag.go.tz/portal/acts/revised/543/download" },
+  ],
+};
