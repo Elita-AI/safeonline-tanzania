@@ -5,7 +5,7 @@ export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy & Safeguarding — SafeHer Tanzania" },
-      { name: "description", content: "How SafeHer Tanzania protects your privacy: no registration, no stored chats, no tracking." },
+      { name: "description", content: "How SafeHer Tanzania protects your privacy: no registration, no stored chats, and reports stored only with your clear consent." },
       { property: "og:title", content: "Privacy & Safeguarding — SafeHer Tanzania" },
       { property: "og:description", content: "No registration, no stored chats, no third-party tracking." },
       { property: "og:type", content: "article" },
