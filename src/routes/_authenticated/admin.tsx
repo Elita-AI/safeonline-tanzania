@@ -97,7 +97,7 @@ function Admin() {
         </div>
         <div className="rounded-2xl border bg-card p-5">
           <p className="text-3xl font-display text-primary">{newCount}</p>
-          <p className="text-sm text-muted-foreground mt-1">{t({ en: "Awaiting review", sw: "Zinazoruda kuhishiwa" })}</p>
+          <p className="text-sm text-muted-foreground mt-1">{t({ en: "Awaiting review", sw: "Zinasubiri kukaguliwa" })}</p>
         </div>
         <div className="rounded-2xl border bg-card p-5">
           <p className="text-3xl font-display text-primary">{byCategory.size}</p>
