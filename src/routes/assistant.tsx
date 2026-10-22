@@ -52,8 +52,9 @@ function Assistant() {
       if (detectDanger(v)) reply.push({ role: "bot", kind: "danger" });
       const id = detectCategory(v);
       const cat = categories.find((c) => c.id === id);
-      reply.push(cat ? { role: "bot", kind: "guide", cat } : reply.length ? reply[0] : { role: "bot", kind: "unclear" });
-      setMsgs((m) => [...m, ...(reply.length === 2 && reply[0] === reply[1] ? [reply[0]] : reply)]);
+      if (cat) reply.push({ role: "bot", kind: "guide", cat });
+      else if (!reply.length) reply.push({ role: "bot", kind: "unclear" });
+      setMsgs((m) => [...m, ...reply]);
       setTyping(false);
       inputRef.current?.focus();
     }, 700);
