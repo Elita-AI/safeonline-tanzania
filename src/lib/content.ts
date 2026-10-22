@@ -275,7 +275,7 @@ export const lawInfo = {
     },
     {
       heading: { en: "Private images and sexual content", sw: "Picha za faragha na maudhui ya ngono" },
-      body: { en: "The Act criminalises sexual content involving children, and handles obscene material shared online. Sharing someone's private images without their agreement is treated seriously under Tanzanian law.", sw: "Sheria inatisha makosa ya maudhui ya ngono yanayohusisha watoto, na inashughulikia viduali vya uchi vinayosambazwa mtandaoni. Kutangaza picha za faragha za mtu bila ridhaa yake ni jambo linalopewa uzito mkubwa kisheria." },
+      body: { en: "The Act criminalises sexual content involving children, and handles obscene material shared online. Sharing someone's private images without their agreement is treated seriously under Tanzanian law.", sw: "Sheria inatisha makosa ya maudhui ya ngono yanayohusisha watoto, na inashughulikia picha za uchi zinazosambazwa mtandaoni. Kutangaza picha za faragha za mtu bila ridhaa yake ni jambo linalopewa uzito mkubwa kisheria." },
     },
     {
       heading: { en: "Scams, fraud and forgery", sw: "Utapeli, udanganyifu na ughairi" },
