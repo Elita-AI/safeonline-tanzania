@@ -31,7 +31,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-6xl flex items-center gap-3 px-4 h-16">
           <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-primary">
-            <ShieldCheck className="size-6" aria-hidden /> SafeOnlineTanzania <span className="text-accent hidden sm:inline">TZ</span>
+            <ShieldCheck className="size-6" aria-hidden /> SafeOnlineTanzania
           </Link>
           <nav className="hidden lg:flex gap-1 ml-6" aria-label="Main">
             {links.map((l) => (
