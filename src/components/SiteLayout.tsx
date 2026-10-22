@@ -30,7 +30,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <div className="bg-coral-soft text-foreground text-xs text-center px-4 py-1.5">{t(ui.prototype)}</div>
       <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-6xl flex items-center gap-3 px-4 h-16">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-primary">
+          <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold text-primary sm:text-xl">
             <ShieldCheck className="size-6" aria-hidden /> SafeOnlineTanzania
           </Link>
           <nav className="hidden lg:flex gap-1 ml-6" aria-label="Main">
@@ -48,8 +48,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </button>
               ))}
             </div>
-            <Button variant="destructive" size="sm" className="rounded-full" onClick={quickExit} title={t(ui.quickExitNote)}>
-              <LogOut className="size-4" /> {t(ui.quickExit)}
+            <Button variant="destructive" size="sm" className="rounded-full" onClick={quickExit} title={t(ui.quickExitNote)} aria-label={t(ui.quickExit)}>
+              <LogOut className="size-4" /> <span className="hidden min-[480px]:inline">{t(ui.quickExit)}</span>
             </Button>
             <button className="lg:hidden p-1" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
               {open ? <X /> : <Menu />}
