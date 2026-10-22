@@ -142,7 +142,7 @@ function ReportCard({
 }: {
   report: ReportRow;
   lang: "en" | "sw";
-  t: TFunction;
+  t: (s: T) => string;
   onSave: (status: string, notes: string | null) => void;
   saving: boolean;
 }) {
