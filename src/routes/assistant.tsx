@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Send, ShieldCheck, Info, Home, RotateCcw } from "lucide-react";
-import { categories, detectCategory, detectDanger, serviceCategories, type Category } from "@/lib/content";
+import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/assistant")({
   component: Assistant,
 });
 
-type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "unclear" } | { role: "bot"; kind: "guide"; cat: Category };
+type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "general" } | { role: "bot"; kind: "guide"; cat: Category };
 
 const scenarios = [
   { en: "Someone says they will post my photos unless I send money.", sw: "Mtu anasema atasambaza picha zangu nisipomtumia pesa." },
@@ -57,7 +57,7 @@ function Assistant() {
       const id = detectCategory(v);
       const cat = categories.find((c) => c.id === id);
       if (cat && !reply.length) reply.push({ role: "bot", kind: "guide", cat });
-      else if (!reply.length) reply.push({ role: "bot", kind: "unclear" });
+      else if (!reply.length) reply.push({ role: "bot", kind: "general" });
       setMsgs((m) => [...m, ...reply]);
       setTyping(false);
       inputRef.current?.focus();
@@ -117,7 +117,21 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
   if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, I'm SafeOnline. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, mimi ni SafeOnline. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
   if (m.kind === "danger") return <EmergencyNotice />;
-  if (m.kind !== "guide") return <p>{t({ en: "Thank you for telling me. I want to make sure I suggest the right steps. Is this mostly about: insults or harassment, threats, someone sharing or threatening to share images, a fake account, unwanted sexual messages, or a hacked account? You can also browse the Safety Guide.", sw: "Asante kwa kunieleza. Nataka kuhakikisha napendekeza hatua sahihi. Je, ni zaidi kuhusu: matusi au unyanyasaji, vitisho, mtu kusambaza au kutishia kusambaza picha, akaunti bandia, jumbe za ngono zisizotakiwa, au akaunti iliyodukuliwa? Unaweza pia kuangalia Mwongozo wa Usalama." })}</p>;
+  if (m.kind !== "guide") return (
+    <div className="space-y-3">
+      <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "Demo response · general guidance", sw: "Jibu la majaribio · mwongozo wa jumla" })}</span>
+      <p>{t({ en: "Thank you for telling me — whatever is happening, it is not your fault. I could not match this to one specific situation, so here are general steps that help in most online-safety problems:", sw: "Asante kwa kunieleza — chochote kinachotokea, si kosa lako. Sikuweza kuolinganisha hili na hali moja maalum, kwa hiyo hapa kuna hatua za jumla zinazosaidia katika matatizo mengi ya usalama mtandaoni:" })}</p>
+      <ol className="list-decimal pl-5 space-y-1">{generalGuidance.map((s, i) => <li key={i}>{t(s)}</li>)}</ol>
+      <div className="rounded-xl bg-secondary p-3 text-sm">
+        {t({ en: "This is general guidance, not mental-health diagnosis or legal advice. If there are threats, coercion or distress, human help may be needed.", sw: "Huu ni mwongozo wa jumla, si utambuzi wa afya ya akili wala ushauri wa kisheria. Ikiwa kuna vitisho, shinikizo au msongo, msaada wa mtu unaweza kuhitajika." })}
+        <div className="flex flex-wrap gap-2 mt-3">
+          <Link to="/guide" className="rounded-full bg-primary text-primary-foreground px-4 py-1.5 font-semibold">{t({ en: "Browse the Safety Guide", sw: "Angalia Mwongozo wa Usalama" })}</Link>
+          <Link to="/directory" className="rounded-full border bg-card px-4 py-1.5">{t({ en: "Find support", sw: "Tafuta msaada" })}</Link>
+        </div>
+      </div>
+      <Feedback />
+    </div>
+  );
   const c = m.cat;
   return (
     <div className="space-y-3">
