@@ -44,6 +44,32 @@ function Guide() {
           )}
         </div>
       </div>
+      <section aria-labelledby="law-heading" className="mt-10 rounded-2xl border bg-card p-6">
+        <h2 id="law-heading" className="font-display text-2xl text-primary">{t(lawInfo.title)}</h2>
+        <p className="text-muted-foreground mt-3 max-w-3xl">{t(lawInfo.intro)}</p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {lawInfo.offences.map((o) => (
+            <div key={o.heading.en} className="rounded-xl border border-dashed p-4">
+              <h3 className="font-semibold">{t(o.heading)}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t(o.body)}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-muted-foreground mt-5 max-w-3xl">{t(lawInfo.note)}</p>
+        <p className="mt-4 font-semibold text-sm">{t(lawInfo.linksLabel)}</p>
+        <ul className="mt-2 space-y-2">
+          {lawInfo.links.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80">
+                {t(l.label)} ↗
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="text-xs text-muted-foreground mt-4">
+          {t({ en: "SafeOnline links to the official government text only. SafeOnline does not give legal advice.", sw: "SafeOnline inaeleza kwenye matini rasmi ya serikali pekee. SafeOnline haitoi ushauri wa kisheria." })}
+        </p>
+      </section>
     </div>
   );
 }
