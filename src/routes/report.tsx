@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang, ui } from "@/lib/i18n";
 import { categories } from "@/lib/content";
+import { buildReportPayload } from "@/lib/report-payload";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, CheckCircle2, Lock } from "lucide-react";
 
@@ -28,6 +29,7 @@ function ReportPage() {
   const [description, setDescription] = useState("");
   const [region, setRegion] = useState("");
   const [contact, setContact] = useState("");
+  const [anonymous, setAnonymous] = useState(true);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -49,13 +51,9 @@ function ReportPage() {
       return;
     }
     setBusy(true);
-    const { error: err } = await supabase.from("reports").insert({
-      category,
-      description: description.trim(),
-      region: region.trim() || null,
-      contact: contact.trim() || null,
-      consent_given: true,
-    });
+    const { error: err } = await supabase.from("reports").insert(
+      buildReportPayload({ category, description, region, contact, anonymous, consent }),
+    );
     setBusy(false);
     if (err) {
       setError(t({ en: "Sending failed. Please try again.", sw: "Kutuma kumeshindikana. Tafadhali jaribu tena." }));
@@ -71,7 +69,9 @@ function ReportPage() {
           <CheckCircle2 className="size-10 text-primary mx-auto" aria-hidden />
           <h1 className="font-display text-2xl text-primary mt-3">{t({ en: "Thank you for reporting", sw: "Asante kwa kuripoti" })}</h1>
           <p className="text-muted-foreground mt-3 text-sm">
-            {t({ en: "Your report has been saved and is visible only to the SafeHer team. We review reports to improve guidance and support. We may contact you using the details you gave, if any.", sw: "Ripoti yako imehifadhiwa na inaonekana na timu ya SafeHer pekee. Tunakagua ripoti kuboresha mwongozo na msaada. Tunaweza kuwasiliana nawe kwa maelezo uliyotoa, ikiwa yapo." })}
+            {anonymous
+              ? t({ en: "Your anonymous report has been saved without contact or region details. Only the SafeHer team can see it, and it counts toward our report totals. We cannot contact you about this report.", sw: "Ripoti yako isiyo na utambulisho imehifadhiwa bila maelezo ya mawasiliano au mkoa. Timu ya SafeHer pekee inaweza kuiona, na inahesabiwa katika jumla ya ripoti. Hatuwezi kuwasiliana nawe kuhusu ripoti hii." })
+              : t({ en: "Your report has been saved and is visible only to the SafeHer team. We review reports to improve guidance and support. We may contact you using the details you gave, if any.", sw: "Ripoti yako imehifadhiwa na inaonekana na timu ya SafeHer pekee. Tunakagua ripoti kuboresha mwongozo na msaada. Tunaweza kuwasiliana nawe kwa maelezo uliyotoa, ikiwa yapo." })}
           </p>
           <p className="text-sm mt-4 flex items-center justify-center gap-2">
             <AlertTriangle className="size-4 text-accent shrink-0" />
@@ -102,6 +102,18 @@ function ReportPage() {
       </p>
 
       <form onSubmit={submit} className="mt-6 space-y-5 rounded-2xl border bg-card p-5">
+        <fieldset className="space-y-2 border-b pb-5">
+          <legend className="font-display text-xl text-primary mb-3">{t({ en: "Anonymous reporting", sw: "Kuripoti bila utambulisho" })}</legend>
+          <label className="flex items-start gap-3 text-sm font-medium">
+            <input type="checkbox" checked={anonymous} onChange={(e) => {
+              setAnonymous(e.target.checked);
+              setRegion("");
+              setContact("");
+            }} className="mt-1 size-4" />
+            <span>{t({ en: "Send anonymously — no contact or region details", sw: "Tuma bila utambulisho — bila mawasiliano au mkoa" })}</span>
+          </label>
+          <p className="text-sm text-muted-foreground">{t({ en: "We never ask for your name. To stay anonymous, leave names, phone numbers, email addresses and other identifying details out of your description. Your report stays private and still counts. We cannot follow up without contact details.", sw: "Hatuombi jina lako kamwe. Ili ubaki bila utambulisho, usiandike majina, namba za simu, barua pepe au maelezo mengine yanayoweza kukutambulisha. Ripoti yako inabaki ya siri na bado inahesabiwa. Hatuwezi kufuatilia bila maelezo ya mawasiliano." })}</p>
+        </fieldset>
         <label className="block text-sm font-medium">
           {t({ en: "What happened? *", sw: "Nini kilichotokea? *" })}
           <select
@@ -136,6 +148,7 @@ function ReportPage() {
           </span>
         </label>
 
+        {!anonymous && <>
         <label className="block text-sm font-medium">
           {t({ en: "Region (optional)", sw: "Mkoa (hiari)" })}
           <input
@@ -159,6 +172,8 @@ function ReportPage() {
             className="mt-1 w-full rounded-xl border bg-background px-3 py-2 text-sm"
           />
         </label>
+
+        </>}
 
         <label className="flex items-start gap-3 text-sm">
           <input
