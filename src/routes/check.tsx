@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImageOff } from "lucide-react";
+import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImageOff, ImagePlus } from "lucide-react";
 import { assessText, assessmentLabels, categories } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,24 @@ function CheckPage() {
   const { t } = useLang();
   const [text, setText] = useState("");
   const [result, setResult] = useState<ReturnType<typeof assessText> | null>(null);
+  const [reading, setReading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [ocrMsg, setOcrMsg] = useState<{ en: string; sw: string } | null>(null);
+  async function readImage(file: File) {
+    if (file.size > 10 * 1024 * 1024) { setOcrMsg({ en: "Image is too large (max 10 MB).", sw: "Picha ni kubwa mno (kiwango cha juu MB 10)." }); return; }
+    setReading(true); setProgress(0); setOcrMsg(null); setResult(null);
+    try {
+      const { createWorker } = await import("tesseract.js");
+      const worker = await createWorker(["eng", "swa"], 1, { logger: (m) => { if (m.status === "recognizing text") setProgress(Math.round(m.progress * 100)); } });
+      const { data } = await worker.recognize(file);
+      await worker.terminate();
+      const words = data.text.replace(/\n{3,}/g, "\n\n").trim().slice(0, 4000);
+      if (words) { setText(words); setOcrMsg({ en: "Words copied into the box. Remove names or personal details, then press Check text. The picture was not saved.", sw: "Maneno yamewekwa kwenye kisanduku. Ondoa majina au taarifa binafsi, kisha bonyeza Kagua maandishi. Picha haikuhifadhiwa." }); }
+      else setOcrMsg({ en: "No readable words found. Try a clearer screenshot or type the message.", sw: "Hakuna maneno yaliyosomeka. Jaribu picha iliyo wazi zaidi au andika ujumbe." });
+    } catch {
+      setOcrMsg({ en: "Could not read this image. Please type the message instead.", sw: "Imeshindwa kusoma picha hii. Tafadhali andika ujumbe badala yake." });
+    } finally { setReading(false); }
+  }
   const category = categories.find((item) => item.id === result?.category);
   return <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
     <div className="flex items-start gap-3">
@@ -36,7 +54,15 @@ function CheckPage() {
     <form onSubmit={(event) => { event.preventDefault(); if (text.trim()) { setResult(assessText(text)); setText(""); } }} className="space-y-3">
       <label htmlFor="check-text" className="block font-semibold">{t({ en: "Message, link or username", sw: "Ujumbe, kiungo au jina la mtumiaji" })}</label>
       <Textarea id="check-text" value={text} onChange={(event) => { setText(event.target.value); setResult(null); }} maxLength={4000} rows={5} className="resize-y" placeholder={t({ en: "Paste text only — remove names and personal details…", sw: "Bandika maandishi pekee — ondoa majina na taarifa binafsi…" })} />
-      <div className="flex items-start gap-2 text-sm text-muted-foreground"><ImageOff className="size-4 shrink-0 mt-0.5" /><p>{t({ en: "Do not upload intimate images. Screenshot uploads are unavailable because reliable intimate-image screening is not available. Describe the message in text instead.", sw: "Usipakie picha za faragha. Kupakia picha za skrini hakupatikani kwa sababu ukaguzi wa kuaminika wa picha za faragha haupo. Eleza ujumbe kwa maandishi badala yake." })}</p></div>
+      <div className="border border-dashed rounded-lg p-4 space-y-2">
+        <p className="font-semibold text-sm">{t({ en: "Or read the words from a screenshot", sw: "Au soma maneno kutoka picha ya skrini" })}</p>
+        <div className="flex items-start gap-2 text-sm text-muted-foreground"><ImageOff className="size-4 shrink-0 mt-0.5" /><p>{t({ en: "Only use screenshots of messages — never intimate images. The picture is read on this device, never sent or saved. Only the words are copied into the box above so you can check and edit them; it cannot describe what a photo shows.", sw: "Tumia picha za skrini za jumbe pekee — kamwe si picha za faragha. Picha inasomwa kwenye kifaa hiki, haitumwi wala kuhifadhiwa. Maneno pekee yanawekwa kwenye kisanduku hapo juu ili uyakague na kuyahariri; haiwezi kueleza picha inaonyesha nini." })}</p></div>
+        <label className="inline-flex items-center gap-2 cursor-pointer rounded-md border bg-background px-3 py-2 text-sm font-medium hover:bg-secondary">
+          <ImagePlus className="size-4" />{reading ? t({ en: `Reading… ${progress}%`, sw: `Inasoma… ${progress}%` }) : t({ en: "Choose screenshot", sw: "Chagua picha ya skrini" })}
+          <input type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={reading} onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void readImage(file); }} />
+        </label>
+        {ocrMsg && <p className="text-sm" role="status">{t(ocrMsg)}</p>}
+      </div>
       <Button type="submit" disabled={!text.trim()}><ScanText className="size-4" />{t({ en: "Check text", sw: "Kagua maandishi" })}</Button>
     </form>
     {result && <section className="border-t pt-6 space-y-5" aria-live="polite">
