@@ -100,7 +100,7 @@ function CheckPage() {
         {deep && <div className="space-y-3 border-t pt-3" aria-live="polite">
           <p className="text-sm font-semibold">{t({ en: "AI-assisted assessment, not a legal determination", sw: "Tathmini kwa msaada wa AI, si uamuzi wa kisheria" })}</p>
           {deep.immediateDanger && <EmergencyNotice />}
-          <p><span className="text-muted-foreground text-sm">{t({ en: "Category: ", sw: "Aina: " })}</span><strong>{deep.category === "unclear" ? t({ en: "Unclear", sw: "Haijabainika" }) : t(assessmentLabels[deep.category])}</strong> · <span className="text-muted-foreground text-sm">{t({ en: "Risk: ", sw: "Hatari: " })}</span><strong className={deep.risk === "High" ? "text-destructive" : "text-primary"}>{deep.risk === "High" ? t({ en: "High", sw: "Juu" }) : deep.risk === "Medium" ? t({ en: "Medium", sw: "Wastani" }) : t({ en: "Lower", sw: "Chini" })}</strong></p>
+          <p><span className="text-muted-foreground text-sm">{t({ en: "Category: ", sw: "Aina: " })}</span><strong>{deep.category === "unclear" ? t({ en: "Unclear", sw: "Haijabainika" }) : t(assessmentLabels[deep.category])}</strong></p>
           <p>{deep.summary}</p>
           {deep.warningSigns.length > 0 && <ul className="list-disc pl-5 space-y-1">{deep.warningSigns.map((w) => <li key={w}>{w}</li>)}</ul>}
           <h4 className="font-semibold">{t({ en: "AI-suggested next steps", sw: "Hatua zinazopendekezwa na AI" })}</h4>
