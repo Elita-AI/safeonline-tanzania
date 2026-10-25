@@ -57,3 +57,10 @@ describe("body shaming (Kiswahili slang)", () => {
     expect(r.risk).toBe("Medium");
   });
 });
+
+describe("found words", () => {
+  it("lists the body-shaming words that were matched", () => {
+    const r = assessText("afu kembamba na Ubonge wake");
+    expect(r.found).toEqual(["kembamba", "ubonge"]);
+  });
+});
