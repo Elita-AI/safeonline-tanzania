@@ -246,7 +246,7 @@ export function assessText(text: string) {
     ? { en: "Threats or coercion can escalate. Prioritise your safety and human support.", sw: "Vitisho au shinikizo vinaweza kuongezeka. Tanguliza usalama wako na msaada wa mtu." }
     : risk === "Medium"
       ? { en: "Possible abuse or account-security warning signs were matched. Context matters.", sw: "Dalili za unyanyasaji au tatizo la usalama wa akaunti zimetambuliwa. Muktadha ni muhimu." }
-      : { en: "No recognised warning signs were matched. Lower does not mean safe; links and identities are not verified.", sw: "Hakuna dalili zinazojulikana zilizotambuliwa. Kiwango cha chini hakimaanishi salama; viungo na utambulisho havijathibitishwa." };
+      : { en: "No recognised warning signs were matched. This does not mean the situation is safe; links and identities are not verified.", sw: "Hakuna dalili zinazojulikana zilizotambuliwa. Hii haimaanishi kuwa hali ni salama; viungo na utambulisho havijathibitishwa." };
   const found = [...new Set(matched.flatMap((signal) => [...text.matchAll(new RegExp(signal.pattern.source, "gi"))].map((m) => m[0].toLowerCase())))];
   return { category, risk, reason, warnings: matched.map((signal) => signal.label), found, immediateDanger };
 }
