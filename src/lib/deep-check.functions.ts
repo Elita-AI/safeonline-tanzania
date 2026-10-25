@@ -62,7 +62,6 @@ export const deepCheck = createServerFn({ method: "POST" })
             },
           },
         },
-        store: false,
       });
       const out = (res as { output?: Array<{ type: string; content?: Array<{ type: string; text?: string }> }> }).output ?? [];
       const text = out.flatMap((o) => o.content ?? []).find((c) => c.type === "output_text")?.text;
