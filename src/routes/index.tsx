@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { LifeBuoy, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
+import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
 import { useLang } from "@/lib/i18n";
@@ -23,7 +23,7 @@ function Home() {
   const { t } = useLang();
   const actions = [
     { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" } },
-    { to: "/guide", icon: LifeBuoy, label: { en: "Get Help Now", sw: "Pata Msaada Sasa" }, primary: true },
+    { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, primary: true },
     { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
