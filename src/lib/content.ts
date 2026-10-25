@@ -225,6 +225,7 @@ export const safetySignals: { category: CategoryId; label: T; pattern: RegExp }[
   { category: "sexual", label: { en: "Sexual content or pressure for intimate material", sw: "Maudhui ya ngono au shinikizo la picha za faragha" }, pattern: /\b(sexual|sext\w*|nudes?|naked|groom\w*|ngono|uchi|ananiomba picha)\b/i },
   { category: "hacking", label: { en: "Possible scam, credential request or account compromise", sw: "Huenda ni utapeli, ombi la taarifa za kuingia au akaunti kudukuliwa" }, pattern: /\b(scam\w*|phish\w*|hack\w*|password|otp|verification code|can't log in|can’t log in|can't log into|nenosiri|siwezi kuingia|imedukuliwa|utapeli|tapeli|tuma code|won a prize|shinda zawadi)\b/i },
   { category: "bullying", label: { en: "Abusive messages or harassment", sw: "Jumbe za matusi au unyanyasaji" }, pattern: /\b(bully\w*|insult\w*|harass\w*|mock\w*|hate you|matusi|kunitukana|dhihaka|uonevu|kejeli|wananitukana|ananitukana)\b/i },
+  { category: "bullying", label: { en: "Body shaming or mocking someone's appearance", sw: "Kudhihaki mwili au sura ya mtu" }, pattern: /\b(body[- ]?sham\w*|fat|fatty|skinny|ugly|kembamba|mwembamba|kanene|mnene|manyama uzembe|bonge|kibonge|ubonge|kitambi|sura mbaya|mbaya wa sura|sura kama ya|shape flan|shape fulani|hana shape|kana shape|kasura|kijisura|kimbaumbau|mbaumbau|mfupi kama)\b/i },
 ];
 
 export const assessmentLabels: Record<CategoryId, T> = {

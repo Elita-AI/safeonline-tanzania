@@ -50,3 +50,10 @@ describe("Verified-only emergency referrals", () => {
     expect(verifiedEmergencyServices([verified])).toEqual([verified]);
   });
 });
+describe("body shaming (Kiswahili slang)", () => {
+  it("flags appearance mocking in informal Kiswahili as harassment", () => {
+    const r = assessText("kadogo kana shape flan afu kembamba yan kana sura kama ya wale, na Ubonge wake");
+    expect(r.category).toBe("bullying");
+    expect(r.risk).toBe("Medium");
+  });
+});
