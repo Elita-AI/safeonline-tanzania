@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Feedback } from "@/components/SiteLayout";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { EmergencyNotice } from "@/components/EmergencyNotice";
+import { chatReply } from "@/lib/chat.functions";
 
 export const Route = createFileRoute("/assistant")({
   head: () => ({
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/assistant")({
   component: Assistant,
 });
 
-type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "general" } | { role: "bot"; kind: "guide"; cat: Category };
+type Msg = { role: "user"; text: string } | { role: "bot"; kind: "intro" | "danger" | "general" } | { role: "bot"; kind: "guide"; cat: Category } | { role: "bot"; kind: "ai"; text: string };
 
 const scenarios = [
   { en: "Someone says they will post my photos unless I send money.", sw: "Mtu anasema atasambaza picha zangu nisipomtumia pesa." },
@@ -39,10 +40,8 @@ function Assistant() {
   const [typing, setTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
-  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "end" }); }, [msgs, typing]);
 
   const send = (value: string) => {
@@ -51,17 +50,23 @@ function Assistant() {
     setMsgs((m) => [...m, { role: "user", text: v }]);
     setText("");
     setTyping(true);
-    timerRef.current = setTimeout(() => {
-      const reply: Msg[] = [];
-      if (detectDanger(v)) reply.push({ role: "bot", kind: "danger" });
-      const id = detectCategory(v);
-      const cat = categories.find((c) => c.id === id);
-      if (cat && !reply.length) reply.push({ role: "bot", kind: "guide", cat });
-      else if (!reply.length) reply.push({ role: "bot", kind: "general" });
-      setMsgs((m) => [...m, ...reply]);
-      setTyping(false);
-      inputRef.current?.focus();
-    }, 700);
+    const history = [...msgs, { role: "user", text: v } as Msg].flatMap((m) =>
+      m.role === "user" ? [{ role: "user" as const, content: m.text }] : m.kind === "ai" ? [{ role: "assistant" as const, content: m.text }] : [],
+    ).slice(-20);
+    const danger = detectDanger(v);
+    chatReply({ data: { messages: history } })
+      .then((r) => {
+        const reply: Msg[] = [];
+        if (danger) reply.push({ role: "bot", kind: "danger" });
+        if ("reply" in r) reply.push({ role: "bot", kind: "ai", text: r.reply });
+        else {
+          const cat = categories.find((c) => c.id === detectCategory(v));
+          if (!danger) reply.push(cat ? { role: "bot", kind: "guide", cat } : { role: "bot", kind: "general" });
+        }
+        setMsgs((m) => [...m, ...reply]);
+      })
+      .catch(() => setMsgs((m) => [...m, danger ? { role: "bot", kind: "danger" } : { role: "bot", kind: "general" }]))
+      .finally(() => { setTyping(false); inputRef.current?.focus(); });
   };
 
   return (
@@ -82,7 +87,7 @@ function Assistant() {
       <div className="mt-4"><PrivacyNotice /></div>
       <div className="mt-4 rounded-xl bg-coral-soft p-3 text-xs flex gap-2">
         <Info className="size-4 text-accent shrink-0 mt-0.5" />
-        <span><b>{t({ en: "Demonstration mode", sw: "Hali ya majaribio" })}:</b> {t({ en: "No live AI is connected. Replies come from pre-written safety scenarios and your messages stay on this device. Nothing is saved.", sw: "Hakuna AI halisi iliyounganishwa. Majibu yanatoka kwenye hali za usalama zilizoandaliwa, na jumbe zako zinabaki kwenye kifaa hiki. Hakuna kinachohifadhiwa." })}</span>
+        <span><b>{t({ en: "AI chat", sw: "Gumzo la AI" })}:</b> {t({ en: "Your messages are sent to an AI service to write a reply. SafeOnline does not save them, but please don't share names, addresses or images. AI can make mistakes — this is not legal or medical advice.", sw: "Jumbe zako zinatumwa kwa huduma ya AI ili kuandika jibu. SafeOnline haizihifadhi, lakini tafadhali usitaje majina, anwani wala picha. AI inaweza kukosea — huu si ushauri wa kisheria wala wa kitabibu." })}</span>
       </div>
 
       <div className="flex-1 mt-4 space-y-4" aria-live="polite">
@@ -111,7 +116,7 @@ function Assistant() {
           <Textarea ref={inputRef} value={text} maxLength={4000} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(text); } }} rows={1} placeholder={t({ en: "Describe what's happening — no names or images needed…", sw: "Eleza kinachoendelea — huhitaji majina wala picha…" })} className="border-0 shadow-none resize-none focus-visible:ring-0 min-h-11" aria-label={t({ en: "Message", sw: "Ujumbe" })} />
           <Button type="submit" size="icon" className="rounded-xl shrink-0" disabled={!text.trim() || typing} aria-label={t({ en: "Send", sw: "Tuma" })}><Send className="size-4" /></Button>
         </div>
-        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); setMsgs([{ role: "bot", kind: "intro" }]); setText(""); setTyping(false); }}><RotateCcw className="size-4" />{t({ en: "Clear conversation", sw: "Futa mazungumzo" })}</Button>
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => { setMsgs([{ role: "bot", kind: "intro" }]); setText(""); setTyping(false); }}><RotateCcw className="size-4" />{t({ en: "Clear conversation", sw: "Futa mazungumzo" })}</Button>
       </form>
     </div>
   );
@@ -121,6 +126,12 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
   if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, how are you? Let's chat. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, uko aje? Tuongee. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
   if (m.kind === "danger") return <EmergencyNotice />;
+  if (m.kind === "ai") return (
+    <div className="space-y-2">
+      <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "AI reply", sw: "Jibu la AI" })}</span>
+      <p className="whitespace-pre-wrap leading-relaxed rounded-2xl rounded-bl-md bg-card border px-4 py-2.5">{m.text.replace(/\*\*(.+?)\*\*/g, "$1")}</p>
+    </div>
+  );
   if (m.kind !== "guide") return (
     <div className="space-y-3">
       <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "Demo response · general guidance", sw: "Jibu la majaribio · mwongozo wa jumla" })}</span>
