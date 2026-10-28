@@ -29,7 +29,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="bg-coral-soft text-foreground text-xs text-center px-4 py-1.5">{t(ui.prototype)}</div>
       <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-6xl flex items-center gap-3 px-4 h-16">
           <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold text-primary sm:text-xl">
