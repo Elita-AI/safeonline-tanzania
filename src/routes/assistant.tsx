@@ -75,7 +75,7 @@ function Assistant() {
         <Button asChild variant="outline" size="sm" className="rounded-full"><Link to="/"><Home className="size-4" /> {t({ en: "Main menu", sw: "Menyu kuu" })}</Link></Button>
       </div>
 
-      <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-coral-soft px-3 py-1.5 text-xs font-semibold text-accent">
+      <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-accent-foreground">
         <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
       </p>
 
