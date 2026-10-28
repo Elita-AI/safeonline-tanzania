@@ -24,7 +24,7 @@ function Home() {
   const actions = [
     { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" } },
     { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, primary: true },
-    { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" } },
+    { to: "/assistant", icon: MessageCircle, label: { en: "Let's chat 24/7", sw: "Tuongee 24/7" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
