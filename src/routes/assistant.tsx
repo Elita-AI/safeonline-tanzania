@@ -50,7 +50,7 @@ function Assistant() {
     setMsgs((m) => [...m, { role: "user", text: v }]);
     setText("");
     setTyping(true);
-    const history = [...msgs, { role: "user", text: v } as Msg].flatMap((m) =>
+    const history = [...msgs, { role: "user", text: v } as Msg].flatMap((m): { role: "user" | "assistant"; content: string }[] =>
       m.role === "user" ? [{ role: "user" as const, content: m.text }] : m.kind === "ai" ? [{ role: "assistant" as const, content: m.text }] : [],
     ).slice(-20);
     const danger = detectDanger(v);
