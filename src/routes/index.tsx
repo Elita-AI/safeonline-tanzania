@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning } from "lucide-react";
+import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning, Bot } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
-import { useLang } from "@/lib/i18n";
+import { ui, useLang } from "@/lib/i18n";
 import { categories } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
@@ -24,7 +24,7 @@ function Home() {
   const actions = [
     { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" } },
     { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, primary: true },
-    { to: "/assistant", icon: MessageCircle, label: { en: "Talk to SafeOnline", sw: "Ongea na SafeOnline" } },
+    { to: "/assistant", icon: MessageCircle, label: { en: "Let's chat 24/7", sw: "Tuongee 24/7" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
@@ -50,6 +50,9 @@ function Home() {
                 </Link>
               ))}
             </div>
+            <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-semibold">
+              <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
+            </p>
           </div>
           <img src={hero} alt="" width={1024} height={1024} className="rounded-[2rem] shadow-soft w-full max-w-md mx-auto aspect-square object-cover" />
         </div>
