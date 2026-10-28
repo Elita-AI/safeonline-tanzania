@@ -117,7 +117,7 @@ function Assistant() {
 
 function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
-  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, how are you? Let's chat. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, uko aje? Tuongee. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
+  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, how are you? Let's chat. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, may not be your fault.", sw: "Habari, uko aje? Tuongee. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, labda si kosa lako." })}</p>;
   if (m.kind === "danger") return <EmergencyNotice />;
   if (m.kind === "ai") return (
     <p className="whitespace-pre-wrap leading-relaxed rounded-2xl rounded-bl-md bg-card border px-4 py-2.5">{m.text.replace(/\*\*(.+?)\*\*/g, "$1")}</p>
@@ -125,7 +125,7 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   if (m.kind !== "guide") return (
     <div className="space-y-3">
       <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "Demo response · general guidance", sw: "Jibu la majaribio · mwongozo wa jumla" })}</span>
-      <p>{t({ en: "Thank you for telling me — whatever is happening, it is not your fault. Here are steps that help with most online-safety problems:", sw: "Asante kwa kunieleza — chochote kinachotokea, si kosa lako. Hapa kuna hatua zinazosaidia katika matatizo mengi ya usalama mtandaoni:" })}</p>
+      <p>{t({ en: "Thank you for telling me — whatever is happening, may not be your fault. Here are steps that help with most online-safety problems:", sw: "Asante kwa kunieleza — chochote kinachotokea, labda si kosa lako. Hapa kuna hatua zinazosaidia katika matatizo mengi ya usalama mtandaoni:" })}</p>
       <ol className="list-decimal pl-5 space-y-1">{generalGuidance.map((s, i) => <li key={i}>{t(s)}</li>)}</ol>
       <div className="rounded-xl bg-secondary p-3 text-sm">
         {t({ en: "This is general guidance, not mental-health diagnosis or legal advice. If there are threats, coercion or distress, human help may be needed.", sw: "Huu ni mwongozo wa jumla, si utambuzi wa afya ya akili wala ushauri wa kisheria. Ikiwa kuna vitisho, shinikizo au msongo, msaada wa mtu unaweza kuhitajika." })}
