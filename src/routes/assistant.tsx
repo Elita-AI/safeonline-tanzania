@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Send, ShieldCheck, Info, Home, RotateCcw, Bot } from "lucide-react";
+import { Send, ShieldCheck, Home, RotateCcw, Bot } from "lucide-react";
 import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Feedback } from "@/components/SiteLayout";
-import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { EmergencyNotice } from "@/components/EmergencyNotice";
 import { chatReply } from "@/lib/chat.functions";
 
@@ -84,12 +83,6 @@ function Assistant() {
         <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
       </p>
 
-      <div className="mt-4"><PrivacyNotice /></div>
-      <div className="mt-4 rounded-xl bg-coral-soft p-3 text-xs flex gap-2">
-        <Info className="size-4 text-accent shrink-0 mt-0.5" />
-        <span><b>{t({ en: "AI chat", sw: "Gumzo la AI" })}:</b> {t({ en: "Your messages are sent to an AI service to write a reply. SafeOnline does not save them, but please don't share names, addresses or images. AI can make mistakes — this is not legal or medical advice.", sw: "Jumbe zako zinatumwa kwa huduma ya AI ili kuandika jibu. SafeOnline haizihifadhi, lakini tafadhali usitaje majina, anwani wala picha. AI inaweza kukosea — huu si ushauri wa kisheria wala wa kitabibu." })}</span>
-      </div>
-
       <div className="flex-1 mt-4 space-y-4" aria-live="polite">
         {msgs.map((m, i) => m.role === "user" ? (
           <div key={i} className="flex justify-end"><p className="max-w-[85%] rounded-2xl rounded-br-md bg-primary text-primary-foreground px-4 py-2.5">{m.text}</p></div>
@@ -127,10 +120,7 @@ function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, how are you? Let's chat. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, uko aje? Tuongee. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
   if (m.kind === "danger") return <EmergencyNotice />;
   if (m.kind === "ai") return (
-    <div className="space-y-2">
-      <span className="text-[10px] font-bold uppercase tracking-wide rounded-full bg-coral-soft text-accent px-2 py-0.5">{t({ en: "AI reply", sw: "Jibu la AI" })}</span>
-      <p className="whitespace-pre-wrap leading-relaxed rounded-2xl rounded-bl-md bg-card border px-4 py-2.5">{m.text.replace(/\*\*(.+?)\*\*/g, "$1")}</p>
-    </div>
+    <p className="whitespace-pre-wrap leading-relaxed rounded-2xl rounded-bl-md bg-card border px-4 py-2.5">{m.text.replace(/\*\*(.+?)\*\*/g, "$1")}</p>
   );
   if (m.kind !== "guide") return (
     <div className="space-y-3">
