@@ -42,7 +42,7 @@ function Directory() {
       <h2 className="font-semibold text-lg mt-3">{t(s.name)}</h2>
       <dl className="text-sm mt-2 space-y-1 text-muted-foreground">
         <div><dt className="inline font-medium text-foreground">{t({ en: "Region", sw: "Mkoa" })}: </dt><dd className="inline">{s.region === NATIONAL ? t({ en: "National", sw: "Kitaifa" }) : s.region}</dd></div>
-        <div><dt className="inline font-medium text-foreground">{t({ en: "Hours", sw: "Saa" })}: </dt><dd className="inline">{s.hours ? t(s.hours) : t({ en: "Not verified", sw: "Hazijathibitishwa" })}</dd></div>
+        {s.hours && <div><dt className="inline font-medium text-foreground">{t({ en: "Hours", sw: "Saa" })}: </dt><dd className="inline">{t(s.hours)}</dd></div>}
         <div><dt className="inline font-medium text-foreground">{t({ en: "Last verified", sw: "Ilithibitishwa mwisho" })}: </dt><dd className="inline">{s.lastVerified ?? t({ en: "Not yet", sw: "Bado" })}</dd></div>
       </dl>
       {s.note && <p className="text-xs mt-2 italic text-muted-foreground">{t(s.note)}</p>}
