@@ -152,10 +152,13 @@ export const serviceCategories: Record<ServiceCategory, T> = {
 
 export type Service = {
   id: string;
-  name: string;
-  category: ServiceCategory;
+  name: T;
+  categories: ServiceCategory[];
+  /** "National" or a region name */
   region: string;
-  phone: string | null;
+  phones: string[];
+  whatsapp: string[];
+  email?: string;
   link: string | null;
   hours: T | null;
   languages: string[];
@@ -163,51 +166,55 @@ export type Service = {
   /** true only after an administrator has confirmed details with the organisation */
   verified: boolean;
   demo: boolean;
+  pinned?: boolean;
   note?: T;
 };
+
+export const NATIONAL = "National";
+
+const regionalOfficers: [string, string][] = [
+  ["Arusha", "0677200372"], ["Dar es Salaam", "0677200373"], ["Dodoma", "0677200374"], ["Geita", "0677200375"],
+  ["Iringa", "0677200376"], ["Kagera", "0677200377"], ["Katavi", "0677200378"], ["Kigoma", "0677200379"],
+  ["Kilimanjaro", "0677200381"], ["Lindi", "0677200382"], ["Manyara", "0677200383"], ["Mara", "0677200384"],
+  ["Mbeya", "0677200385"], ["Morogoro", "0677200386"], ["Mtwara", "0677200387"], ["Mwanza", "0677200388"],
+  ["Njombe", "0677200389"], ["Pwani", "0677200391"], ["Rukwa", "0677200392"], ["Ruvuma", "0677200393"],
+  ["Singida", "0677200394"], ["Simiyu", "0677200395"], ["Songwe", "0677200396"], ["Shinyanga", "0677200397"],
+  ["Tabora", "0677200398"], ["Tanga", "0677200399"],
+];
+
+const base = { whatsapp: [] as string[], link: null, hours: null, languages: ["Kiswahili", "English"], lastVerified: null, verified: false, demo: false };
 
 /**
  * ADMIN: Add or edit services here. Set `verified: true` and `lastVerified`
  * only after confirming details directly with the organisation.
- * Demo records must keep `demo: true` and must not contain real contact details.
+ * Every record is currently unverified.
  */
 export const services: Service[] = [
-  {
-    id: "police-112",
-    name: "Tanzania Police Force — Emergency line",
-    category: "emergency",
-    region: "National",
-    phone: "112",
-    link: null,
+  { ...base, id: "police-112", pinned: true, name: { en: "Tanzania Police Force — Emergency line", sw: "Jeshi la Polisi Tanzania — Namba ya dharura" }, categories: ["emergency"], region: NATIONAL, phones: ["112"],
     hours: { en: "24 hours (to be verified)", sw: "Saa 24 (inahitaji kuthibitishwa)" },
-    languages: ["Kiswahili", "English"],
-    lastVerified: null,
-    verified: false,
-    demo: false,
-    note: { en: "Publicly listed national emergency number. Confirm before launch.", sw: "Namba ya dharura ya kitaifa inayojulikana. Thibitisha kabla ya kuzindua." },
-  },
-  {
-    id: "child-116",
-    name: "National Child Helpline",
-    category: "child",
-    region: "National",
-    phone: "116",
-    link: null,
-    hours: null,
-    languages: ["Kiswahili", "English"],
-    lastVerified: null,
-    verified: false,
-    demo: false,
-    note: { en: "Publicly listed toll-free child helpline. Confirm operator and hours before launch.", sw: "Namba ya bure ya msaada kwa watoto. Thibitisha mtoa huduma na saa kabla ya kuzindua." },
-  },
-  { id: "d1", name: "[Demo] Dar es Salaam Women's Support Centre", category: "gbv", region: "Dar es Salaam", phone: null, link: null, hours: { en: "Mon–Fri, 08:00–17:00 (sample)", sw: "Jtatu–Ijumaa, 08:00–17:00 (mfano)" }, languages: ["Kiswahili", "English"], lastVerified: null, verified: false, demo: true },
-  { id: "d2", name: "[Demo] Arusha Legal Aid Desk", category: "legal", region: "Arusha", phone: null, link: null, hours: null, languages: ["Kiswahili"], lastVerified: null, verified: false, demo: true },
-  { id: "d3", name: "[Demo] Mwanza Youth Counselling Service", category: "counselling", region: "Mwanza", phone: null, link: null, hours: null, languages: ["Kiswahili", "Sukuma"], lastVerified: null, verified: false, demo: true },
-  { id: "d4", name: "[Demo] Digital Safety Help Desk", category: "digital", region: "Online / National", phone: null, link: null, hours: null, languages: ["Kiswahili", "English"], lastVerified: null, verified: false, demo: true },
-  { id: "d5", name: "[Demo] Dodoma Gender & Children's Desk", category: "child", region: "Dodoma", phone: null, link: null, hours: null, languages: ["Kiswahili"], lastVerified: null, verified: false, demo: true },
-  { id: "d6", name: "[Demo] Zanzibar Survivors' Network", category: "gbv", region: "Zanzibar", phone: null, link: null, hours: null, languages: ["Kiswahili"], lastVerified: null, verified: false, demo: true },
-  { id: "d7", name: "[Demo] Mbeya Community Legal Clinic", category: "legal", region: "Mbeya", phone: null, link: null, hours: null, languages: ["Kiswahili", "English"], lastVerified: null, verified: false, demo: true },
+    note: { en: "For immediate danger, threats, blackmail. Ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Kwa hatari ya haraka, vitisho, au usaliti. Omba Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
+  { ...base, id: "child-116", pinned: true, name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
+    note: { en: "Toll-free. Confirm operator and hours before launch.", sw: "Bila malipo. Thibitisha mtoa huduma na saa kabla ya kuzindua." } },
+  { ...base, id: "ministry-gender", pinned: true, name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
+    phones: ["0774112233", "0769608130", "0766400168"], whatsapp: ["0774112233", "0769608130", "0766400168"], link: "https://jamii.go.tz",
+    note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },
+  ...regionalOfficers.map(([region, phone]): Service => ({ ...base, id: `swo-${region.toLowerCase().replace(/\s+/g, "-")}`,
+    name: { en: `Social Welfare Officer — ${region}`, sw: `Afisa Ustawi wa Jamii — ${region}` }, categories: ["gbv", "child"], region, phones: [phone], languages: ["Kiswahili"],
+    note: { en: "Regional officer from the Ministry's list. Call to verify before launch.", sw: "Afisa wa mkoa kutoka orodha ya Wizara. Piga simu kuthibitisha kabla ya kuzindua." } })),
+  { ...base, id: "tz-cert", name: { en: "TZ-CERT (Tanzania Computer Emergency Response Team)", sw: "TZ-CERT (Timu ya Taifa ya Kushughulikia Matukio ya Kompyuta)" }, categories: ["digital"], region: NATIONAL,
+    phones: ["+255222412039"], email: "incidents@tzcert.go.tz", link: "https://tzcert.go.tz", hours: { en: "Mon–Fri, 8am–4pm", sw: "Jumatatu–Ijumaa, saa 2 asubuhi–saa 10 jioni" },
+    note: { en: "For hacked accounts, unauthorized access and technical incidents. Free. Has an online incident form. Not for harassment or blackmail cases.", sw: "Kwa akaunti zilizodukuliwa, uingiaji usioidhinishwa na matukio ya kiufundi. Bure. Ina fomu ya mtandaoni ya kuripoti. Si kwa kesi za unyanyasaji au usaliti." } },
+  { ...base, id: "police-cyber", name: { en: "Police Cybercrime Unit / Gender and Children Desk", sw: "Kitengo cha Polisi cha Uhalifu wa Mtandaoni / Dawati la Jinsia na Watoto" }, categories: ["digital", "emergency", "gbv"], region: NATIONAL, phones: [],
+    note: { en: "For fraud, threats, blackmail and impersonation. Reach via 112 or the nearest police station.", sw: "Kwa utapeli, vitisho, usaliti na kujifanya mtu mwingine. Wasiliana kupitia 112 au kituo cha polisi kilicho karibu." } },
+  { ...base, id: "lp-digital", name: { en: "LP Digital Cyber Helpline (The Launchpad Tanzania)", sw: "LP Digital Cyber Helpline (The Launchpad Tanzania)" }, categories: ["digital", "legal", "counselling", "gbv"], region: NATIONAL,
+    phones: ["+255676333935"], link: "https://www.lpdigital.or.tz" },
+  { ...base, id: "lhrc", name: { en: "Legal and Human Rights Centre (LHRC)", sw: "Kituo cha Sheria na Haki za Binadamu (LHRC)" }, categories: ["legal"], region: NATIONAL, phones: [],
+    note: { en: "Legal guidance and human-rights support. Contact details to be added after checking its website.", sw: "Ushauri wa kisheria na msaada wa haki za binadamu. Mawasiliano yataongezwa baada ya kuangalia tovuti yake." } },
+  { ...base, id: "zanzibar-ministry", name: { en: "Zanzibar — Ministry of Community Development, Gender, Elderly and Children", sw: "Zanzibar — Wizara ya Maendeleo ya Jamii, Jinsia, Wazee na Watoto" }, categories: ["gbv", "child"], region: "Zanzibar", phones: [],
+    note: { en: "Placeholder. Mainland officer numbers do not cover Zanzibar. Contact details to be added.", sw: "Nafasi ya muda. Namba za maafisa wa Tanzania Bara hazihudumii Zanzibar. Mawasiliano yataongezwa." } },
 ];
+
+export const serviceRegions: string[] = [...new Set(services.map((s) => s.region).filter((r) => r !== NATIONAL))].sort();
 
 export function detectCategory(text: string): CategoryId | null {
   return safetySignals.find((signal) => signal.pattern.test(text))?.category ?? null;
@@ -252,7 +259,7 @@ export function assessText(text: string) {
 }
 
 export function verifiedEmergencyServices(records: Service[] = services): Service[] {
-  return records.filter((service) => service.category === "emergency" && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phone || service.link));
+  return records.filter((service) => service.categories.includes("emergency") && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phones.length || service.link));
 }
 
 /** Plain-language information about the Cybercrimes Act, 2015. General information only — never presented as legal advice. Links point to official government sources. */
