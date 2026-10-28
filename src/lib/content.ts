@@ -191,7 +191,6 @@ const base = { whatsapp: [] as string[], link: null, hours: null, languages: ["K
  */
 export const services: Service[] = [
   { ...base, id: "police-112", pinned: true, name: { en: "Tanzania Police Force — Emergency line", sw: "Jeshi la Polisi Tanzania — Namba ya dharura" }, categories: ["emergency"], region: NATIONAL, phones: ["112"],
-    hours: { en: "24 hours (to be verified)", sw: "Saa 24 (inahitaji kuthibitishwa)" },
     note: { en: "For immediate danger, threats, blackmail. Ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Kwa hatari ya haraka, vitisho, au usaliti. Omba Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
   { ...base, id: "child-116", pinned: true, name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
     note: { en: "Toll-free. Confirm operator and hours before launch.", sw: "Bila malipo. Thibitisha mtoa huduma na saa kabla ya kuzindua." } },
