@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Send, ShieldCheck, Info, Home, RotateCcw } from "lucide-react";
+import { Send, ShieldCheck, Info, Home, RotateCcw, Bot } from "lucide-react";
 import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -12,9 +12,9 @@ import { EmergencyNotice } from "@/components/EmergencyNotice";
 export const Route = createFileRoute("/assistant")({
   head: () => ({
     meta: [
-      { title: "Talk to SafeOnline — Safety Assistant" },
+      { title: "Let's chat 24/7 — SafeOnline Assistant" },
       { name: "description", content: "A bilingual, private safety assistant for online harassment and abuse (demonstration mode)." },
-      { property: "og:title", content: "Talk to SafeOnline" },
+      { property: "og:title", content: "Let's chat 24/7" },
       { property: "og:description", content: "Describe what is happening in Kiswahili or English and get practical safety steps." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -75,6 +75,10 @@ function Assistant() {
         <Button asChild variant="outline" size="sm" className="rounded-full"><Link to="/"><Home className="size-4" /> {t({ en: "Main menu", sw: "Menyu kuu" })}</Link></Button>
       </div>
 
+      <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-coral-soft px-3 py-1.5 text-xs font-semibold text-accent">
+        <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
+      </p>
+
       <div className="mt-4"><PrivacyNotice /></div>
       <div className="mt-4 rounded-xl bg-coral-soft p-3 text-xs flex gap-2">
         <Info className="size-4 text-accent shrink-0 mt-0.5" />
@@ -115,7 +119,7 @@ function Assistant() {
 
 function BotMsg({ m }: { m: Exclude<Msg, { role: "user" }> }) {
   const { t } = useLang();
-  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, I'm SafeOnline. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, mimi ni SafeOnline. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
+  if (m.kind === "intro") return <p className="leading-relaxed">{t({ en: "Hello, how are you? Let's chat. You can tell me what's happening online in Kiswahili or English — you don't need to share your name or any images. I'll suggest general steps and places to get support. Whatever is happening, it's not your fault.", sw: "Habari, uko aje? Tuongee. Unaweza kunieleza kinachoendelea mtandaoni kwa Kiswahili au Kiingereza — huhitaji kutaja jina lako wala kutuma picha. Nitapendekeza hatua za jumla na mahali pa kupata msaada. Chochote kinachotokea, si kosa lako." })}</p>;
   if (m.kind === "danger") return <EmergencyNotice />;
   if (m.kind !== "guide") return (
     <div className="space-y-3">
