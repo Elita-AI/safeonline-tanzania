@@ -1,21 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { LogOut, ShieldCheck, Menu, X } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { ShieldCheck, Menu, X } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import { ui, useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 
-function quickExit() {
-  window.location.replace("https://www.google.com/search?q=weather+dar+es+salaam");
-}
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const { lang, setLang, t } = useLang();
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && e.shiftKey) quickExit(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
   const links = [
     { to: "/", label: ui.navHome },
     { to: "/check", label: ui.navCheck },
@@ -49,9 +41,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </button>
               ))}
             </div>
-            <Button variant="destructive" size="sm" className="rounded-full" onClick={quickExit} title={t(ui.quickExitNote)} aria-label={t(ui.quickExit)}>
-              <LogOut className="size-4" /> <span className="hidden min-[480px]:inline">{t(ui.quickExit)}</span>
-            </Button>
             <Button variant="ghost" size="icon" className="xl:hidden shrink-0" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
               {open ? <X /> : <Menu />}
             </Button>
@@ -70,7 +59,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-muted-foreground space-y-2">
           <p className="font-display text-lg text-primary">SafeOnline — {t(ui.tagline)}</p>
           <p>{t(ui.emergency)}</p>
-          <p>{t(ui.quickExitNote)} {lang === "en" ? "Shortcut: Shift + Esc." : "Njia ya mkato: Shift + Esc."}</p>
         </div>
       </footer>
     </div>
