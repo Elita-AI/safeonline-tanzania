@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImageOff, ImagePlus, Sparkles } from "lucide-react";
+import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImagePlus, Sparkles } from "lucide-react";
 import { assessText, assessmentLabels, categories } from "@/lib/content";
 import { deepCheck, type DeepCheckResult } from "@/lib/deep-check.functions";
 import { useLang } from "@/lib/i18n";
@@ -62,7 +62,7 @@ export function CheckPage() {
       const { data } = await worker.recognize(file);
       await worker.terminate();
       const words = data.text.replace(/\n{3,}/g, "\n\n").trim().slice(0, 4000);
-      if (words) { setText(words); setOcrMsg({ en: "Words copied into the box. Remove names or personal details, then press Check text. The picture was not saved.", sw: "Maneno yamewekwa kwenye kisanduku. Ondoa majina au taarifa binafsi, kisha bonyeza Kagua maandishi. Picha haikuhifadhiwa." }); }
+      if (words) { setText(words); setOcrMsg({ en: "Words copied into the box. Remove names, then press Check text.", sw: "Maneno yamewekwa kwenye kisanduku. Ondoa majina, kisha bonyeza Kagua maandishi." }); }
       else setOcrMsg({ en: "No readable words found. Try a clearer screenshot or type the message.", sw: "Hakuna maneno yaliyosomeka. Jaribu picha iliyo wazi zaidi au andika ujumbe." });
     } catch {
       setOcrMsg({ en: "Could not read this image. Please type the message instead.", sw: "Imeshindwa kusoma picha hii. Tafadhali andika ujumbe badala yake." });
@@ -81,14 +81,13 @@ export function CheckPage() {
       <Textarea id="check-text" value={text} disabled={deepLoading || reading} onChange={(event) => { setText(event.target.value); clearAssessment(); }} maxLength={4000} rows={5} className="resize-y" placeholder={t({ en: "Paste text only — remove names and personal details…", sw: "Bandika maandishi pekee — ondoa majina na taarifa binafsi…" })} />
       <div className="border border-dashed rounded-lg p-4 space-y-2">
         <p className="font-semibold text-sm">{t({ en: "Or read the words from a screenshot", sw: "Au soma maneno kutoka picha ya skrini" })}</p>
-        <div className="flex items-start gap-2 text-sm text-muted-foreground"><ImageOff className="size-4 shrink-0 mt-0.5" /><p>{t({ en: "Only use screenshots of messages — never intimate images. The picture is read on this device, never sent or saved. Only the words are copied into the box above so you can check and edit them; it cannot describe what a photo shows.", sw: "Tumia picha za skrini za jumbe pekee — kamwe si picha za faragha. Picha inasomwa kwenye kifaa hiki, haitumwi wala kuhifadhiwa. Maneno pekee yanawekwa kwenye kisanduku hapo juu ili uyakague na kuyahariri; haiwezi kueleza picha inaonyesha nini." })}</p></div>
         <label className="inline-flex items-center gap-2 cursor-pointer rounded-md border bg-background px-3 py-2 text-sm font-medium hover:bg-secondary">
           <ImagePlus className="size-4" />{reading ? t({ en: `Reading… ${progress}%`, sw: `Inasoma… ${progress}%` }) : t({ en: "Upload screenshot", sw: "Pakia picha ya skrini" })}
           <input type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={reading || deepLoading} onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void readImage(file); }} />
         </label>
         {ocrMsg && <p className="text-sm" role="status">{t(ocrMsg)}</p>}
       </div>
-      <p className="text-sm text-muted-foreground">{t({ en: "Pressing Check text sends only the text to AI for assessment and next steps. Remove names and personal details first. SafeOnline does not save it; pictures stay on this device. AI can make mistakes.", sw: "Ukibonyeza Kagua maandishi, maandishi pekee yanatumwa kwa AI kwa tathmini na hatua zinazofuata. Ondoa majina na taarifa binafsi kwanza. SafeOnline haiyahifadhi; picha zinabaki kwenye kifaa hiki. AI inaweza kukosea." })}</p>
+      <p className="text-sm text-muted-foreground">{t({ en: "Pressing Check text sends the text to AI for assessment and next steps. SafeOnline does not save it. AI can make mistakes.", sw: "Ukibonyeza Kagua maandishi, maandishi yanatumwa kwa AI kwa tathmini na hatua zinazofuata. SafeOnline hayahifadhi. AI inaweza kukosea." })}</p>
       <Button type="submit" disabled={!text.trim() || reading || deepLoading}><Sparkles className="size-4" />{deepLoading ? t({ en: "Checking…", sw: "Inakagua…" }) : t({ en: "Check text", sw: "Kagua maandishi" })}</Button>
     </form>
     {(result || deep || deepErr || deepLoading) && <section className="border-t pt-6 space-y-5" aria-live="polite" aria-busy={deepLoading}>
