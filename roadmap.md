@@ -4,4 +4,5 @@
 - [x] Strengthen assistant safeguards and verified-only emergency handling.
 - [x] Verify safety rules and complete bilingual browser journey (13 tests; desktop and phone checks; clean preview).
 - [x] On-device screenshot text reading (image never sent or saved).
-- Live AI remains unavailable: preserve the existing on-device, no-transmission privacy commitment; do not mislabel scenario matching as AI.
+- [x] Make message submission run AI deep checking directly, retaining screenshot review, text-sharing disclosure and immediate-danger safeguards.
+- [x] Verify the direct AI assessment and next steps with tests and a real message.
