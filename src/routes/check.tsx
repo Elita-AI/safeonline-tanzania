@@ -74,7 +74,7 @@ function CheckPage() {
         <p className="font-semibold text-sm">{t({ en: "Or read the words from a screenshot", sw: "Au soma maneno kutoka picha ya skrini" })}</p>
         <div className="flex items-start gap-2 text-sm text-muted-foreground"><ImageOff className="size-4 shrink-0 mt-0.5" /><p>{t({ en: "Only use screenshots of messages — never intimate images. The picture is read on this device, never sent or saved. Only the words are copied into the box above so you can check and edit them; it cannot describe what a photo shows.", sw: "Tumia picha za skrini za jumbe pekee — kamwe si picha za faragha. Picha inasomwa kwenye kifaa hiki, haitumwi wala kuhifadhiwa. Maneno pekee yanawekwa kwenye kisanduku hapo juu ili uyakague na kuyahariri; haiwezi kueleza picha inaonyesha nini." })}</p></div>
         <label className="inline-flex items-center gap-2 cursor-pointer rounded-md border bg-background px-3 py-2 text-sm font-medium hover:bg-secondary">
-          <ImagePlus className="size-4" />{reading ? t({ en: `Reading… ${progress}%`, sw: `Inasoma… ${progress}%` }) : t({ en: "Choose screenshot", sw: "Chagua picha ya skrini" })}
+          <ImagePlus className="size-4" />{reading ? t({ en: `Reading… ${progress}%`, sw: `Inasoma… ${progress}%` }) : t({ en: "Upload screenshot", sw: "Pakia picha ya skrini" })}
           <input type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={reading} onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void readImage(file); }} />
         </label>
         {ocrMsg && <p className="text-sm" role="status">{t(ocrMsg)}</p>}
