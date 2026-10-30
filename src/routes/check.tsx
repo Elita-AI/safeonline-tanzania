@@ -66,7 +66,6 @@ function CheckPage() {
       <Button asChild variant="outline" size="icon" title={t({ en: "Main menu", sw: "Menyu kuu" })}><Link to="/" aria-label={t({ en: "Main menu", sw: "Menyu kuu" })}><Home className="size-4" /></Link></Button>
     </div>
     <PrivacyNotice />
-    <p className="text-sm bg-coral-soft p-3 rounded-lg">{t({ en: "Demonstration assessment, not a legal determination. The first check runs on this device and matches a limited set of safety signals and can miss slang, mixed-language meaning or context. It cannot verify a link or username.", sw: "Tathmini ya majaribio, si uamuzi wa kisheria. Ukaguzi wa kwanza unafanyika kwenye kifaa hiki na hutambua dalili chache za usalama na unaweza kukosa misimu, maana ya lugha mchanganyiko au muktadha. Hauwezi kuthibitisha kiungo au jina la mtumiaji." })}</p>
     <form onSubmit={(event) => { event.preventDefault(); if (text.trim()) { setResult(assessText(text)); setCheckedText(text.trim()); setDeep(null); setDeepErr(null); setText(""); } }} className="space-y-3">
       <label htmlFor="check-text" className="block font-semibold">{t({ en: "Message, link or username", sw: "Ujumbe, kiungo au jina la mtumiaji" })}</label>
       <Textarea id="check-text" value={text} onChange={(event) => { setText(event.target.value); setResult(null); }} maxLength={4000} rows={5} className="resize-y" placeholder={t({ en: "Paste text only — remove names and personal details…", sw: "Bandika maandishi pekee — ondoa majina na taarifa binafsi…" })} />
