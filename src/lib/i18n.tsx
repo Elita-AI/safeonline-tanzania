@@ -42,15 +42,6 @@ export const ui = {
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
   navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },
   navPrivacy: { en: "Privacy", sw: "Faragha" },
-  quickExit: { en: "Quick Exit", sw: "Ondoka Haraka" },
-  quickExitNote: {
-    en: "Quick Exit opens a neutral website. It cannot erase your browser history, notifications, network logs, or monitoring by another person.",
-    sw: "Ondoka Haraka hufungua tovuti ya kawaida. Haiwezi kufuta historia ya kivinjari, arifa, kumbukumbu za mtandao, au ufuatiliaji wa mtu mwingine.",
-  },
-  prototype: {
-    en: "Prototype for demonstration — not clinically validated, legally certified, or ready for public deployment.",
-    sw: "Mfano wa majaribio — haujathibitishwa kitabibu wala kisheria, na bado si tayari kutumika hadharani.",
-  },
   tagline: { en: "Safe Online. Supported Offline.", sw: "Salama Mtandaoni. Unasaidiwa Nje ya Mtandao." },
   emergency: {
     en: "In immediate danger? Move somewhere safer if you can and seek help from a trusted person or local emergency service you know. SafeOnline cannot send emergency help.",

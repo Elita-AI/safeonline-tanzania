@@ -1,4 +1,5 @@
 # SafeOnline safety improvements
+- [ ] Connect SafeOnline to GitHub (mode still to be confirmed with the user).
 - [x] Add four-step How it works and prominent privacy notice.
 - [x] Add bilingual on-device text checker with category, risk, warnings and guide/support/report links.
 - [x] Strengthen assistant safeguards and verified-only emergency handling.
