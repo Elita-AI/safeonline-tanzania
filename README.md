@@ -1,46 +1,43 @@
-# safeonline
+ SafeOnline 
+*Safe Online. Supported Offline. *
 
-12. Final Deliverable
+SafeOnline is a bilingual (English / Kiswahili) web platform that helps women and girls in Tanzania identify, understand and respond to digital abuse including online harassment and exploitation. It is an MVP prototype built for the UNICEF Pillar 3 call: *Mental wellbeing, safety and protection* and it will also be used at Kids Tech Festival 3rd edition in Cybersafety Tech Zone.
 
-Deliver a polished, functional SafeHer Tanzania MVP that I can demonstrate to potential partners and UNICEF reviewers.
+ Live: https://safeonline.co.tz
 
-Prioritize:
+The problem
+Women, girls and children face growing online harm: harassment, threats, image-based abuse, gender-based violence and exploitation. Many don't know what counts as abuse, what the law says, or where to get help safely.
 
-A professional homepage.
+What SafeOnline offers
+**Check a Message**: AI-assisted detection that flags abusive, threatening or suspicious messages
+**Let's Chat 24/7**: an AI assistant for immediate information and guidance
+**Report a Problem**: a safe reporting channel for online abuse
+**Find Support Services**: referral to counselling, legal and protection services
+**Know the Law**: plain-language information on legal rights
+ **Learn About Online Safety**: practical guides on staying safe
+ **English and Kiswahili** for accessibility
 
-A working bilingual safety assistant.
+Alignment with UNICEF Pillar 3
+ UNICEF focus | How SafeOnline responds |
 
-Practical, scenario-based safety guidance.
+| Online safety tools that identify, flag and respond to digital abuse, harassment and exploitation targeting women and girls | Message checking, AI-based detection, problem reporting |
+| AI-enabled platforms for early detection of and response to gender-based violence | AI assistant and early-warning guidance |
+| Safe reporting mechanisms | Confidential reporting form and quick-exit design |
+| Access to information | Legal rights and online safety education |
+| Referral to support services | Directory of support services |
+| Digital safety and mental wellbeing of women, girls and children | 24/7 support, trauma-aware and survivor-centred design |
 
-A searchable support directory.
+Who it helps
+Women and girls in Tanzania, plus parents, guardians, teachers and community organisations supporting them.
 
-Privacy and safeguarding.
+Safety and privacy principles
+- Survivor-centred and non-judgmental
+- Minimal data collection
+- Clear referral to human help in emergencies
 
-A clear demonstration journey from the homepage to guidance and referral.
+Built with
+Developed using AI-assisted tools (Lovable) and modern web technologies.
 
-Use realistic sample scenarios but no real victims’ personal data. Mark unverified support contacts and demonstration content clearly.
+Status
+MVP prototype. Next steps: expand AI detection, partner with local support organisations, add more languages and channels.
 
-Build the core experience first. Do not claim the platform is clinically validated, legally certified, or ready for public deployment without appropriate review.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://safeonline-tanzania-guidance.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/14c7dfac-9608-4958-9e8e-5c7331f4ec56).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
