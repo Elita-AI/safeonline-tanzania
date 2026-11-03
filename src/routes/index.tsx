@@ -43,15 +43,22 @@ function Home() {
             <p className="text-sm font-semibold tracking-wide uppercase text-turquoise">SafeOnline</p>
             <h1 className="font-display text-4xl md:text-6xl leading-tight mt-3">{t({ en: "You Deserve to Feel Safe Online.", sw: "Unastahili Kujisikia Salama Mtandaoni." })}</h1>
             <p className="mt-5 text-lg opacity-90 max-w-lg">{t({ en: "Get practical guidance, understand your options, and find support if you are experiencing online harassment or abuse. You are not alone.", sw: "Pata mwongozo wa vitendo, elewa njia ulizonazo, na upate msaada ikiwa unanyanyaswa mtandaoni. Hauko peke yako." })}</p>
-            <div className="mt-8 grid sm:grid-cols-2 gap-3">
+            <div className="mt-8 flex flex-col gap-3 max-w-xl">
               {actions.map((a) => (
-                <Link key={a.label.en} to={a.to} className={`flex items-center gap-3 rounded-2xl px-5 py-4 font-semibold transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-turquoise outline-none ${"primary" in a ? "bg-accent text-accent-foreground shadow-soft" : "bg-primary-foreground/10 hover:bg-primary-foreground/20 border border-primary-foreground/20"}`}>
-                  <a.icon className="size-5 shrink-0" /> {t(a.label)}
+                <Link key={a.label.en} to={a.to} className={`flex items-center gap-4 rounded-full px-5 py-4 font-semibold transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-turquoise outline-none ${"primary" in a ? "bg-accent text-accent-foreground shadow-soft" : "border border-primary-foreground/30 bg-primary-foreground/5 hover:bg-primary-foreground/15"}`}>
+                  <a.icon className="size-6 shrink-0" aria-hidden />
+                  <span className="flex-1 text-left">
+                    {t(a.label)}
+                    {"sub" in a && <span className="block text-xs font-medium opacity-90">{t(a.sub)}</span>}
+                  </span>
+                  <ChevronRight className="size-5 shrink-0 opacity-80" aria-hidden />
                 </Link>
               ))}
             </div>
             <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-semibold">
-              <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
+              <Bot className="size-3.5 shrink-0" aria-hidden />
+              {t({ en: "AI assistant, not a human. In danger? Call", sw: "Msaidizi wa AI, si binadamu. Uko hatarini? Piga" })}{" "}
+              <Link to="/directory" className="underline text-turquoise">{t({ en: "Support Numbers", sw: "Namba za Msaada" })}</Link>.
             </p>
           </div>
           <img src={hero} alt="" width={1024} height={1024} className="rounded-[2rem] shadow-soft w-full max-w-md mx-auto aspect-square object-cover" />
