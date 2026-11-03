@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, FileWarning, Bot } from "lucide-react";
+import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, ShieldAlert, FileWarning, Bot, ChevronRight } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
 import { ui, useLang } from "@/lib/i18n";
@@ -22,12 +22,12 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { t } = useLang();
   const actions = [
-    { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" } },
-    { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, primary: true },
-    { to: "/assistant", icon: MessageCircle, label: { en: "Let's chat 24/7", sw: "Tuongee 24/7" } },
-    { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
-    { to: "/guide", icon: BookOpen, label: { en: "Learn About Online Safety", sw: "Jifunze Usalama Mtandaoni" } },
+    { to: "/check", icon: ScanText, label: { en: "Check a Message", sw: "Kagua Ujumbe" }, primary: true },
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
+    { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
+    { to: "/assistant", icon: MessageCircle, label: { en: "Let's Chat 24/7", sw: "Tuongee 24/7" } },
+    { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, sub: { en: "Cybercrimes Act, 2015", sw: "Cybercrimes Act, 2015" }, primary: true },
+    { to: "/guide", icon: ShieldAlert, label: { en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" } },
   ] as const;
   const how = [
     { icon: ScanText, title: { en: "Check", sw: "Kagua" }, body: { en: "Check a message or describe what is happening.", sw: "Kagua ujumbe au eleza kinachoendelea." } },
