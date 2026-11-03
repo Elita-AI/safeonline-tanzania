@@ -26,7 +26,7 @@ function Home() {
     { to: "/report", icon: FileWarning, label: { en: "Report a Problem", sw: "Ripoti Tatizo" } },
     { to: "/directory", icon: MapPin, label: { en: "Find Support Services", sw: "Tafuta Huduma za Msaada" } },
     { to: "/assistant", icon: MessageCircle, label: { en: "Let's Chat 24/7", sw: "Tuongee 24/7" } },
-    { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, sub: { en: "Cybercrimes Act, 2015", sw: "Cybercrimes Act, 2015" }, primary: true },
+    { to: "/law", icon: Scale, label: { en: "Know the Law", sw: "Fahamu Sheria" }, sub: { en: "Cybercrimes Act, 2015", sw: "Cybercrimes Act, 2015" } },
     { to: "/guide", icon: ShieldAlert, label: { en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" } },
   ] as const;
   const how = [
