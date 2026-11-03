@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { categories, lawInfo, type CategoryId } from "@/lib/content";
+import { categories, cyberthreats, lawInfo, type CategoryId } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { GuidePanel } from "@/components/GuidePanel";
 import { Feedback } from "@/components/SiteLayout";
@@ -11,9 +11,9 @@ export const Route = createFileRoute("/guide")({
     categories.some((c) => c.id === s["c"]) ? { c: s["c"] as CategoryId } : {},
   head: () => ({
     meta: [
-      { title: "Personal Safety Guide — SafeOnline" },
-      { name: "description", content: "Tailored checklists for blackmail, cyberbullying, hacking, impersonation and more." },
-      { property: "og:title", content: "Personal Safety Guide — SafeOnline" },
+      { title: "Cyberthreats & Safety Tips — SafeOnline" },
+      { name: "description", content: "Common cyberthreats explained, plus tailored checklists for blackmail, cyberbullying, hacking, impersonation and more." },
+      { property: "og:title", content: "Cyberthreats & Safety Tips — SafeOnline" },
       { property: "og:description", content: "Choose your situation and get a practical safety checklist." },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary" },
@@ -29,8 +29,20 @@ function Guide() {
   const active = categories.find((x) => x.id === c);
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="font-display text-4xl text-primary">{t({ en: "Personal Safety Guide", sw: "Mwongozo wa Usalama Binafsi" })}</h1>
-      <p className="text-muted-foreground mt-2">{t({ en: "Choose the situation closest to yours.", sw: "Chagua hali inayofanana zaidi na yako." })}</p>
+      <h1 className="font-display text-4xl text-primary">{t({ en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" })}</h1>
+      <p className="text-muted-foreground mt-2">{t({ en: "Know the common threats, then choose the situation closest to yours for a safety checklist.", sw: "Jua vitisho vya kawaida, kisha chagua hali inayofanana zaidi na yako ili upate orodha ya usalama." })}</p>
+      <section className="mt-8" aria-label={t({ en: "Common cyberthreats", sw: "Vitisho vya kawaida vya mtandaoni" })}>
+        <h2 className="font-display text-2xl text-primary">{t({ en: "Common cyberthreats", sw: "Vitisho vya kawaida vya mtandaoni" })}</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+          {cyberthreats.map((th) => (
+            <div key={th.name.en} className="rounded-2xl border bg-card p-4">
+              <p className="font-semibold">{t(th.name)}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t(th.what)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <h2 className="font-display text-2xl text-primary mt-10">{t({ en: "Safety tips for your situation", sw: "Vidokezo vya usalama kwa hali yako" })}</h2>
       <div className="grid lg:grid-cols-[320px_1fr] gap-6 mt-6">
         <div className="flex flex-col gap-2">
           {categories.map((x) => (
