@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, ShieldAlert, FileWarning, Bot, ChevronRight } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
-import { ui, useLang } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
 import { categories } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
