@@ -37,7 +37,7 @@ export const ui = {
     en: "AI assistant, not a human. In danger? Call 112.",
     sw: "Msaidizi wa AI, si binadamu. Uko hatarini? Piga 112.",
   },
-  navGuide: { en: "Safety Guide", sw: "Mwongozo wa Usalama" },
+  navGuide: { en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" },
   navLaw: { en: "Know the Law", sw: "Fahamu Sheria" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },
   navReport: { en: "Report a Problem", sw: "Ripoti Tatizo" },
