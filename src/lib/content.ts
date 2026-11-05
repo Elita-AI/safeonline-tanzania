@@ -180,6 +180,8 @@ export type Service = {
   verified: boolean;
   demo: boolean;
   pinned?: boolean;
+  /** Named officer contacts, e.g. a verified police contact board. Labels are titles and names, so they are not translated. */
+  contacts?: { label: string; phone: string }[];
   note?: T;
 };
 
