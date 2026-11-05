@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageImage } from "@/components/PageImage";
+import lawImg from "@/assets/know_the_law.jpg";
 import { ArrowLeft } from "lucide-react";
 import { lawInfo } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
@@ -25,6 +27,7 @@ function Law() {
         <ArrowLeft className="size-4" aria-hidden /> {t({ en: "Back to Safety Guide", sw: "Rudi kwa Mwongozo wa Usalama" })}
       </Link>
       <h1 className="font-display text-4xl text-primary">{t(lawInfo.title)}</h1>
+      <PageImage src={lawImg} alt={t({ en: "A woman reading a law book in a library", sw: "Mwanamke akisoma kitabu cha sheria maktabani" })} className="mt-4" />
       <p className="text-muted-foreground mt-3 max-w-3xl">{t(lawInfo.intro)}</p>
       <div className="mt-8 space-y-4">
         {lawInfo.offences.map((o) => (

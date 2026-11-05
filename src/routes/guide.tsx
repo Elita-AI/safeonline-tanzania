@@ -1,4 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { PageImage } from "@/components/PageImage";
+import tipsImg from "@/assets/safety_tips.jpg";
 import { Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { categories, cyberthreats, lawInfo, type CategoryId } from "@/lib/content";
@@ -30,6 +32,7 @@ function Guide() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="font-display text-4xl text-primary">{t({ en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" })}</h1>
+      <PageImage src={tipsImg} alt={t({ en: "Two friends checking privacy settings on a phone", sw: "Marafiki wawili wakikagua mipangilio ya faragha kwenye simu" })} className="mt-4" />
       <p className="text-muted-foreground mt-2">{t({ en: "Know the common threats, then choose the situation closest to yours for a safety checklist.", sw: "Jua vitisho vya kawaida, kisha chagua hali inayofanana zaidi na yako ili upate orodha ya usalama." })}</p>
       <section className="mt-8" aria-label={t({ en: "Common cyberthreats", sw: "Vitisho vya kawaida vya mtandaoni" })}>
         <h2 className="font-display text-2xl text-primary">{t({ en: "Common cyberthreats", sw: "Vitisho vya kawaida vya mtandaoni" })}</h2>
