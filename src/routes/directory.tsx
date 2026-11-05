@@ -46,12 +46,18 @@ function Directory() {
         {s.lastVerified && <div><dt className="inline font-medium text-foreground">{t({ en: "Last verified", sw: "Ilithibitishwa mwisho" })}: </dt><dd className="inline">{s.lastVerified}</dd></div>}
       </dl>
       {s.note && <p className="text-xs mt-2 italic text-muted-foreground">{t(s.note)}</p>}
+      {s.contacts?.length ? <ul className="mt-4 divide-y rounded-xl border bg-secondary/40">
+        {s.contacts.map((c) => <li key={c.phone} className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+          <span className="text-muted-foreground">{c.label}</span>
+          <a href={`tel:${c.phone.replace(/\s/g, "")}`} className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold"><Phone className="size-3.5" /> {c.phone}</a>
+        </li>)}
+      </ul> : null}
       <div className="flex flex-wrap gap-2 mt-4">
         {s.phones.map((p) => <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold"><Phone className="size-4" /> {p}</a>)}
         {s.whatsapp.map((w) => <a key={`wa-${w}`} href={`https://wa.me/255${w.replace(/^0/, "")}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold"><MessageCircle className="size-4" /> WhatsApp {w}</a>)}
         {s.email && <a href={`mailto:${s.email}`} className="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm"><Mail className="size-4" /> {s.email}</a>}
         {s.link && <a href={s.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm"><Globe className="size-4" /> {t({ en: "Website", sw: "Tovuti" })}</a>}
-        {s.phones.length === 0 && <span className="text-xs text-muted-foreground">{lang === "en" ? "Contact details to be added after verification." : "Mawasiliano yataongezwa baada ya kuthibitishwa."}</span>}
+        {s.phones.length === 0 && !s.contacts?.length && <span className="text-xs text-muted-foreground">{lang === "en" ? "Contact details to be added after verification." : "Mawasiliano yataongezwa baada ya kuthibitishwa."}</span>}
       </div>
     </article>
   );

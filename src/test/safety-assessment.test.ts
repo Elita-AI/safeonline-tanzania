@@ -31,11 +31,20 @@ describe("Text-only demonstration safety assessment", () => {
 });
 
 describe("Verified-only emergency referrals", () => {
-  it("excludes all currently unverified contacts", () => {
-    expect(verifiedEmergencyServices()).toEqual([]);
+  it("refers to the verified police officer board and nothing else", () => {
+    const verified = verifiedEmergencyServices();
+    expect(verified.map((service) => service.id)).toEqual(["police-officers"]);
+    expect(verified[0]?.contacts?.map((c) => c.phone) ?? []).toEqual([
+      "0699 998899", "0688 369606", "0735 009983", "0755 855743", "0739 009976",
+      "0658 376478", "0658 444592", "0659 888610", "0659 885117",
+    ]);
+  });
+  it("removes the 112 emergency line everywhere", () => {
+    expect(services.some((service) => service.id === "police-112")).toBe(false);
+    expect(services.some((service) => service.phones.includes("112"))).toBe(false);
   });
   it("excludes demo, undated and unverified records even with contact details", () => {
-    const base = services.find((service) => service.id === "police-112");
+    const base = services.find((service) => service.id === "police-officers");
     if (!base) throw new Error("Emergency fixture missing");
     expect(verifiedEmergencyServices([
       { ...base, verified: true, demo: true, lastVerified: "2026-10-22" },
@@ -44,7 +53,7 @@ describe("Verified-only emergency referrals", () => {
     ])).toEqual([]);
   });
   it("includes a verified dated non-demo emergency record", () => {
-    const base = services.find((service) => service.id === "police-112");
+    const base = services.find((service) => service.id === "police-officers");
     if (!base) throw new Error("Emergency fixture missing");
     const verified = { ...base, verified: true, lastVerified: "2026-10-22" };
     expect(verifiedEmergencyServices([verified])).toEqual([verified]);
