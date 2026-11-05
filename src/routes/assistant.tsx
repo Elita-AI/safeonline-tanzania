@@ -80,7 +80,8 @@ function Assistant() {
       </div>
 
       <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-accent-foreground">
-        <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNote)}
+        <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNoteLead)}{" "}
+        <Link to="/directory" className="underline">{t(ui.aiNoteLink)}</Link>.
       </p>
 
       <div className="flex-1 mt-4 space-y-4" aria-live="polite">
