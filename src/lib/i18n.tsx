@@ -33,10 +33,8 @@ export const ui = {
   navHome: { en: "Home", sw: "Mwanzo" },
   navCheck: { en: "Check a Message", sw: "Kagua Ujumbe" },
   navChat: { en: "Let's chat 24/7", sw: "Tuongee 24/7" },
-  aiNote: {
-    en: "AI assistant, not a human. In danger? Call the police.",
-    sw: "Msaidizi wa AI, si binadamu. Uko hatarini? Piga polisi.",
-  },
+  aiNoteLead: { en: "AI assistant, not a human. In danger? Call", sw: "Msaidizi wa AI, si binadamu. Uko hatarini? Piga" },
+  aiNoteLink: { en: "Support numbers", sw: "Namba za Msaada" },
   navGuide: { en: "Cyberthreats & Safety Tips", sw: "Vitisho vya Mtandaoni na Vidokezo vya Usalama" },
   navLaw: { en: "Know the Law", sw: "Fahamu Sheria" },
   navDirectory: { en: "Support Services", sw: "Huduma za Msaada" },

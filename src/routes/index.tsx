@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Scale, MessageCircle, MapPin, BookOpen, ScanText, ListChecks, HeartHandshake, ShieldCheck, ShieldAlert, FileWarning, Bot, ChevronRight } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import hero from "@/assets/hero.jpg";
-import { useLang } from "@/lib/i18n";
+import { useLang, ui } from "@/lib/i18n";
 import { categories } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
@@ -57,8 +57,8 @@ function Home() {
             </div>
             <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-semibold">
               <Bot className="size-3.5 shrink-0" aria-hidden />
-              {t({ en: "AI assistant, not a human. In danger? Call", sw: "Msaidizi wa AI, si binadamu. Uko hatarini? Piga" })}{" "}
-              <Link to="/directory" className="underline text-turquoise">{t({ en: "Support Numbers", sw: "Namba za Msaada" })}</Link>.
+              {t(ui.aiNoteLead)}{" "}
+              <Link to="/directory" className="underline text-turquoise">{t(ui.aiNoteLink)}</Link>.
             </p>
           </div>
           <img src={hero} alt="" width={1024} height={1024} className="rounded-[2rem] shadow-soft w-full max-w-md mx-auto aspect-square object-cover" />
