@@ -199,14 +199,36 @@ const regionalOfficers: [string, string][] = [
 
 const base = { whatsapp: [] as string[], link: null, hours: null, languages: ["Kiswahili", "English"], lastVerified: null, verified: false, demo: false };
 
+/** Date the SafeOnline team confirmed the Tanzania Police Force officer contact board. */
+export const POLICE_BOARD_VERIFIED = "2026-11-05";
+
+/**
+ * Officer contacts copied verbatim from the Tanzania Police Force contact board
+ * ("In case of any difficulty, please contact any of the following officers"),
+ * confirmed as verified by the SafeOnline team. Titles, names and ranks are kept
+ * exactly as printed on the board — never expanded or guessed.
+ */
+export const policeOfficers: { title: string; name: string; rank: string; phone: string }[] = [
+  { title: "CPF", name: "C M. Wambura", rank: "IGP", phone: "0699 998899" },
+  { title: "DCI", name: "R H. Kingai", rank: "CP", phone: "0688 369606" },
+  { title: "ZPC", name: "M J. Muliro", rank: "SACP", phone: "0735 009983" },
+  { title: "ZCO", name: "F J. Mafwele", rank: "SACP", phone: "0755 855743" },
+  { title: "RPC", name: "M. Kitinkwi", rank: "SACP", phone: "0739 009976" },
+  { title: "RTO", name: "S. Mwangamilo", rank: "SSP", phone: "0658 376478" },
+  { title: "RCO", name: "M S. Mirabo", rank: "SSP", phone: "0658 444592" },
+  { title: "OCD", name: "D D. Mwakinyuke", rank: "SP", phone: "0659 888610" },
+  { title: "OC CID", name: "A S. Nindi", rank: "SP", phone: "0659 885117" },
+];
+
 /**
  * ADMIN: Add or edit services here. Set `verified: true` and `lastVerified`
  * only after confirming details directly with the organisation.
  * Every record is currently unverified.
  */
 export const services: Service[] = [
-  { ...base, id: "police-112", pinned: true, name: { en: "Tanzania Police Force — Emergency line", sw: "Jeshi la Polisi Tanzania — Namba ya dharura" }, categories: ["emergency"], region: NATIONAL, phones: ["112"],
-    note: { en: "For immediate danger, threats, blackmail. Ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Kwa hatari ya haraka, vitisho, au usaliti. Omba Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
+  { ...base, id: "police-officers", pinned: true, verified: true, lastVerified: POLICE_BOARD_VERIFIED, name: { en: "Tanzania Police Force — Officer contacts", sw: "Jeshi la Polisi Tanzania — Mawasiliano ya Maafisa" }, categories: ["emergency"], region: NATIONAL, phones: [],
+    contacts: policeOfficers.map((o) => ({ label: `${o.title} — ${o.name}, ${o.rank}`, phone: o.phone })),
+    note: { en: "Officer contacts from the Tanzania Police Force contact board, verified by the SafeOnline team. Call the number that fits your situation and ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Mawasiliano ya maafisa kutoka ubao wa mawasiliano ya Jeshi la Polisi Tanzania, yaliyothibitishwa na timu ya SafeOnline. Piga namba inayofaa kwa hali yako na uombe Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
   { ...base, id: "child-116", pinned: true, name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
     note: { en: "Toll-free. Confirm operator and hours before launch.", sw: "Bila malipo. Thibitisha mtoa huduma na saa kabla ya kuzindua." } },
   { ...base, id: "ministry-gender", pinned: true, name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
@@ -219,7 +241,7 @@ export const services: Service[] = [
     phones: ["+255222412039"], email: "incidents@tzcert.go.tz", link: "https://tzcert.go.tz", hours: { en: "Mon–Fri, 8am–4pm", sw: "Jumatatu–Ijumaa, saa 2 asubuhi–saa 10 jioni" },
     note: { en: "For hacked accounts, unauthorized access and technical incidents. Free. Has an online incident form. Not for harassment or blackmail cases.", sw: "Kwa akaunti zilizodukuliwa, uingiaji usioidhinishwa na matukio ya kiufundi. Bure. Ina fomu ya mtandaoni ya kuripoti. Si kwa kesi za unyanyasaji au usaliti." } },
   { ...base, id: "police-cyber", name: { en: "Police Cybercrime Unit / Gender and Children Desk", sw: "Kitengo cha Polisi cha Uhalifu wa Mtandaoni / Dawati la Jinsia na Watoto" }, categories: ["digital", "emergency", "gbv"], region: NATIONAL, phones: [],
-    note: { en: "For fraud, threats, blackmail and impersonation. Reach via 112 or the nearest police station.", sw: "Kwa utapeli, vitisho, usaliti na kujifanya mtu mwingine. Wasiliana kupitia 112 au kituo cha polisi kilicho karibu." } },
+    note: { en: "For fraud, threats, blackmail and impersonation. Reach the Cybercrime Unit through the pinned Tanzania Police Force officer contacts or the nearest police station.", sw: "Kwa utapeli, vitisho, usaliti na kujifanya mtu mwingine. Wasiliana na Kitengo cha Uhalifu wa Mtandaoni kupitia mawasiliano ya maafisa ya Jeshi la Polisi yaliyowekwa juu, au kituo cha polisi kilicho karibu." } },
   { ...base, id: "lp-digital", name: { en: "LP Digital Cyber Helpline (The Launchpad Tanzania)", sw: "LP Digital Cyber Helpline (The Launchpad Tanzania)" }, categories: ["digital", "legal", "counselling", "gbv"], region: NATIONAL,
     phones: ["+255676333935"], link: "https://www.lpdigital.or.tz" },
   { ...base, id: "lhrc", name: { en: "Legal and Human Rights Centre (LHRC)", sw: "Kituo cha Sheria na Haki za Binadamu (LHRC)" }, categories: ["legal"], region: NATIONAL, phones: [],
@@ -273,7 +295,7 @@ export function assessText(text: string) {
 }
 
 export function verifiedEmergencyServices(records: Service[] = services): Service[] {
-  return records.filter((service) => service.categories.includes("emergency") && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phones.length || service.link));
+  return records.filter((service) => service.categories.includes("emergency") && service.verified && !service.demo && Boolean(service.lastVerified) && Boolean(service.phones.length || service.contacts?.length || service.link));
 }
 
 /** Plain-language information about the Cybercrimes Act, 2015. General information only — never presented as legal advice. Links point to official government sources. */
