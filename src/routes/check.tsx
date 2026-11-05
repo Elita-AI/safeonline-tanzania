@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageImage } from "@/components/PageImage";
+import checkImg from "@/assets/check_message.jpg";
 import { useState, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImagePlus, Sparkles } from "lucide-react";
@@ -75,6 +77,7 @@ export function CheckPage() {
       <h1 className="font-display text-3xl text-primary mr-auto">{t({ en: "Check a Message", sw: "Kagua Ujumbe" })}</h1>
       <Button asChild variant="outline" size="icon" title={t({ en: "Main menu", sw: "Menyu kuu" })}><Link to="/" aria-label={t({ en: "Main menu", sw: "Menyu kuu" })}><Home className="size-4" /></Link></Button>
     </div>
+    <PageImage src={checkImg} alt={t({ en: "A woman carefully reading a message on her phone", sw: "Mwanamke akisoma ujumbe kwa makini kwenye simu" })} />
     <PrivacyNotice />
     <form onSubmit={(event) => { event.preventDefault(); void runDeep(); }} className="space-y-3">
       <label htmlFor="check-text" className="block font-semibold">{t({ en: "Message, link or username", sw: "Ujumbe, kiungo au jina la mtumiaji" })}</label>
