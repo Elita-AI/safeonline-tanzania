@@ -34,7 +34,7 @@ describe("Verified-only emergency referrals", () => {
   it("refers to the verified police officer board and nothing else", () => {
     const verified = verifiedEmergencyServices();
     expect(verified.map((service) => service.id)).toEqual(["police-officers"]);
-    expect(verified[0].contacts?.map((c) => c.phone)).toEqual([
+    expect(verified[0]?.contacts?.map((c) => c.phone) ?? []).toEqual([
       "0699 998899", "0688 369606", "0735 009983", "0755 855743", "0739 009976",
       "0658 376478", "0658 444592", "0659 888610", "0659 885117",
     ]);
