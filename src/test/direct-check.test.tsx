@@ -9,7 +9,7 @@ import { CheckPage } from '@/routes/check';
 afterEach(() => { cleanup(); vi.clearAllMocks(); });
 describe('Direct AI assessment', () => {
   it('sends typed text straight to AI and returns its next steps', async () => {
-    check.mockResolvedValue({ category: 'bullying', summary: 'Appearance-based harassment.', warningSigns: ['Body shaming'], nextSteps: ['Save the message and report the post.'], immediateDanger: false, risk: 'Medium' });
+    check.mockResolvedValue({ category: 'bullying', summary: 'Appearance-based harassment.', nextSteps: ['Save the message and report the post.'], immediateDanger: false, risk: 'Medium' });
     render(<CheckPage />);
     fireEvent.change(screen.getByLabelText('Message, link or username'), { target: { value: 'They mocked my body online' } });
     expect(check).not.toHaveBeenCalled();
