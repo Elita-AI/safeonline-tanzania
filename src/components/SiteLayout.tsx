@@ -59,7 +59,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-muted-foreground space-y-2">
           <p className="font-display text-lg text-primary">SafeOnline — {t(ui.tagline)}</p>
           <p>{t(ui.emergency)}</p>
-          <p>© 2026 eTech Consult &amp; Supplies. All rights reserved</p>
+          <p className="text-center">© 2026 eTech Consult &amp; Supplies. All rights reserved</p>
         </div>
       </footer>
     </div>
