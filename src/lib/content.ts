@@ -279,12 +279,12 @@ export const safetySignals: { category: CategoryId; label: T; pattern: RegExp }[
 ];
 
 export const assessmentLabels: Record<CategoryId, T> = {
-  bullying: { en: "Harassment", sw: "Unyanyasaji" },
-  threats: { en: "Threat", sw: "Tishio" },
-  blackmail: { en: "Blackmail or sextortion", sw: "Vitisho vya kushinikiza malipo au ngono" },
-  impersonation: { en: "Impersonation", sw: "Kuigwa" },
-  sexual: { en: "Unwanted sexual content", sw: "Maudhui ya ngono yasiyotakiwa" },
-  hacking: { en: "Scam or hacking", sw: "Utapeli au udukuzi" },
+  bullying: { en: "Cyberbullying (Section 23)", sw: "Unyanyasaji mtandaoni (Kifungu 23)" },
+  threats: { en: "Cyberbullying — threats (Section 23)", sw: "Unyanyasaji mtandaoni — vitisho (Kifungu 23)" },
+  blackmail: { en: "Sextortion / pornography offences (Sections 13–14)", sw: "Kushinikiza kwa ngono / makosa ya ponografia (Vifungu 13–14)" },
+  impersonation: { en: "Identity theft / impersonation (Section 15)", sw: "Wizi wa utambulisho / kuigwa (Kifungu 15)" },
+  sexual: { en: "Pornography / sexual content offences (Sections 13–14)", sw: "Makosa ya ponografia / maudhui ya ngono (Vifungu 13–14)" },
+  hacking: { en: "Scams, fraud & unauthorised access (Sections 4, 11–12)", sw: "Utapeli, udanganyifu na kuingia bila ruhusa (Vifungu 4, 11–12)" },
 };
 
 export function assessText(text: string) {

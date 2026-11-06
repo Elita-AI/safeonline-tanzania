@@ -100,7 +100,7 @@ export function CheckPage() {
       {deepErr && <p className="text-sm text-destructive" role="alert">{t(deepErr)}</p>}
       {deep && <>
         <p className="text-sm font-semibold">{t({ en: "AI-assisted assessment, not a legal determination", sw: "Tathmini kwa msaada wa AI, si uamuzi wa kisheria" })}</p>
-        <div className="border rounded-lg p-4"><p className="text-sm text-muted-foreground">{t({ en: "Likely category", sw: "Aina inayowezekana" })}</p><p className="font-semibold mt-1">{deep.category === "unclear" ? t({ en: "Unclear", sw: "Haijabainika" }) : t(assessmentLabels[deep.category])}</p>
+        <div className="border rounded-lg p-4"><p className="text-sm text-muted-foreground">{t({ en: "Likely category", sw: "Aina inayowezekana" })}</p><p className="font-semibold mt-1">{deep.category === "unclear" ? t({ en: "No clear offence under the Cybercrimes Act", sw: "Hakuna kosa bayana chini ya Sheria ya Makosa ya Mtandao" }) : t(assessmentLabels[deep.category])}</p>
           {lawForCategory(deep.category).length > 0 && <div className="mt-3 space-y-3 border-t pt-3">
             <p className="text-sm font-semibold text-primary">{t({ en: "What the Cybercrimes Act, 2015 says", sw: "Sheria ya Makosa ya Mtandao, 2015 inasema nini" })}</p>
             {lawForCategory(deep.category).map((o) => <div key={o.heading.en} className="text-sm space-y-1">
