@@ -359,3 +359,16 @@ export const lawInfo = {
     { label: { en: "Download the Act as a PDF (revised edition)", sw: "Pakua sheria kama PDF (toleo lililorekebishwa)" }, href: "https://oagmis.oag.go.tz/portal/acts/revised/543/download" },
   ],
 };
+
+/** Which Cybercrimes Act summaries (from lawInfo.offences) relate to each check category. */
+const lawIndexByCategory: Record<string, number[]> = {
+  hacking: [0, 4],
+  impersonation: [1],
+  bullying: [2],
+  threats: [2],
+  sexual: [3],
+  blackmail: [3, 2],
+};
+export function lawForCategory(category: string) {
+  return (lawIndexByCategory[category] ?? []).map((i) => lawInfo.offences[i]).filter((o): o is (typeof lawInfo.offences)[number] => !!o);
+}
