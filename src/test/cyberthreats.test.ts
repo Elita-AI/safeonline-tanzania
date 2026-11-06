@@ -3,11 +3,13 @@ import { cyberthreats } from "@/lib/content";
 
 describe("Common cyberthreats list", () => {
   it("puts mobile money fraud first, in English and Kiswahili", () => {
-    expect(cyberthreats[0].name.en).toContain("Mobile money fraud");
-    expect(cyberthreats[0].name.en).toContain("Tuma kwa namba hii");
-    expect(cyberthreats[0].name.sw).toContain("Ulaghai wa Fedha za Simu");
-    expect(cyberthreats[0].what.en.length).toBeGreaterThan(0);
-    expect(cyberthreats[0].what.sw.length).toBeGreaterThan(0);
+    const first = cyberthreats[0];
+    if (!first) throw new Error("The cyberthreats list is empty");
+    expect(first.name.en).toContain("Mobile money fraud");
+    expect(first.name.en).toContain("Tuma kwa namba hii");
+    expect(first.name.sw).toContain("Ulaghai wa Fedha za Simu");
+    expect(first.what.en.length).toBeGreaterThan(0);
+    expect(first.what.sw.length).toBeGreaterThan(0);
   });
 
   it("does not list spyware anywhere in the threat names or explanations", () => {
