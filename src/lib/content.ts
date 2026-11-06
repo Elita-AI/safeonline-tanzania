@@ -223,14 +223,17 @@ export const policeOfficers: { title: string; name: string; rank: string; phone:
 /**
  * ADMIN: Add or edit services here. Set `verified: true` and `lastVerified`
  * only after confirming details directly with the organisation.
- * Every record is currently unverified.
+ * Records marked verified carry the date the SafeOnline team confirmed them;
+ * all others are shown with an "Unverified" badge.
  */
 export const services: Service[] = [
   { ...base, id: "police-officers", pinned: true, verified: true, lastVerified: POLICE_BOARD_VERIFIED, name: { en: "Tanzania Police Force — Officer contacts", sw: "Jeshi la Polisi Tanzania — Mawasiliano ya Maafisa" }, categories: ["emergency"], region: NATIONAL, phones: [],
     contacts: policeOfficers.map((o) => ({ label: `${o.title} — ${o.name}, ${o.rank}`, phone: o.phone })),
     note: { en: "Officer contacts from the Tanzania Police Force contact board, verified by the SafeOnline team. Call the number that fits your situation and ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Mawasiliano ya maafisa kutoka ubao wa mawasiliano ya Jeshi la Polisi Tanzania, yaliyothibitishwa na timu ya SafeOnline. Piga namba inayofaa kwa hali yako na uombe Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
-  { ...base, id: "child-116", pinned: true, name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
-    note: { en: "Toll-free. Confirm operator and hours before launch.", sw: "Bila malipo. Thibitisha mtoa huduma na saa kabla ya kuzindua." } },
+  { ...base, id: "child-116", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
+    note: { en: "Toll-free helpline for children. Verified by the SafeOnline team on 2026-11-06.", sw: "Simu ya msaada kwa watoto bila malipo. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
+  { ...base, id: "tcra-15040", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "TCRA — Report scammers & suspicious numbers (15040)", sw: "TCRA — Ripoti wadangalifu na namba za shaka (15040)" }, categories: ["digital"], region: NATIONAL, phones: ["15040"],
+    note: { en: "Tanzania Communications Regulatory Authority short code. Report SMS and phone scammers, suspicious numbers and other cyberthreats. Verified by the SafeOnline team on 2026-11-06.", sw: "Namba fupi ya Mamlaka ya Mawasiliano Tanzania (TCRA). Ripoti wadangalifu wa SMS na simu, namba zenye shaka na vitisho vingine vya mtandaoni. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
   { ...base, id: "ministry-gender", pinned: true, name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
     phones: ["0774112233", "0769608130", "0766400168"], whatsapp: ["0774112233", "0769608130", "0766400168"], link: "https://jamii.go.tz",
     note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },

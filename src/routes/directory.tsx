@@ -70,7 +70,7 @@ function Directory() {
       <PageImage fit="full" width={1248} height={1040} src={talkImg.url} alt={t({ en: "An adult woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Mwanamke kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
       <div className="mt-3 rounded-xl bg-coral-soft p-4 text-sm flex gap-2">
         <BadgeAlert className="size-5 text-accent shrink-0" />
-        {t({ en: "Contact details below come from public lists but have not yet been verified by the SafeOnline team. Please confirm before relying on them.", sw: "Mawasiliano hapa chini yametoka kwenye orodha za umma lakini bado hayajathibitishwa na timu ya SafeOnline. Tafadhali thibitisha kabla ya kuyategemea." })}
+        {t({ en: "Entries marked verified carry the date the SafeOnline team confirmed them. The rest come from public lists and are not yet verified — please confirm before relying on them.", sw: "Zilizoashiriwa kuthibitishwa zina tarehe timu ya SafeOnline ilizothibitisha. Nyingine zimetoka kwenye orodha za umma na bado hazijathibitishwa — tafadhali thibitisha kabla ya kuzitegemea." })}
       </div>
       <div className="grid md:grid-cols-2 gap-4 mt-6">{pinned.map(card)}</div>
       <div className="relative mt-6">
