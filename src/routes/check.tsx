@@ -112,7 +112,6 @@ export function CheckPage() {
           </div>}
         </div>
         <p>{deep.summary}</p>
-        <p className="bg-secondary p-4 text-sm">{t({ en: "AI can be wrong and cannot establish intent, identity or legality. If you feel unsafe or uncertain, seek human help.", sw: "AI inaweza kukosea na haiwezi kuthibitisha nia, utambulisho au uhalali. Ukihisi si salama au una mashaka, tafuta msaada wa mtu." })}</p>
         <div className="border-t pt-4"><h3 className="font-display text-xl text-primary">{t({ en: "What to do next", sw: "Ufanye nini sasa" })}</h3><ol className="list-decimal pl-5 mt-2 space-y-2">{deep.nextSteps.map((step) => <li key={step}>{step}</li>)}</ol>
           {category && <><h4 className="font-semibold mt-4">{t({ en: "Save evidence safely", sw: "Hifadhi ushahidi kwa usalama" })}</h4><ul className="list-disc pl-5 mt-2 space-y-1">{category.evidence.map((e) => <li key={e.en}>{t(e)}</li>)}</ul></>}
         </div>
