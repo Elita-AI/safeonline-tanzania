@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
-import talkImg from "@/assets/talk_to_someone.jpg.asset.json";
+import talkImg from "@/assets/talk_to_someone_woman.jpg.asset.json";
 import { useEffect, useRef, useState } from "react";
 import { Send, ShieldCheck, Home, RotateCcw, Bot } from "lucide-react";
 import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
@@ -80,7 +80,7 @@ function Assistant() {
         </div>
         <Button asChild variant="outline" size="sm" className="rounded-full"><Link to="/"><Home className="size-4" /> {t({ en: "Main menu", sw: "Menyu kuu" })}</Link></Button>
       </div>
-      <PageImage fit="full" src={talkImg.url} alt={t({ en: "A young woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Msichana kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
+      <PageImage fit="full" width={1248} height={1040} src={talkImg.url} alt={t({ en: "An adult woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Mwanamke kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
 
       <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-accent-foreground">
         <Bot className="size-3.5 shrink-0" aria-hidden /> {t(ui.aiNoteLead)}{" "}

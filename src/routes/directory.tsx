@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
-import talkImg from "@/assets/talk_to_someone.jpg.asset.json";
+import talkImg from "@/assets/talk_to_someone_woman.jpg.asset.json";
 import { Search, Phone, Globe, BadgeAlert, MessageCircle, Mail, Pin } from "lucide-react";
 import { services, serviceCategories, serviceRegions, NATIONAL, type ServiceCategory, type Service } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
@@ -67,7 +67,7 @@ function Directory() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="font-display text-4xl text-primary">{t({ en: "Support Services", sw: "Huduma za Msaada" })}</h1>
-      <PageImage fit="full" src={talkImg.url} alt={t({ en: "A young woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Msichana kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
+      <PageImage fit="full" width={1248} height={1040} src={talkImg.url} alt={t({ en: "An adult woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Mwanamke kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
       <div className="mt-3 rounded-xl bg-coral-soft p-4 text-sm flex gap-2">
         <BadgeAlert className="size-5 text-accent shrink-0" />
         {t({ en: "Contact details below come from public lists but have not yet been verified by the SafeOnline team. Please confirm before relying on them.", sw: "Mawasiliano hapa chini yametoka kwenye orodha za umma lakini bado hayajathibitishwa na timu ya SafeOnline. Tafadhali thibitisha kabla ya kuyategemea." })}
