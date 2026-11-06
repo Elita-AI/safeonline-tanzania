@@ -32,7 +32,8 @@ function Directory() {
   const query = q.toLowerCase();
   const matches = (s: Service) => (!cat || s.categories.includes(cat)) && (!query || `${s.name.en} ${s.name.sw} ${s.region} ${s.categories.map((c) => `${serviceCategories[c].en} ${serviceCategories[c].sw}`).join(" ")}`.toLowerCase().includes(query));
   const pinned = services.filter((s) => s.pinned);
-  const rest = services.filter((s) => !s.pinned && matches(s) && (!region || s.region === region || s.region === NATIONAL));
+  const safeOnlineTeam = services.find((s) => s.id === "safeonline-team");
+  const rest = services.filter((s) => !s.pinned && s.id !== "safeonline-team" && matches(s) && (!region || s.region === region || s.region === NATIONAL));
   const list = region ? [...rest.filter((s) => s.region === region), ...rest.filter((s) => s.region === NATIONAL)] : rest;
   const card = (s: Service) => (
     <article key={s.id} className={`rounded-2xl border bg-card p-5 ${s.pinned ? "border-primary border-2" : ""}`}>
@@ -69,11 +70,15 @@ function Directory() {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="font-display text-4xl text-primary">{t({ en: "Support Services", sw: "Huduma za Msaada" })}</h1>
       <PageImage fit="full" width={1248} height={1040} src={talkImg.url} alt={t({ en: "An adult woman in bed at night looking at her phone, with the words: Is there anyone I can talk to?", sw: "Mwanamke kitandani usiku akitazama simu, na maneno yanasema: Je, kuna mtu ningenezungumza?" })} className="mt-4 max-w-md mx-auto" />
+      <p className="mt-3 rounded-xl border-2 border-primary bg-secondary/40 p-4 text-sm font-bold text-primary">
+        {t({ en: "All the support contact numbers here are free of charge.", sw: "Namba zote za msaada hapa hazina malipo." })}
+      </p>
       <div className="mt-3 rounded-xl bg-coral-soft p-4 text-sm flex gap-2">
         <BadgeAlert className="size-5 text-accent shrink-0" />
         {t({ en: "Entries marked verified carry the date the SafeOnline team confirmed them. The rest come from public lists and are not yet verified — please confirm before relying on them.", sw: "Zilizoashiriwa kuthibitishwa zina tarehe timu ya SafeOnline ilizothibitisha. Nyingine zimetoka kwenye orodha za umma na bado hazijathibitishwa — tafadhali thibitisha kabla ya kuzitegemea." })}
       </div>
       <div className="grid md:grid-cols-2 gap-4 mt-6">{pinned.map(card)}</div>
+      {safeOnlineTeam && <div className="mt-4">{card(safeOnlineTeam)}</div>}
       <div className="relative mt-6">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
         <Input value={q} onChange={(e) => nav({ search: (p) => ({ ...p, q: e.target.value || undefined }), replace: true })} placeholder={t({ en: "Search by name, region or service…", sw: "Tafuta kwa jina, mkoa au huduma…" })} className="pl-9 h-12 rounded-xl bg-card" aria-label="Search" />
