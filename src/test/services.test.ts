@@ -4,6 +4,17 @@ import { services } from "@/lib/content";
 const byId = (id: string) => services.find((s) => s.id === id);
 
 describe("Verified support records", () => {
+  it("pins the Ministry of Community Development, Gender, Women and Special Groups first", () => {
+    const s = byId("ministry-gender");
+    if (!s) throw new Error("The Ministry record is missing");
+    expect(s.pinned).toBe(true);
+    expect(s.verified).toBe(true);
+    expect(s.lastVerified).toBe("2026-11-06");
+    expect(s.phones).toEqual(["0774112233", "0769608130", "0766400168"]);
+    const pinned = services.filter((x) => x.pinned).map((x) => x.id);
+    expect(pinned[0]).toBe("ministry-gender");
+  });
+
   it("marks the National Child Helpline verified with its short code", () => {
     const s = byId("child-116");
     if (!s) throw new Error("The National Child Helpline record is missing");

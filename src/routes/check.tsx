@@ -129,10 +129,12 @@ export function CheckPage() {
 function QuickContacts() {
   const { t } = useLang();
   const verified = services.filter((s) => s.verified && !s.demo && s.lastVerified);
+  const ministry = verified.find((s) => s.id === "ministry-gender");
   const police = verified.find((s) => s.id === "police-officers")?.contacts?.find((c) => c.label.startsWith("DCI"));
   const child = verified.find((s) => s.id === "child-116");
   const tcra = verified.find((s) => s.id === "tcra-15040");
   const items: { label: { en: string; sw: string }; value: string; href: string; sms?: boolean }[] = [];
+  if (ministry?.phones[0]) items.push({ label: { en: "Ministry — GBV & child protection (WhatsApp/SMS)", sw: "Wizara — ukatili wa kijinsia na watoto (WhatsApp/SMS)" }, value: ministry.phones[0], href: `tel:${ministry.phones[0]}` });
   if (police) items.push({ label: { en: "Police — DCI (cybercrime)", sw: "Polisi — DCI (makosa ya mtandao)" }, value: police.phone, href: `tel:${police.phone.replace(/\s/g, "")}` });
   if (child?.phones[0]) items.push({ label: { en: "National Child Helpline", sw: "Simu ya Msaada kwa Mtoto" }, value: child.phones[0], href: `tel:${child.phones[0]}` });
   if (tcra?.sms?.[0]) items.push({ label: { en: "TCRA — report scammers (SMS)", sw: "TCRA — ripoti matapeli (SMS)" }, value: tcra.sms[0], href: `sms:${tcra.sms[0]}`, sms: true });

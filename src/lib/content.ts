@@ -229,6 +229,9 @@ export const policeOfficers: { title: string; name: string; rank: string; phone:
  * all others are shown with an "Unverified" badge.
  */
 export const services: Service[] = [
+  { ...base, id: "ministry-gender", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
+    phones: ["0774112233", "0769608130", "0766400168"], whatsapp: ["0774112233", "0769608130", "0766400168"], link: "https://jamii.go.tz",
+    note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },
   { ...base, id: "police-officers", pinned: true, verified: true, lastVerified: POLICE_BOARD_VERIFIED, name: { en: "Tanzania Police Force — Officer contacts", sw: "Jeshi la Polisi Tanzania — Mawasiliano ya Maafisa" }, categories: ["emergency"], region: NATIONAL, phones: [],
     contacts: policeOfficers.map((o) => ({ label: `${o.title} — ${o.name}, ${o.rank}`, phone: o.phone })),
     note: { en: "Officer contacts from the Tanzania Police Force contact board, verified by the SafeOnline team. Call the number that fits your situation and ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Mawasiliano ya maafisa kutoka ubao wa mawasiliano ya Jeshi la Polisi Tanzania, yaliyothibitishwa na timu ya SafeOnline. Piga namba inayofaa kwa hali yako na uombe Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
@@ -238,9 +241,6 @@ export const services: Service[] = [
     note: { en: "Tanzania Communications Regulatory Authority short code — report by SMS, not by call. Text 15040 to report SMS and phone scammers, suspicious numbers and other cyberthreats. Verified by the SafeOnline team on 2026-11-06.", sw: "Namba fupi ya Mamlaka ya Mawasiliano Tanzania (TCRA) — ripoti kwa SMS, si kwa simu. Tuma SMS kwa 15040 kuripoti wadangalifu wa SMS na simu, namba zenye shaka na vitisho vingine vya mtandaoni. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
   { ...base, id: "safeonline-team", name: { en: "SafeOnline Team Contact", sw: "Mawasiliano ya Timu ya SafeOnline" }, categories: ["digital"], region: NATIONAL, phones: ["+255768639959"], verified: true, lastVerified: "2026-11-06",
     note: { en: "Contact the SafeOnline team directly about this site, a report you sent, or a service listing.", sw: "Wasiliana na timu ya SafeOnline moja kwa moja kuhusu tovuti hii, ripoti uliyotuma, au orodha ya huduma." } },
-  { ...base, id: "ministry-gender", pinned: true, name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
-    phones: ["0774112233", "0769608130", "0766400168"], whatsapp: ["0774112233", "0769608130", "0766400168"], link: "https://jamii.go.tz",
-    note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },
   ...regionalOfficers.map(([region, phone]): Service => ({ ...base, id: `swo-${region.toLowerCase().replace(/\s+/g, "-")}`,
     name: { en: `Social Welfare Officer — ${region}`, sw: `Afisa Ustawi wa Jamii — ${region}` }, categories: ["gbv", "child"], region, phones: [phone], languages: ["Kiswahili"],
     note: { en: "Regional officer from the Ministry's list.", sw: "Afisa wa mkoa kutoka orodha ya Wizara." } })),

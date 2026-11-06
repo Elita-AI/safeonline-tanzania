@@ -18,6 +18,9 @@ describe('Direct AI assessment', () => {
     expect(await screen.findByText('Save the message and report the post.')).toBeInTheDocument();
     expect(screen.queryByText('Warning signs found')).not.toBeInTheDocument();
     expect(screen.queryByText(/AI can be wrong/)).not.toBeInTheDocument();
+    const heading = await screen.findByText('Numbers you can contact now (free)');
+    const hrefs = Array.from(heading.closest('div')?.querySelectorAll('a') ?? []).map((a) => a.getAttribute('href'));
+    expect(hrefs[0]).toBe('tel:0774112233');
   });
   it('keeps the input available after AI fails', async () => {
     check.mockResolvedValue({ error: 'credits' });
