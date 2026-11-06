@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
 import talkImg from "@/assets/talk_to_someone_cream.jpg.asset.json";
-import { Search, Phone, Globe, BadgeAlert, MessageCircle, Mail, Pin } from "lucide-react";
+import { Search, Phone, Globe, BadgeAlert, MessageCircle, MessageSquare, Mail, Pin } from "lucide-react";
 import { services, serviceCategories, serviceRegions, NATIONAL, type ServiceCategory, type Service } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Input } from "@/components/ui/input";
@@ -57,9 +57,10 @@ function Directory() {
       <div className="flex flex-wrap gap-2 mt-4">
         {s.phones.map((p) => <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold"><Phone className="size-4" /> {p}</a>)}
         {s.whatsapp.map((w) => <a key={`wa-${w}`} href={`https://wa.me/255${w.replace(/^0/, "")}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold"><MessageCircle className="size-4" /> WhatsApp {w}</a>)}
+        {s.sms?.map((n) => <a key={`sms-${n}`} href={`sms:${n}`} className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold"><MessageSquare className="size-4" /> {t({ en: "Text", sw: "Tuma SMS" })} {n}</a>)}
         {s.email && <a href={`mailto:${s.email}`} className="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm"><Mail className="size-4" /> {s.email}</a>}
         {s.link && <a href={s.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm"><Globe className="size-4" /> {t({ en: "Website", sw: "Tovuti" })}</a>}
-        {s.phones.length === 0 && !s.contacts?.length && <span className="text-xs text-muted-foreground">{lang === "en" ? "Contact details to be added after verification." : "Mawasiliano yataongezwa baada ya kuthibitishwa."}</span>}
+        {s.phones.length === 0 && !s.contacts?.length && !s.sms?.length && <span className="text-xs text-muted-foreground">{lang === "en" ? "Contact details to be added after verification." : "Mawasiliano yataongezwa baada ya kuthibitishwa."}</span>}
       </div>
     </article>
   );
