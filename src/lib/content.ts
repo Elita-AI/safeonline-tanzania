@@ -124,8 +124,8 @@ export const categories: Category[] = [
   },
 ];
 
-export const cyberthreats: { name: T; what: T }[] = [
-  { name: { en: "Mobile money fraud (Tuma kwa namba hii)", sw: "Ulaghai wa Fedha za Simu (Tuma kwa Namba Hii)" }, what: { en: "Someone pressures you to send mobile money to their number — a fake agent, a “I sent money by mistake, refund me” claim, a loan fee or a prize.", sw: "Mtu kukushinikiza utume pesa za simu kwa namba yao — mfanyakazi wa uongo, “nilituma pesa kwa kosa nirudishie”, ada ya mkopo au zawadi ya uongo." } },
+export const cyberthreats: { name: T; what: T; tagline?: T }[] = [
+  { name: { en: "Mobile money fraud", sw: "Ulaghai wa Fedha za Simu" }, tagline: { en: "(Tuma kwa namba hii)", sw: "(Tuma kwa namba hii)" }, what: { en: "Someone pressures you to send mobile money to their number — a fake agent, a “I sent money by mistake, refund me” claim, a loan fee or a prize.", sw: "Mtu kukushinikiza utume pesa za simu kwa namba yao — mfanyakazi wa uongo, “nilituma pesa kwa kosa nirudishie”, ada ya mkopo au zawadi ya uongo." } },
   { name: { en: "Phishing", sw: "Ulaghai wa Phishing" }, what: { en: "Fake messages or links that trick you into giving passwords, PINs or money.", sw: "Ujumbe au viungo vya uongo vinavyokulaghai utoe nenosiri, PIN au pesa." } },
   { name: { en: "Cyberbullying", sw: "Unyanyasaji Mtandaoni" }, what: { en: "Repeated insults, mocking or shaming someone online.", sw: "Tusi, dhihaka au aibu zinazojirudia mtandaoni." } },
   { name: { en: "Blackmail & sextortion", sw: "Ushawishi wa Kifisadi" }, what: { en: "Threats to share private images or information unless you pay or comply.", sw: "Vitisho vya kusambaza picha au taarifa binafsi isipokuwa ulipe au utii." } },

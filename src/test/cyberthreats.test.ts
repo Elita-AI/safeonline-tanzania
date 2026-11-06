@@ -6,8 +6,9 @@ describe("Common cyberthreats list", () => {
     const first = cyberthreats[0];
     if (!first) throw new Error("The cyberthreats list is empty");
     expect(first.name.en).toContain("Mobile money fraud");
-    expect(first.name.en).toContain("Tuma kwa namba hii");
     expect(first.name.sw).toContain("Ulaghai wa Fedha za Simu");
+    expect(first.tagline?.en).toContain("Tuma kwa namba hii");
+    expect(first.tagline?.sw).toContain("Tuma kwa namba hii");
     expect(first.what.en.length).toBeGreaterThan(0);
     expect(first.what.sw.length).toBeGreaterThan(0);
   });

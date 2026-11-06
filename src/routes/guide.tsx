@@ -40,6 +40,7 @@ function Guide() {
           {cyberthreats.map((th) => (
             <div key={th.name.en} className="rounded-2xl border bg-card p-4">
               <p className="font-semibold">{t(th.name)}</p>
+              {th.tagline ? <p className="text-xs italic text-muted-foreground mt-0.5">{t(th.tagline)}</p> : null}
               <p className="text-sm text-muted-foreground mt-1">{t(th.what)}</p>
             </div>
           ))}
