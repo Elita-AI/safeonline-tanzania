@@ -3,11 +3,15 @@ export function PageImage({
   alt,
   className = "",
   fit = "cover",
+  width = 1280,
+  height = 720,
 }: {
   src: string;
   alt: string;
   className?: string;
   fit?: "cover" | "full";
+  width?: number;
+  height?: number;
 }) {
   const sizing =
     fit === "full"
@@ -17,8 +21,8 @@ export function PageImage({
     <img
       src={src}
       alt={alt}
-      width={1242}
-      height={1037}
+      width={width}
+      height={height}
       className={`rounded-2xl shadow-sm ${sizing} ${className}`}
     />
   );

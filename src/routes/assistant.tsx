@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
-import talkImg from "@/assets/talk_to_someone.jpg.asset.json";
+import talkImg from "@/assets/talk_to_someone_woman.jpg.asset.json";
 import { useEffect, useRef, useState } from "react";
 import { Send, ShieldCheck, Home, RotateCcw, Bot } from "lucide-react";
 import { categories, detectCategory, detectDanger, generalGuidance, serviceCategories, type Category } from "@/lib/content";
