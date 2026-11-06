@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
-import reportImg from "@/assets/report_problem.jpg";
+import reportImg from "@/assets/report_problem_calm.jpg.asset.json";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang, ui } from "@/lib/i18n";
@@ -95,7 +95,7 @@ function ReportPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
       <h1 className="font-display text-4xl text-primary">{t({ en: "Report a Problem", sw: "Ripoti Tatizo" })}</h1>
-      <PageImage src={reportImg} alt={t({ en: "A woman calmly writing a report on her laptop", sw: "Mwanamke akiandika ripoti kwenye kompyuta" })} className="mt-4" />
+      <PageImage src={reportImg.url} alt={t({ en: "A woman with a calm, serious expression writing a report on her laptop", sw: "Mwanamke akiandika ripoti kwenye kompyuta kwa kujikita" })} className="mt-4" />
       <p className="text-muted-foreground mt-3">
         {t({ en: "Tell us what happened. The report goes privately to the SafeOnline team and helps us improve guidance and referrals.", sw: "Tuambie kilichotokea. Ripoti inapelekwa kwa siri kwa timu ya SafeOnline na husaidia kuboresha mwongozo na rufaa." })}
       </p>
