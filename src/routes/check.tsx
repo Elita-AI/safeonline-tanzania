@@ -132,12 +132,10 @@ function QuickContacts() {
   const police = verified.find((s) => s.id === "police-officers")?.contacts?.find((c) => c.label.startsWith("DCI"));
   const child = verified.find((s) => s.id === "child-116");
   const tcra = verified.find((s) => s.id === "tcra-15040");
-  const team = verified.find((s) => s.id === "safeonline-team");
   const items: { label: { en: string; sw: string }; value: string; href: string; sms?: boolean }[] = [];
   if (police) items.push({ label: { en: "Police — DCI (cybercrime)", sw: "Polisi — DCI (makosa ya mtandao)" }, value: police.phone, href: `tel:${police.phone.replace(/\s/g, "")}` });
   if (child?.phones[0]) items.push({ label: { en: "National Child Helpline", sw: "Simu ya Msaada kwa Mtoto" }, value: child.phones[0], href: `tel:${child.phones[0]}` });
   if (tcra?.sms?.[0]) items.push({ label: { en: "TCRA — report scammers (SMS)", sw: "TCRA — ripoti matapeli (SMS)" }, value: tcra.sms[0], href: `sms:${tcra.sms[0]}`, sms: true });
-  if (team?.phones[0]) items.push({ label: { en: "SafeOnline Team", sw: "Timu ya SafeOnline" }, value: team.phones[0], href: `tel:${team.phones[0]}` });
   if (!items.length) return null;
   return <div className="rounded-lg border-2 border-primary p-4 space-y-3">
     <h3 className="font-display text-xl text-primary">{t({ en: "Numbers you can contact now (free)", sw: "Namba unazoweza kuwasiliana nazo sasa (bure)" })}</h3>
