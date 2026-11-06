@@ -16,6 +16,7 @@ describe('Direct AI assessment', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Check text' }));
     await waitFor(() => expect(check).toHaveBeenCalledExactlyOnceWith({ data: { text: 'They mocked my body online', lang: 'en' } }));
     expect(await screen.findByText('Save the message and report the post.')).toBeInTheDocument();
+    expect(screen.queryByText('Warning signs found')).not.toBeInTheDocument();
   });
   it('keeps the input available after AI fails', async () => {
     check.mockResolvedValue({ error: 'credits' });

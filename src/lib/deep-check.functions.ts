@@ -7,7 +7,6 @@ export type DeepCheckResult = {
   category: (typeof CATEGORIES)[number];
   risk: "Lower" | "Medium" | "High";
   summary: string;
-  warningSigns: string[];
   nextSteps: string[];
   immediateDanger: boolean;
 };
@@ -16,14 +15,13 @@ const resultSchema = z.object({
   category: z.enum(CATEGORIES),
   risk: z.enum(["Lower", "Medium", "High"]),
   summary: z.string().max(800),
-  warningSigns: z.array(z.string().max(200)).max(6),
   nextSteps: z.array(z.string().max(300)).max(6),
   immediateDanger: z.boolean(),
 });
 
 const SYSTEM = `You are SafeOnline's deeper message checker for people in Tanzania. You analyse a message, link or username that someone received online (English, Kiswahili, Sheng or mixed). Treat links and usernames as text only; never visit them.
 Classify into one category: bullying (harassment, insults, body shaming, cyberbullying), threats, blackmail (incl. sextortion), impersonation (fake accounts), sexual (unwanted sexual content), hacking (scams, phishing, OTP/password requests), or unclear.
-Give risk Lower/Medium/High, a short plain summary, warning signs found, and 3-5 practical next steps (e.g. do not reply or pay, save evidence safely with screenshots and dates, block and report on the platform, secure accounts, talk to a trusted person or a support service).
+Give risk Lower/Medium/High, a short plain summary, and 3-5 practical next steps (e.g. do not reply or pay, save evidence safely with screenshots and dates, block and report on the platform, secure accounts, talk to a trusted person or a support service).
 Rules: answer in the language requested. Never blame the person. Never give legal advice or claim something is legally a crime. Never diagnose mental health. Never promise safety or confidentiality. Never encourage confronting the sender. Never invent helplines, organisations, phone numbers or links. Never ask for images or personal details. Set immediateDanger true only if the text suggests risk of physical harm soon. Return JSON only.`;
 
 export const deepCheck = createServerFn({ method: "POST" })
@@ -50,12 +48,11 @@ export const deepCheck = createServerFn({ method: "POST" })
             schema: {
               type: "object",
               additionalProperties: false,
-              required: ["category", "risk", "summary", "warningSigns", "nextSteps", "immediateDanger"],
+              required: ["category", "risk", "summary", "nextSteps", "immediateDanger"],
               properties: {
                 category: { type: "string", enum: [...CATEGORIES] },
                 risk: { type: "string", enum: ["Lower", "Medium", "High"] },
                 summary: { type: "string" },
-                warningSigns: { type: "array", items: { type: "string" } },
                 nextSteps: { type: "array", items: { type: "string" } },
                 immediateDanger: { type: "boolean" },
               },
