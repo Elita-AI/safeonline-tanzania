@@ -28,7 +28,7 @@ describe("Verified support records", () => {
     const s = byId("safeonline-team");
     if (!s) throw new Error("The SafeOnline Team Contact record is missing");
     expect(s.pinned).toBeFalsy();
-    expect(s.phones).toEqual(["+2557639959"]);
+    expect(s.phones).toEqual(["+255768639959"]);
     expect(s.verified).toBe(true);
     expect(s.lastVerified).toBe("2026-11-06");
   });
