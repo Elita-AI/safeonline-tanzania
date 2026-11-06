@@ -22,3 +22,12 @@ describe("Common cyberthreats list", () => {
     expect(all).not.toContain("upelelezi");
   });
 });
+
+import { lawForCategory } from "@/lib/content";
+describe("Cybercrimes Act per category", () => {
+  it("shows Section 23 for bullying and Section 15 for impersonation", () => {
+    expect(lawForCategory("bullying")[0]?.penalty.en).toContain("Section 23");
+    expect(lawForCategory("impersonation")[0]?.penalty.en).toContain("Section 15");
+    expect(lawForCategory("unclear")).toEqual([]);
+  });
+});

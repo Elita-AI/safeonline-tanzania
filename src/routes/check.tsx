@@ -4,7 +4,7 @@ import checkImg from "@/assets/check_message.jpg";
 import { useState, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImagePlus, Sparkles } from "lucide-react";
-import { assessText, assessmentLabels, categories } from "@/lib/content";
+import { assessText, assessmentLabels, categories, lawForCategory } from "@/lib/content";
 import { deepCheck, type DeepCheckResult } from "@/lib/deep-check.functions";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -100,7 +100,17 @@ export function CheckPage() {
       {deepErr && <p className="text-sm text-destructive" role="alert">{t(deepErr)}</p>}
       {deep && <>
         <p className="text-sm font-semibold">{t({ en: "AI-assisted assessment, not a legal determination", sw: "Tathmini kwa msaada wa AI, si uamuzi wa kisheria" })}</p>
-        <div className="border rounded-lg p-4"><p className="text-sm text-muted-foreground">{t({ en: "Likely category", sw: "Aina inayowezekana" })}</p><p className="font-semibold mt-1">{deep.category === "unclear" ? t({ en: "Unclear", sw: "Haijabainika" }) : t(assessmentLabels[deep.category])}</p></div>
+        <div className="border rounded-lg p-4"><p className="text-sm text-muted-foreground">{t({ en: "Likely category", sw: "Aina inayowezekana" })}</p><p className="font-semibold mt-1">{deep.category === "unclear" ? t({ en: "Unclear", sw: "Haijabainika" }) : t(assessmentLabels[deep.category])}</p>
+          {lawForCategory(deep.category).length > 0 && <div className="mt-3 space-y-3 border-t pt-3">
+            <p className="text-sm font-semibold text-primary">{t({ en: "What the Cybercrimes Act, 2015 says", sw: "Sheria ya Makosa ya Mtandao, 2015 inasema nini" })}</p>
+            {lawForCategory(deep.category).map((o) => <div key={o.heading.en} className="text-sm space-y-1">
+              <p className="font-semibold">{t(o.heading)}</p>
+              <p>{t(o.body)}</p>
+              <p className="rounded-md bg-secondary px-3 py-2"><span className="font-semibold">{t({ en: "Possible penalty: ", sw: "Adhabu inayowezekana: " })}</span>{t(o.penalty)}</p>
+            </div>)}
+            <p className="text-xs text-muted-foreground">{t({ en: "General information, not legal advice. Only a court decides whether a crime happened.", sw: "Taarifa za jumla, si ushauri wa kisheria. Mahakama pekee ndiyo huamua kama kosa limetendeka." })} <Link to="/law" className="underline">{t({ en: "Know the Law", sw: "Fahamu Sheria" })}</Link></p>
+          </div>}
+        </div>
         <p>{deep.summary}</p>
         {deep.warningSigns.length > 0 && <div><h3 className="font-semibold">{t({ en: "Warning signs found", sw: "Dalili zilizotambuliwa" })}</h3><ul className="list-disc pl-5 mt-2 space-y-1">{deep.warningSigns.map((w) => <li key={w}>{w}</li>)}</ul></div>}
         <p className="bg-secondary p-4 text-sm">{t({ en: "AI can be wrong and cannot establish intent, identity or legality. If you feel unsafe or uncertain, seek human help.", sw: "AI inaweza kukosea na haiwezi kuthibitisha nia, utambulisho au uhalali. Ukihisi si salama au una mashaka, tafuta msaada wa mtu." })}</p>
