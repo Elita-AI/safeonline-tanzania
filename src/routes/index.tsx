@@ -31,7 +31,7 @@ function Home() {
   ] as const;
   const how = [
     { icon: ScanText, title: { en: "Check", sw: "Kagua" }, body: { en: "Check a message or describe what is happening.", sw: "Kagua ujumbe au eleza kinachoendelea." } },
-    { icon: BookOpen, title: { en: "Understand", sw: "Elewa" }, body: { en: "See possible warning signs and the limits of the assessment.", sw: "Ona dalili zinazowezekana na mipaka ya tathmini." } },
+    { icon: BookOpen, title: { en: "Understand", sw: "Elewa" }, body: { en: "See what the message may mean, what the law says and the limits of the assessment.", sw: "Ona maana ya ujumbe, kile sheria inasema na mipaka ya tathmini." } },
     { icon: ListChecks, title: { en: "Act", sw: "Chukua hatua" }, body: { en: "Choose practical safety, evidence and account-security steps.", sw: "Chagua hatua za usalama, ushahidi na kulinda akaunti." } },
     { icon: HeartHandshake, title: { en: "Get Support", sw: "Pata Msaada" }, body: { en: "Explore support options or choose to send a private report.", sw: "Angalia njia za msaada au chagua kutuma ripoti binafsi." } },
   ];
