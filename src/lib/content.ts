@@ -171,6 +171,8 @@ export type Service = {
   region: string;
   phones: string[];
   whatsapp: string[];
+  /** Short codes reached by SMS, not by voice call */
+  sms?: string[];
   email?: string;
   link: string | null;
   hours: T | null;
@@ -232,8 +234,8 @@ export const services: Service[] = [
     note: { en: "Officer contacts from the Tanzania Police Force contact board, verified by the SafeOnline team. Call the number that fits your situation and ask for the Gender and Children Desk or the Cybercrime Unit.", sw: "Mawasiliano ya maafisa kutoka ubao wa mawasiliano ya Jeshi la Polisi Tanzania, yaliyothibitishwa na timu ya SafeOnline. Piga namba inayofaa kwa hali yako na uombe Dawati la Jinsia na Watoto au Kitengo cha Uhalifu wa Mtandaoni." } },
   { ...base, id: "child-116", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "National Child Helpline", sw: "Huduma ya Simu ya Msaada kwa Watoto" }, categories: ["child"], region: NATIONAL, phones: ["116"],
     note: { en: "Toll-free helpline for children. Verified by the SafeOnline team on 2026-11-06.", sw: "Simu ya msaada kwa watoto bila malipo. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
-  { ...base, id: "tcra-15040", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "TCRA — Report scammers & suspicious numbers (15040)", sw: "TCRA — Ripoti wadangalifu na namba za shaka (15040)" }, categories: ["digital"], region: NATIONAL, phones: ["15040"],
-    note: { en: "Tanzania Communications Regulatory Authority short code. Report SMS and phone scammers, suspicious numbers and other cyberthreats. Verified by the SafeOnline team on 2026-11-06.", sw: "Namba fupi ya Mamlaka ya Mawasiliano Tanzania (TCRA). Ripoti wadangalifu wa SMS na simu, namba zenye shaka na vitisho vingine vya mtandaoni. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
+  { ...base, id: "tcra-15040", pinned: true, verified: true, lastVerified: "2026-11-06", name: { en: "TCRA — Report scammers & suspicious numbers by SMS (15040)", sw: "TCRA — Ripoti wadangalifu na namba za shaka kwa SMS (15040)" }, categories: ["digital"], region: NATIONAL, sms: ["15040"],
+    note: { en: "Tanzania Communications Regulatory Authority short code — report by SMS, not by call. Text 15040 to report SMS and phone scammers, suspicious numbers and other cyberthreats. Verified by the SafeOnline team on 2026-11-06.", sw: "Namba fupi ya Mamlaka ya Mawasiliano Tanzania (TCRA) — ripoti kwa SMS, si kwa simu. Tuma SMS kwa 15040 kuripoti wadangalifu wa SMS na simu, namba zenye shaka na vitisho vingine vya mtandaoni. Imethibitishwa na timu ya SafeOnline tarehe 2026-11-06." } },
   { ...base, id: "ministry-gender", pinned: true, name: { en: "Ministry of Community Development, Gender, Women and Special Groups — WhatsApp/SMS reporting", sw: "Wizara ya Maendeleo ya Jamii, Jinsia, Wanawake na Makundi Maalum — Kuripoti kwa WhatsApp/SMS" }, categories: ["gbv", "child"], region: NATIONAL,
     phones: ["0774112233", "0769608130", "0766400168"], whatsapp: ["0774112233", "0769608130", "0766400168"], link: "https://jamii.go.tz",
     note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },

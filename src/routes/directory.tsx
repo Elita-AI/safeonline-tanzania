@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageImage } from "@/components/PageImage";
 import talkImg from "@/assets/talk_to_someone_cream.jpg.asset.json";
-import { Search, Phone, Globe, BadgeAlert, MessageCircle, Mail, Pin } from "lucide-react";
+import { Search, Phone, Globe, BadgeAlert, MessageCircle, MessageSquare, Mail, Pin } from "lucide-react";
 import { services, serviceCategories, serviceRegions, NATIONAL, type ServiceCategory, type Service } from "@/lib/content";
 import { useLang, ui } from "@/lib/i18n";
 import { Input } from "@/components/ui/input";
