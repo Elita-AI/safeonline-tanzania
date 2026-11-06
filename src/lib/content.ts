@@ -241,7 +241,7 @@ export const services: Service[] = [
     note: { en: "National numbers to report GBV or ask the Ministry questions.", sw: "Namba za kitaifa za kuripoti ukatili wa kijinsia au kuuliza Wizara maswali." } },
   ...regionalOfficers.map(([region, phone]): Service => ({ ...base, id: `swo-${region.toLowerCase().replace(/\s+/g, "-")}`,
     name: { en: `Social Welfare Officer — ${region}`, sw: `Afisa Ustawi wa Jamii — ${region}` }, categories: ["gbv", "child"], region, phones: [phone], languages: ["Kiswahili"],
-    note: { en: "Regional officer from the Ministry's list. Call to verify before launch.", sw: "Afisa wa mkoa kutoka orodha ya Wizara. Piga simu kuthibitisha kabla ya kuzindua." } })),
+    note: { en: "Regional officer from the Ministry's list.", sw: "Afisa wa mkoa kutoka orodha ya Wizara." } })),
   { ...base, id: "tz-cert", name: { en: "TZ-CERT (Tanzania Computer Emergency Response Team)", sw: "TZ-CERT (Timu ya Taifa ya Kushughulikia Matukio ya Kompyuta)" }, categories: ["digital"], region: NATIONAL,
     phones: ["+255222412039"], email: "incidents@tzcert.go.tz", link: "https://tzcert.go.tz", hours: { en: "Mon–Fri, 8am–4pm", sw: "Jumatatu–Ijumaa, saa 2 asubuhi–saa 10 jioni" },
     note: { en: "For hacked accounts, unauthorized access and technical incidents. Free. Has an online incident form. Not for harassment or blackmail cases.", sw: "Kwa akaunti zilizodukuliwa, uingiaji usioidhinishwa na matukio ya kiufundi. Bure. Ina fomu ya mtandaoni ya kuripoti. Si kwa kesi za unyanyasaji au usaliti." } },
