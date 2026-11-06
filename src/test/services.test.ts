@@ -23,4 +23,13 @@ describe("Verified support records", () => {
     const pinned = services.filter((x) => x.pinned).map((x) => x.id);
     expect(pinned.indexOf("tcra-15040")).toBe(pinned.indexOf("child-116") + 1);
   });
+
+  it("adds the SafeOnline team contact with the number the team supplied, kept out of the pinned block", () => {
+    const s = byId("safeonline-team");
+    if (!s) throw new Error("The SafeOnline Team Contact record is missing");
+    expect(s.pinned).toBeFalsy();
+    expect(s.phones).toEqual(["+2557639959"]);
+    expect(s.verified).toBe(true);
+    expect(s.lastVerified).toBe("2026-11-06");
+  });
 });
