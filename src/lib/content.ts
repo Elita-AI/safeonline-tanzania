@@ -125,13 +125,13 @@ export const categories: Category[] = [
 ];
 
 export const cyberthreats: { name: T; what: T }[] = [
+  { name: { en: "Mobile money fraud (Tuma kwa namba hii)", sw: "Ulaghai wa Fedha za Simu (Tuma kwa Namba Hii)" }, what: { en: "Someone pressures you to send mobile money to their number — a fake agent, a “I sent money by mistake, refund me” claim, a loan fee or a prize.", sw: "Mtu kukushinikiza utume pesa za simu kwa namba yao — mfanyakazi wa uongo, “nilituma pesa kwa kosa nirudishie”, ada ya mkopo au zawadi ya uongo." } },
   { name: { en: "Phishing", sw: "Ulaghai wa Phishing" }, what: { en: "Fake messages or links that trick you into giving passwords, PINs or money.", sw: "Ujumbe au viungo vya uongo vinavyokulaghai utoe nenosiri, PIN au pesa." } },
   { name: { en: "Cyberbullying", sw: "Unyanyasaji Mtandaoni" }, what: { en: "Repeated insults, mocking or shaming someone online.", sw: "Tusi, dhihaka au aibu zinazojirudia mtandaoni." } },
   { name: { en: "Blackmail & sextortion", sw: "Ushawishi wa Kifisadi" }, what: { en: "Threats to share private images or information unless you pay or comply.", sw: "Vitisho vya kusambaza picha au taarifa binafsi isipokuwa ulipe au utii." } },
   { name: { en: "Impersonation & fake accounts", sw: "Kuigiza na Akaunti za Uongo" }, what: { en: "Accounts pretending to be you or someone you know.", sw: "Akaunti zinazojifanya ni wewe au mtu unayemjua." } },
   { name: { en: "Account hacking", sw: "Kuvamiwa kwa Akaunti" }, what: { en: "Someone breaks into your email, social media or money accounts.", sw: "Mtu kuingia barua pepe, mitandao ya kijamii au akaunti zako za fedha bila ruhusa." } },
   { name: { en: "Online scams & fraud", sw: "Matapeli Mtandaoni" }, what: { en: "Fake offers, jobs, loans, prizes or investments that steal your money.", sw: "Ofa za uongo za kazi, mikopo, zawadi au uwekezaji zinazokuibia pesa." } },
-  { name: { en: "Stalking & spyware", sw: "Kufuatiliwa na Programu za Upelelezi" }, what: { en: "Someone tracks your movements, phone or online activity secretly.", sw: "Mtu kufuatilia mahali ulipo, simu au shughuli zako mtandaoni kwa siri." } },
   { name: { en: "Doxxing", sw: "Kusambaza Taarifa Binafsi" }, what: { en: "Sharing your private details (address, phone, workplace) publicly to harm you.", sw: "Kusambaza taarifa zako binafsi (anwani, simu, mahali pa kazi) hadharani ili kukudhuru." } },
   { name: { en: "Intimate images shared without consent", sw: "Picha za Siri Bila Ridhaa" }, what: { en: "Private or intimate images shared without the person's permission.", sw: "Picha binafsi au za siri kusambazwa bila ridhaa ya mmiliki." } },
   { name: { en: "Malware & harmful apps", sw: "Programu Hasidi" }, what: { en: "Apps or files that steal your data, money or control your device.", sw: "Programu au faili zinazoiba taarifa zako, pesa au kudhibiti kifaa chako." } },
