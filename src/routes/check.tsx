@@ -3,8 +3,8 @@ import { PageImage } from "@/components/PageImage";
 import checkImg from "@/assets/check_message.jpg";
 import { useState, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImagePlus, Sparkles } from "lucide-react";
-import { assessText, assessmentLabels, categories, lawForCategory } from "@/lib/content";
+import { Phone, MessageSquare, ScanText, RotateCcw, ArrowRight, LifeBuoy, FileWarning, Home, ImagePlus, Sparkles } from "lucide-react";
+import { assessText, assessmentLabels, categories, lawForCategory, services } from "@/lib/content";
 import { deepCheck, type DeepCheckResult } from "@/lib/deep-check.functions";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -118,6 +118,7 @@ export function CheckPage() {
           {category && <><h4 className="font-semibold mt-4">{t({ en: "Save evidence safely", sw: "Hifadhi ushahidi kwa usalama" })}</h4><ul className="list-disc pl-5 mt-2 space-y-1">{category.evidence.map((e) => <li key={e.en}>{t(e)}</li>)}</ul></>}
         </div>
       </>}
+      {(deep || deepErr) && <QuickContacts />}
       <div className="flex flex-wrap gap-3">
         <Button asChild><Link to="/guide" search={category ? { c: category.id } : {}}><ArrowRight className="size-4" />{t({ en: "Matching safety guide", sw: "Mwongozo wa usalama" })}</Link></Button>
         <Button asChild variant="secondary"><Link to="/directory" search={{ cat: category?.referTo[0] }}><LifeBuoy className="size-4" />{t({ en: "Get support", sw: "Pata msaada" })}</Link></Button>
@@ -125,5 +126,23 @@ export function CheckPage() {
       </div>
       <p className="text-xs text-muted-foreground">{t({ en: "Nothing is reported automatically. Your checked text is not transferred to the report form.", sw: "Hakuna kinachoripotiwa kiotomatiki. Maandishi uliyokagua hayahamishwi kwenye fomu ya ripoti." })}</p>
     </section>}
+  </div>;
+}
+function QuickContacts() {
+  const { t } = useLang();
+  const verified = services.filter((s) => s.verified && !s.demo && s.lastVerified);
+  const police = verified.find((s) => s.id === "police-officers")?.contacts?.find((c) => c.label.startsWith("DCI"));
+  const child = verified.find((s) => s.id === "child-116");
+  const tcra = verified.find((s) => s.id === "tcra-15040");
+  const team = verified.find((s) => s.id === "safeonline-team");
+  const items: { label: { en: string; sw: string }; value: string; href: string; sms?: boolean }[] = [];
+  if (police) items.push({ label: { en: "Police — DCI (cybercrime)", sw: "Polisi — DCI (makosa ya mtandao)" }, value: police.phone, href: `tel:${police.phone.replace(/\s/g, "")}` });
+  if (child?.phones[0]) items.push({ label: { en: "National Child Helpline", sw: "Simu ya Msaada kwa Mtoto" }, value: child.phones[0], href: `tel:${child.phones[0]}` });
+  if (tcra?.sms?.[0]) items.push({ label: { en: "TCRA — report scammers (SMS)", sw: "TCRA — ripoti matapeli (SMS)" }, value: tcra.sms[0], href: `sms:${tcra.sms[0]}`, sms: true });
+  if (team?.phones[0]) items.push({ label: { en: "SafeOnline Team", sw: "Timu ya SafeOnline" }, value: team.phones[0], href: `tel:${team.phones[0]}` });
+  if (!items.length) return null;
+  return <div className="rounded-lg border-2 border-primary p-4 space-y-3">
+    <h3 className="font-display text-xl text-primary">{t({ en: "Numbers you can contact now (free)", sw: "Namba unazoweza kuwasiliana nazo sasa (bure)" })}</h3>
+    <ul className="grid gap-2 sm:grid-cols-2">{items.map((i) => <li key={i.href}><a href={i.href} className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-sm hover:opacity-80">{i.sms ? <MessageSquare className="size-4 shrink-0" /> : <Phone className="size-4 shrink-0" />}<span><span className="block font-semibold">{t(i.label)}</span>{i.sms ? t({ en: `Text ${i.value}`, sw: `Tuma SMS ${i.value}` }) : i.value}</span></a></li>)}</ul>
   </div>;
 }
